@@ -5,27 +5,34 @@
     <title>This is a list of all ingredients</title>
 </head>
 <body>
-
+<table>
+    <tr>
+        <th>Ingredient</th>
+        <th>Unit</th>
+        <th></th>
+    </tr>
+    <tr th:each="ingredient : ${allIngredients}">
+        <td th:text="${ingredient.name}"></td>
+        <td th:text="${ingredient.unitOfMeasure}"></td>
+    </tr>
+</table>
 
 <form th:action="@{/ingredient/new}" method="post" th:object="${newIngredient}">
+    <input type="hidden" th:field="*{ingredientId}">
     <table>
         <tr>
-            <th><label for="nameField">Name</label></th>
-            <th></th>
+            <td><label for="nameField">Ingredient</label></td>
+            <td><label for="unitOfMeasureField">Unit</label></td>
         </tr>
-        <tr th:each="ingredient : ${allIngredients}">
-            <td th:text="*{ingredient.name}">
-
-            </td>
-        </tr>
-
-
         <tr>
-            <td><input id="nameField" type="text" th:field="*{name}"></td>
-            <td><input type="submit" value="Save new ingredient"></td>
+            <td><input id="nameField" th:field="*{name}"></td>
+            <td><input id="unitOfMeasureField" th:field="*{unitOfMeasure}"></td>
         </tr>
-
     </table>
+
+        <input type="submit" value="Save new ingredient" />
+
+
 </form>
 
 </body>

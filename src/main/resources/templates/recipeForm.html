@@ -9,7 +9,7 @@
 <h1>Add your own recipe</h1>
 
 <form th:action="@{/recipe/new}" method="post" th:object="${recipe}">
-    <input type="hidden" th:fiel="*{recipeId}">
+    <input type="hidden" th:field="*{recipeId}">
     <table>
         <tr>
             <td><label for="nameField">Recipe Name</label></td>
