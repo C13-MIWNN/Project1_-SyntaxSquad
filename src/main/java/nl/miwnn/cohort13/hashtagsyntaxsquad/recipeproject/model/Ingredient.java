@@ -3,5 +3,5 @@ package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model;/*
  * Purpose for this class
  **/
 
-public class Ingredients {
+public class Ingredient {
 }
