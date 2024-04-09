@@ -5,5 +5,5 @@ package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories;
  * <p>
  * purpose for the class
  **/
-public class LabelRepository {
+public interface LabelRepository {
 }
