@@ -61,11 +61,11 @@ public class Recipe {
         this.instructions = instructions;
     }
 
-    public String getNumberOfPortions() {
+    public int getNumberOfPortions() {
         return numberOfPortions;
     }
 
-    public void setNumberOfPortions(String numberOfPortions) {
+    public void setNumberOfPortions(int numberOfPortions) {
         this.numberOfPortions = numberOfPortions;
     }
 
