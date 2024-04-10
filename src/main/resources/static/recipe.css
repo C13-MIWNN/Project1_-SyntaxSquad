@@ -1,0 +1,130 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    height: 80px;
+}
+
+
+.login {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+
+.icon {
+    font-size: 24px; /* Kapı simgesinin boyutu */
+    margin-right: 5px; /* Yazıdan biraz önce */
+}
+
+
+.search-container {
+    display: center;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 70%; /* Genişlik ayarlandı */
+    margin: 0 auto; /* Ortalamak için margin ayarlandı */
+}
+
+.search-input {
+    padding: 15px; /* Padding artırıldı */
+    margin-right: 15px; /* Sağ boşluk artırıldı */
+    border-radius: 15px; /* Kenar yuvarlaklığı artırıldı */
+    border: 1px solid #ccc;
+    font-size: 20px; /* Yazı boyutu artırıldı */
+}
+
+.search-button {
+    padding: 15px 30px; /* Padding artırıldı */
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px; /* Kenar yuvarlaklığı artırıldı */
+    color: white;
+    cursor: pointer;
+    font-size: 20px; /* Yazı boyutu artırıldı */
+}
+
+
+
+
+main {
+    padding: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.buttons button {
+    margin: 0 10px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    padding: 0;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+
+
+
+.add-recipe {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.add-recipe::before {
+    content: "Click to add a recipe!";
+    display: none;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.add-recipe:hover::before {
+    display: block;
+}
+
+
+.list-recipe {
+    background-color: #008CBA;
+    color: white;
+}
+
+.ingredient {
+    background-color: #f44336;
+    color: white;
+}
+
+.favorite-recipe {
+    background-color: #FFC107;
+    color: white;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
