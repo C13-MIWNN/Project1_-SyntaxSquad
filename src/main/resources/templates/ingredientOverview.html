@@ -5,15 +5,16 @@
     <title>This is a list of all ingredients</title>
 </head>
 <body>
+
+<h1>Overview of ingredients</h1>
+
 <table>
     <tr>
         <th>Ingredient</th>
-        <th>Unit</th>
         <th></th>
     </tr>
     <tr th:each="ingredient : ${allIngredients}">
         <td th:text="${ingredient.name}"></td>
-        <td th:text="${ingredient.unitOfMeasure}"></td>
     </tr>
 </table>
 
@@ -22,11 +23,9 @@
     <table>
         <tr>
             <td><label for="nameField">Ingredient</label></td>
-            <td><label for="unitOfMeasureField">Unit</label></td>
         </tr>
         <tr>
             <td><input id="nameField" th:field="*{name}"></td>
-            <td><input id="unitOfMeasureField" th:field="*{unitOfMeasure}"></td>
         </tr>
     </table>
 

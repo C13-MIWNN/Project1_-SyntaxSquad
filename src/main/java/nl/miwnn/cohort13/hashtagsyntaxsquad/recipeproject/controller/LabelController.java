@@ -1,9 +1,8 @@
 package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.controller;
 
 /**
- * @author Sami ARSLAN
- * <p>
- * purpose for the class
+ * @author #SyntaxSquad
+ * Deal with everything related to labels/categories
  **/
 public class LabelController {
 }

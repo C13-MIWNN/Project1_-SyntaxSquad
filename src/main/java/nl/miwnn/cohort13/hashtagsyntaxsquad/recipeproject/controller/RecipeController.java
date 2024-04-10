@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
- * @author Sami ARSLAN
- * <p>
- * purpose for the class
+ * @author #SyntaxSquad
+ * Deal with everything related to recipes
  **/
 @Controller
 public class RecipeController {
@@ -48,7 +47,5 @@ public class RecipeController {
         }
         return "redirect:/";
     }
-
-
 
 }

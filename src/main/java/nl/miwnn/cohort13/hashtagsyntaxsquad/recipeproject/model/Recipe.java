@@ -8,12 +8,14 @@ import jakarta.persistence.ManyToMany;
 import java.util.Set;
 
 /**
- * @author Sami ARSLAN
- * <p>
- * purpose for the class
+ * @author #SyntaxSquad
+ * Represents a recipe that has ingredients and instructions to prepare it
  **/
 @Entity
 public class Recipe {
+
+    private static final int DEFAULT_NUMBER_OF_PORTIONS = 4;
+
     @Id
     @GeneratedValue
     private Long recipeId;
@@ -25,12 +27,11 @@ public class Recipe {
     @ManyToMany
     private Set<Ingredient> ingredients;
 
-    public Recipe(String recipeName, String instructions, int numberOfPortions, Set<Ingredient> ingredients) {
+    public Recipe(String recipeName, String instructions, Set<Ingredient> ingredients) {
         this.recipeName = recipeName;
         this.instructions = instructions;
-        this.numberOfPortions = numberOfPortions;
         this.ingredients = ingredients;
-
+        this.numberOfPortions = DEFAULT_NUMBER_OF_PORTIONS;
     }
 
     public Recipe() {

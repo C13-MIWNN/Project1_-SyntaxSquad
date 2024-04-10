@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
- * @author Sami ARSLAN
- * <p>
- * purpose for the class
+ * @author #SyntaxSquad
+ * Deal with everything related to ingredients
  **/
 @Controller
 public class IngredientController {

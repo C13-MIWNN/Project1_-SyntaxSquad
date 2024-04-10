@@ -4,9 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 /**
- * @author Sami ARSLAN
- * <p>
- * purpose for the class
+ *@author #SyntaxSquad
+ * Represents a category/label that characterises a recipe
  **/
 
 @Entity

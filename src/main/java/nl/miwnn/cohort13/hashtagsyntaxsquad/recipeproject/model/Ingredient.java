@@ -1,6 +1,6 @@
 package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model;/*
  * @author Henk-Jan Veld
- * Purpose for this class
+ * Represents an ingredient that can be added to a recipe
  **/
 
 import jakarta.persistence.*;
@@ -15,19 +15,22 @@ public class Ingredient {
     @GeneratedValue
     private Long ingredientId;
     private String name;
-    private String unitOfMeasure;
 
 
     @ManyToMany
     private Set<Recipe> recipes;
 
-    public Ingredient(String name, String unitOfMeasure) {
+    public Ingredient(String name) {
         this.name = name;
-        this.unitOfMeasure = unitOfMeasure;
     }
 
     public Ingredient() {
 
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
     public Long getIngredientId() {
@@ -53,13 +56,5 @@ public class Ingredient {
     public void setRecipes(Set<Recipe> recipes) {
         this.recipes = recipes;
 
-    }
-
-    public String getUnitOfMeasure() {
-        return unitOfMeasure;
-    }
-
-    public void setUnitOfMeasure(String unitOfMeasure) {
-        this.unitOfMeasure = unitOfMeasure;
     }
 }
