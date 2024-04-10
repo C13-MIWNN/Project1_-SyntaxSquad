@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>This is a list of all tags</title>
+</head>
+<body>
+
+<h1>Overview of tags</h1>
+
+<table>
+    <tr>
+        <th>Tag</th>
+        <th></th>
+    </tr>
+    <tr th:each="tag : ${allTags}">
+        <td th:text="${tag.tag}"></td>
+    </tr>
+</table>
+
+<form th:action="@{/tag/new}" method="post" th:object="${newTag}">
+    <table>
+        <tr>
+            <td><label for="nameField">Tag</label></td>
+        </tr>
+        <tr>
+            <td><input id="nameField" th:field="*{tag}"></td>
+        </tr>
+    </table>
+
+    <input type="submit" value="Save new tag" />
+
+
+</form>
+
+</body>
+</html>

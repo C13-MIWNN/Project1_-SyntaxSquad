@@ -11,8 +11,9 @@
         <tr>
             <th>Name</th>
             <th>Number of portions</th>
-            <th>Ingredient</th>
+            <th>Ingredients</th>
             <th>Instructions</th>
+            <th>Tags</th>
             <th></th>
         </tr>
         <tr th:each="recipe : ${allRecipes}">
@@ -20,6 +21,7 @@
             <td th:text="${recipe.numberOfPortions}"></td>
             <td th:text="${recipe.ingredients}"></td>
             <td th:text="${recipe.instructions}"></td>
+            <td th:text="${recipe.tags}"></td>
         </tr>
     </table>
 
