@@ -22,9 +22,15 @@ header {
     font-size: 24px;
 }
 
+.homepage {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+
 .icon {
-    font-size: 24px; /* Kapı simgesinin boyutu */
-    margin-right: 5px; /* Yazıdan biraz önce */
+    font-size: 24px;
+    margin-right: 5px;
 }
 
 
@@ -102,6 +108,8 @@ main {
 .add-recipe:hover::before {
     display: block;
 }
+
+
 
 
 .list-recipe {
