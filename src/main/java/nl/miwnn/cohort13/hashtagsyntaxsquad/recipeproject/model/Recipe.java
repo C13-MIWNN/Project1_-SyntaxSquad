@@ -23,15 +23,19 @@ public class Recipe {
     private String instructions;
     private int numberOfPortions;
 
-
     @ManyToMany
     private Set<Ingredient> ingredients;
 
-    public Recipe(String recipeName, String instructions, Set<Ingredient> ingredients) {
+    @ManyToMany
+    private Set<Tag> tags;
+
+    public Recipe(String recipeName, String instructions, Set<Ingredient> ingredients, Set<Tag> tags) {
         this.recipeName = recipeName;
         this.instructions = instructions;
         this.ingredients = ingredients;
         this.numberOfPortions = DEFAULT_NUMBER_OF_PORTIONS;
+        this.tags = tags;
+
     }
 
     public Recipe() {
@@ -76,5 +80,13 @@ public class Recipe {
 
     public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 }
