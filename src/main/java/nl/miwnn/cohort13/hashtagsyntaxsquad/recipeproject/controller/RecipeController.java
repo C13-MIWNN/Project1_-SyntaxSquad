@@ -1,9 +1,10 @@
 package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.controller;
 
-import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Ingredient;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Recipe;
+import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Tag;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.IngredientRepository;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.RecipeRepository;
+import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.TagRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,10 +20,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class RecipeController {
     private final RecipeRepository recipeRepository;
     private final IngredientRepository ingredientRepository;
+    private final TagRepository tagRepository;
 
-    public RecipeController(RecipeRepository recipeRepository, IngredientRepository ingredientRepository) {
+    public RecipeController(RecipeRepository recipeRepository,
+                            IngredientRepository ingredientRepository,
+                            TagRepository tagRepository) {
         this.recipeRepository = recipeRepository;
         this.ingredientRepository = ingredientRepository;
+        this.tagRepository = tagRepository;
     }
 
     @GetMapping({"/", "/index"})
@@ -41,6 +46,7 @@ public class RecipeController {
     private String showRecipeForm(Model model) {
         model.addAttribute("recipe", new Recipe());
         model.addAttribute("allIngredients", ingredientRepository.findAll());
+        model.addAttribute("allTags", tagRepository.findAll());
 
         return "recipeForm";
     }
@@ -50,6 +56,7 @@ public class RecipeController {
         if (!result.hasErrors()) {
             recipeRepository.save(recipeToBeSaved);
         }
+
         return "redirect:/";
     }
 

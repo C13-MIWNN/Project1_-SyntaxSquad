@@ -30,7 +30,8 @@ public class IngredientController {
     }
 
     @PostMapping("/ingredient/new")
-    private String saveOrUpdateIngredient(@ModelAttribute("newIngredient") Ingredient ingredient, BindingResult result) {
+    private String saveOrUpdateIngredient
+            (@ModelAttribute("newIngredient") Ingredient ingredient, BindingResult result) {
         if (!result.hasErrors()) {
             ingredientRepository.save(ingredient);
         }
