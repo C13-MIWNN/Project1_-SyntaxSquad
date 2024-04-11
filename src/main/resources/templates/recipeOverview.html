@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:replace="~{fragments/general :: baseHeader(~{:: title})}">
     <title>Recipe overview</title>
-    <link rel="stylesheet" href="recipe.css">
+    <link rel="stylesheet" href="/recipe.css">
 </head>
 <body>
 
@@ -48,9 +47,8 @@
     <a th:href="@{/recipe/new}">Add a new recipe</a>
 </p>
 
-<footer>
-    <div class="toolbar-bottom">@SHH</div>
-</footer>
+<div th:replace="~{fragments/general :: footer}"></div>
+<div th:replace="~{fragments/general :: bottomScripts}"></div>
 
 </body>
 </html>
