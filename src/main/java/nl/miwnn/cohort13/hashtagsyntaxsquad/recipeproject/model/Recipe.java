@@ -1,9 +1,6 @@
 package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 
 import java.util.Set;
 
@@ -23,16 +20,16 @@ public class Recipe {
     private String instructions;
     private int numberOfPortions;
 
-    @ManyToMany
-    private Set<Ingredient> ingredients;
+    @OneToMany
+    private Set<AmountOfIngredient> amountOfIngredients;
 
     @ManyToMany
     private Set<Tag> tags;
 
-    public Recipe(String recipeName, String instructions, Set<Ingredient> ingredients, Set<Tag> tags) {
+    public Recipe(String recipeName, Set<AmountOfIngredient> amountOfIngredients, String instructions, Set<Tag> tags) {
         this.recipeName = recipeName;
+        this.amountOfIngredients = amountOfIngredients;
         this.instructions = instructions;
-        this.ingredients = ingredients;
         this.numberOfPortions = DEFAULT_NUMBER_OF_PORTIONS;
         this.tags = tags;
 
@@ -74,12 +71,13 @@ public class Recipe {
         this.numberOfPortions = numberOfPortions;
     }
 
-    public Set<Ingredient> getIngredients() {
-        return ingredients;
+
+    public Set<AmountOfIngredient> getAmountOfIngredients() {
+        return amountOfIngredients;
     }
 
-    public void setIngredients(Set<Ingredient> ingredients) {
-        this.ingredients = ingredients;
+    public void setAmountOfIngredients(Set<AmountOfIngredient> amountOfIngredients) {
+        this.amountOfIngredients = amountOfIngredients;
     }
 
     public Set<Tag> getTags() {

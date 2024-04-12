@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Amounts of ingredients</title>
+</head>
+<body>
+
+<h1>Amounts of ingredients</h1>
+
+<table>
+    <tr>
+        <th>Amount</th>
+        <th>Unit of Measurement</th>
+        <th>Ingredient</th>
+        <th></th>
+    </tr>
+    <tr th:each="amountOfIngredient : ${allAmountsOfIngredients}">
+        <td th:text="${amountOfIngredient.amount}"></td>
+        <td th:text="${amountOfIngredient.ingredient.unitOfMeasurement}"></td>
+        <td th:text="${amountOfIngredient.ingredient.name}"></td>
+    </tr>
+</table>
+
+<form th:action="@{/amount/new}" method="post" th:object="${newAmountOfIngredient}">
+    <input type="hidden" th:field="*{id}">
+    <table>
+        <tr>
+            <td><label for="ingredientAmountField">Amount</label></td>
+            <td><label for="ingredientUnitField">Unit of Measurement</label></td>
+            <td><label for="ingredientNameField">Ingredient</label></td>
+        </tr>
+        <tr>
+            <td><input id="ingredientAmountField" th:field="*{amount}"></td>
+            <td><select id="ingredientUnitField" th:field="*{ingredient.unitOfMeasurement}" multiple>
+                <option th:each="ingredient : ${allIngredients}"
+                        th:text="${ingredient.unitOfMeasurement}"
+                        th:value="${ingredient.unitOfMeasurement}">
+                </option>
+            </select></td>
+            <td>
+                <select id="ingredientNameField" th:field="*{ingredient}" multiple>
+                    <option th:each="ingredient : ${allIngredients}"
+                            th:text="${ingredient.name}"
+                            th:value="${ingredient.ingredientId}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+    </table>
+
+    <input type="submit" value="Save Amount of Ingredient"/>
+
+</form>
+
+<p>
+    <a th:href="@{/recipe/new}">Add a new recipe</a>
+</p>
+
+</body>
+</html>
+
