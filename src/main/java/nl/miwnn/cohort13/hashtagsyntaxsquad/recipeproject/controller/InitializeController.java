@@ -67,16 +67,24 @@ public class InitializeController {
         ingredientSet.add(new Ingredient());
         recipe.setIngredients(ingredientSet);
 
+        Set<Tag> tagSet = new Set<);>
+        tagSet.add(new Tag());
+        recipe.setTags((tagSet));
+
         recipeRepository.save(recipe);
         return recipe;
     }
 //tag needs to be revised, based on the type of set it will become
-    private Tag makeTag(Recipe recipe) {
+    private Tag makeTag(String ) {
         Tag tag = new Tag();
-        tag.setRecipe(recipe);
+        tag.setTag();
         tagRepository.save(tag);
         return tag;
     }
-
-
+    /*private Ingredient makeIngredient(String name) {
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName(name);
+        ingredientRepository.save(ingredient);
+        return ingredient;
+}*/
 }
