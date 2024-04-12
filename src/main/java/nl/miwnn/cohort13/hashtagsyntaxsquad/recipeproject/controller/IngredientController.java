@@ -31,9 +31,9 @@ public class IngredientController {
 
     @PostMapping("/ingredient/new")
     private String saveOrUpdateIngredient
-            (@ModelAttribute("newIngredient") Ingredient ingredient, BindingResult result) {
+            (@ModelAttribute("newIngredient") Ingredient ingredientToBeSaved, BindingResult result) {
         if (!result.hasErrors()) {
-            ingredientRepository.save(ingredient);
+            ingredientRepository.save(ingredientToBeSaved);
         }
 
         return "redirect:/ingredient";

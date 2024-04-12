@@ -11,10 +11,12 @@
 <table>
     <tr>
         <th>Ingredient</th>
+        <th>Unit of Measurement</th>
         <th></th>
     </tr>
-    <tr th:each="ingredient : ${allIngredients}">
+    <tr th:field="*{ingredient}" th:each="ingredient : ${allIngredients}">
         <td th:text="${ingredient.name}"></td>
+        <td th:text="${ingredient.unitOfMeasurement}"></td>
     </tr>
 </table>
 
@@ -23,16 +25,22 @@
     <table>
         <tr>
             <td><label for="nameField">Ingredient</label></td>
+            <td><label for="unitOfMeasurementField">Unit Of Measurement</label></td>
         </tr>
         <tr>
             <td><input id="nameField" th:field="*{name}"></td>
+            <td><input id="unitOfMeasurementField" th:field="*{unitOfMeasurement}"></td>
         </tr>
     </table>
 
         <input type="submit" value="Save new ingredient" />
-
-
 </form>
+
+<p>
+    <a th:href="@{/amount}">Add a new amount</a>
+</p>
 
 </body>
 </html>
+
+

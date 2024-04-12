@@ -8,33 +8,33 @@
 <body>
 <h1>Add your own recipe</h1>
 
-<form th:action="@{/recipe/new}" method="post" th:object="${recipe}">
+<form th:action="@{/recipe/new}" method="post" th:object="${newRecipe}">
     <input type="hidden" th:field="*{recipeId}">
     <table>
         <tr>
             <td><label for="nameField">Recipe Name</label></td>
             <td><label for="noPortionsField">Number of portions</label></td>
-            <td><label for="ingredientField">Ingredient</label></td>
             <td><label for="instructionsField">Instructions</label></td>
+            <td><label for="amountOfIngredientField>">Amount + ingredient</label></td>
             <td><label for="tagsField">Tags</label></td>
         </tr>
         <tr>
             <td><input id="nameField" th:field="*{recipeName}"></td>
             <td><input id="noPortionsField" th:field="*{numberOfPortions}"></td>
+            <td><input id="instructionsField" th:field="*{instructions}"></td>
             <td>
-                <select id="ingredientField" th:field="*{ingredients}" multiple>
-                    <option th:each="ingredient : ${allIngredients}"
-                            th:text="${ingredient.name}"
-                            th:value="${ingredient.ingredientId}">
+                <select id="amountOfIngredientField>" th:field="*{amountOfIngredients}" multiple>
+                    <option th:each="amountOfIngredientInRecipe : ${allAmountsOfIngredients}"
+                            th:text="${amountOfIngredientInRecipe}"
+                            th:value="${amountOfIngredientInRecipe.id}">
                     </option>
                 </select>
             </td>
-            <td><input id="instructionsField" th:field="*{instructions}"></td>
             <td>
                 <select id="tagsField" th:field="*{tags}" multiple>
-                    <option th:each="tag : ${allTags}"
-                            th:text="${tag.tag}"
-                            th:value="${tag.tag}">
+                    <option th:each="tagInRecipe : ${allTags}"
+                            th:text="${tagInRecipe}"
+                            th:value="${tagInRecipe.tag}">
                     </option>
                 </select>
             </td>

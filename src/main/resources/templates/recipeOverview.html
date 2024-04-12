@@ -11,15 +11,15 @@
         <tr>
             <th>Name</th>
             <th>Number of portions</th>
-            <th>Ingredients</th>
+            <th>Ingredients + amount</th>
             <th>Instructions</th>
             <th>Tags</th>
             <th></th>
         </tr>
-        <tr th:each="recipe : ${allRecipes}">
+        <tr th:field="*{recipe}" th:each="recipe : ${allRecipes}">
             <td th:text="${recipe.recipeName}"></td>
             <td th:text="${recipe.numberOfPortions}"></td>
-            <td th:text="${recipe.ingredients}"></td>
+            <td th:text="${recipe.amountOfIngredients}"></td>
             <td th:text="${recipe.instructions}"></td>
             <td th:text="${recipe.tags}"></td>
         </tr>
@@ -27,6 +27,12 @@
 
 <p>
     <a th:href="@{/recipe/new}">Add a new recipe</a>
+</p>
+<p>
+    <a th:href="@{/ingredient}">Add a new ingredient</a>
+</p>
+<p>
+    <a th:href="@{/tag}">Add a new tag</a>
 </p>
 
 </body>

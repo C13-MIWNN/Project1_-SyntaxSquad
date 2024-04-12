@@ -15,23 +15,21 @@ public class Ingredient {
     @GeneratedValue
     private Long ingredientId;
     private String name;
+    private String unitOfMeasurement;
 
-
-    @ManyToMany
-    private Set<Recipe> recipes;
-
-    public Ingredient(String name) {
+    public Ingredient(String name, String unitOfMeasurement) {
         this.name = name;
+        this.unitOfMeasurement = unitOfMeasurement;
     }
 
     public Ingredient() {
-
     }
 
     @Override
     public String toString() {
-        return name;
+        return unitOfMeasurement + " " + name;
     }
+
 
     public Long getIngredientId() {
         return ingredientId;
@@ -49,12 +47,11 @@ public class Ingredient {
         this.name = name;
     }
 
-    public Set<Recipe> getRecipes() {
-        return recipes;
+    public String getUnitOfMeasurement() {
+        return unitOfMeasurement;
     }
 
-    public void setRecipes(Set<Recipe> recipes) {
-        this.recipes = recipes;
-
+    public void setUnitOfMeasurement(String unitOfMeasurement) {
+        this.unitOfMeasurement = unitOfMeasurement;
     }
 }

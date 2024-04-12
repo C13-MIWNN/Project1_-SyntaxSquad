@@ -1,8 +1,9 @@
 package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.controller;
 
+import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.AmountOfIngredient;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Recipe;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Tag;
-import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.IngredientRepository;
+import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.AmountOfIngredientRepository;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.RecipeRepository;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.TagRepository;
 import org.springframework.stereotype.Controller;
@@ -19,14 +20,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class RecipeController {
     private final RecipeRepository recipeRepository;
-    private final IngredientRepository ingredientRepository;
+    private final AmountOfIngredientRepository amountOfIngredientRepository;
     private final TagRepository tagRepository;
 
     public RecipeController(RecipeRepository recipeRepository,
-                            IngredientRepository ingredientRepository,
+                            AmountOfIngredientRepository amountOfIngredientRepository,
                             TagRepository tagRepository) {
         this.recipeRepository = recipeRepository;
-        this.ingredientRepository = ingredientRepository;
+        this.amountOfIngredientRepository = amountOfIngredientRepository;
         this.tagRepository = tagRepository;
     }
 
@@ -39,20 +40,25 @@ public class RecipeController {
 
     @GetMapping("/recipe/new")
     private String showRecipeForm(Model model) {
-        model.addAttribute("recipe", new Recipe());
-        model.addAttribute("allIngredients", ingredientRepository.findAll());
+        // uiteindelijk moet AmountOfIngredient denk ik op dezelfde pagina aangemaakt worden als recipe.
+        // Als tussenoplossing nu een amountOfIngredientOverview gemaakt.
+//        AmountOfIngredient amountOfIngredientToAdd = new AmountOfIngredient();
+//        model.addAttribute("amountOfIngredient", amountOfIngredientToAdd);
+//        model.addAttribute("recipe", new Recipe(amountOfIngredientToAdd));
+        model.addAttribute("allAmountsOfIngredients", amountOfIngredientRepository.findAll());
         model.addAttribute("allTags", tagRepository.findAll());
+
+        model.addAttribute("newRecipe", new Recipe());
 
         return "recipeForm";
     }
 
     @PostMapping("/recipe/new")
-    private String saveRecipe(@ModelAttribute("recipe") Recipe recipeToBeSaved, BindingResult result) {
+    private String saveOrUpdateRecipe(@ModelAttribute("newRecipe") Recipe recipeToBeSaved, BindingResult result) {
         if (!result.hasErrors()) {
             recipeRepository.save(recipeToBeSaved);
         }
 
         return "redirect:/";
     }
-
 }
