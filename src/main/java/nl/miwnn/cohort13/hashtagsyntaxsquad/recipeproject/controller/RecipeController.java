@@ -31,7 +31,12 @@ public class RecipeController {
         this.tagRepository = tagRepository;
     }
 
-    @GetMapping({"/", "/recipe"})
+    @GetMapping({"/", "/index"})
+    private String showMainPage(Model model) {
+
+        return "index";
+    }
+    @GetMapping({ "/recipe"})
     private String showAllRecipes(Model model) {
         model.addAttribute("allRecipes", recipeRepository.findAll());
 

@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Input</title>
     <style>
         .inputField {
-            width: 400px;
-            height: 80px; /* Four lines long */
+            width: 200px;
+            height: 20px; /* Four lines long */
+        }
+        .smallInputField {
+            width: 70px;
+            height: 20px;
         }
     </style>
 </head>
@@ -22,16 +27,16 @@
 <!-- Your React component -->
 <script th:inline="javascript">
     /* <![CDATA[ */
-    function DynamicInput() {
-        const [data, setData] = React.useState([{value: ""}])
+    function DynamicThreeInput() {
+        const [data, setData] = React.useState([{ingredientAmount: "", ingredientUnitOfMeasure: "", ingredientName: ""}])
 
         const handleClick = () => {
-            setData([...data, {value: ""}])
+            setData([...data, {ingredientAmount: "", ingredientUnitOfMeasure: "", ingredientName: ""}])
         }
         const handleChange = (e, i) => {
-            const {value} = e.target
+            const {name, value} = e.target
             const onchangeVal = [...data]
-            onchangeVal[i].value = value
+            onchangeVal[i][name] = value
             setData(onchangeVal)
         }
         const handleDelete = (i) => {
@@ -44,7 +49,10 @@
                 React.createElement('button', {onClick: handleClick}, 'Add'),
                 data.map((val, i) =>
                     React.createElement('div', {key: i},
-                        React.createElement('textarea', {className: 'inputField', value: val.value, onChange: (e) => handleChange(e, i)}),
+                        React.createElement('textarea', {name: 'ingredientAmount', className: 'smallInputField', value: val.ingredientAmount, onChange: (e) => handleChange(e, i)}),
+                        React.createElement('textarea', {name: 'ingredientUnitOfMeasure', className: 'smallInputField', value: val.ingredientUnitOfMeasure, onChange: (e) => handleChange(e, i)}),
+                        React.createElement('textarea', {name: 'ingredientName', className: 'inputField', value: val.ingredientName, onChange: (e) => handleChange(e, i)}),
+
                         React.createElement('button', {onClick: () => handleDelete(i)}, 'Delete')
                     )
                 )
@@ -52,7 +60,7 @@
         );
     }
 
-    ReactDOM.render(React.createElement(DynamicInput), document.getElementById('dynamicInput'));
+    ReactDOM.render(React.createElement(DynamicThreeInput), document.getElementById('dynamicInput'));
     /* ]]> */
 </script>
 

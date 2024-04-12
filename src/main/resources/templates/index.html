@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+<head th:replace="~{fragments/general :: baseHeader(~{:: title})}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Website</title>
-    <link rel="stylesheet" href="recipe.css">
+    <link rel="stylesheet" href="/recipe.css">
 </head>
 <body>
 <header>
@@ -23,15 +22,22 @@
 </header>
 <main>
     <div class="buttons">
-        <a href="/recipe/new" class="add-recipe">Add Recipe</a>
-        <button class="list-recipe">List Recipe</button>
+        <a href="/recipe/new" >
+            <button class="add-recipe">Add Recipe</button>
+        </a>
+        <a href="/recipe" >
+         <button class="list-recipe">List Recipe</button>
+        </a>
+        <a href="/ingredient" >
         <button class="ingredient">Ingredient</button>
+        </a>
         <button class="favorite-recipe">Favorite Recipe</button>
     </div>
 
 </main>
-<footer>
-    <div class="toolbar-bottom">@SHH</div>
-</footer>
+
+
+<div th:replace="~{fragments/general :: footer}"></div>
+<div th:replace="~{fragments/general :: bottomScripts}"></div>
 </body>
 </html>

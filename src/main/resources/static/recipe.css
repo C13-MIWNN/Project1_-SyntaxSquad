@@ -11,7 +11,7 @@ header {
     align-items: center;
     padding: 20px;
     background-color: #333;
-    color: white;
+    color: white !important;
     height: 80px;
 }
 
@@ -22,9 +22,20 @@ header {
     font-size: 24px;
 }
 
+.homepage {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+
+.homepage a {
+    color: white;
+    text-decoration: none;
+}
+
 .icon {
-    font-size: 24px; /* Kapı simgesinin boyutu */
-    margin-right: 5px; /* Yazıdan biraz önce */
+    font-size: 24px;
+    margin-right: 5px;
 }
 
 
@@ -79,29 +90,73 @@ main {
 }
 
 
-
-
 .add-recipe {
     background-color: #4CAF50;
     color: white;
+    position: relative;
 }
 
 .add-recipe::before {
     content: "Click to add a recipe!";
-    display: none;
     position: absolute;
-    top: -30px;
+    top: 100%;
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
+    font-size: 14px;
+    display: none;
 }
 
 .add-recipe:hover::before {
     display: block;
 }
+
+
+.recipe-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.recipe-name,
+.portions {
+    flex: 1;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.ingredients-instructions {
+    border-radius: 10px;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.ingredient-section,
+.instructions-section {
+    flex: 1;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-right: 5px;
+}
+
+.save-recipe-button {
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+    clear: both;
+    margin-top: 20px;
+}
+
 
 
 .list-recipe {
