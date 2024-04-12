@@ -4,9 +4,7 @@ package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model;/*
  **/
 
 import jakarta.persistence.*;
-
-
-import java.util.Set;
+import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.enums.UnitOfMeasurement;
 
 @Entity
 public class Ingredient {
@@ -15,9 +13,9 @@ public class Ingredient {
     @GeneratedValue
     private Long ingredientId;
     private String name;
-    private String unitOfMeasurement;
+    private UnitOfMeasurement unitOfMeasurement;
 
-    public Ingredient(String name, String unitOfMeasurement) {
+    public Ingredient(String name, UnitOfMeasurement unitOfMeasurement) {
         this.name = name;
         this.unitOfMeasurement = unitOfMeasurement;
     }
@@ -47,11 +45,11 @@ public class Ingredient {
         this.name = name;
     }
 
-    public String getUnitOfMeasurement() {
+    public UnitOfMeasurement getUnitOfMeasurement() {
         return unitOfMeasurement;
     }
 
-    public void setUnitOfMeasurement(String unitOfMeasurement) {
+    public void setUnitOfMeasurement(UnitOfMeasurement unitOfMeasurement) {
         this.unitOfMeasurement = unitOfMeasurement;
     }
 }

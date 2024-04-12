@@ -19,8 +19,8 @@ public class AmountOfIngredient {
     @ManyToOne
     private Ingredient ingredient;
 
-    @ManyToOne
-    private Recipe recipe;
+//    @ManyToOne
+//    private Recipe recipe;
 
     public AmountOfIngredient(double amount, Ingredient ingredient) {
         this.amount = amount;
@@ -59,11 +59,11 @@ public class AmountOfIngredient {
         this.ingredient = ingredient;
     }
 
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
+//    public Recipe getRecipe() {
+//        return recipe;
+//    }
+//
+//    public void setRecipe(Recipe recipe) {
+//        this.recipe = recipe;
+//    }
 }
