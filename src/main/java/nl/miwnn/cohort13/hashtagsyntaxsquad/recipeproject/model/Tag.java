@@ -1,11 +1,7 @@
 package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-
-import java.util.Set;
 
 /**
  *@author #SyntaxSquad
@@ -16,26 +12,27 @@ import java.util.Set;
 public class Tag {
 
     @Id
-    private String tag;
+    private String tagName;
+
+
 
     @Override
     public String toString() {
-        return tag;
+        return tagName;
     }
 
-    public Tag(String tag) {
-        this.tag = tag;
+    public Tag(String tagName) {
+        this.tagName = tagName;
     }
 
     public Tag() {
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public String getTagName() {
+        return tagName;
     }
 
-    public String getTag() {
-        return tag;
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
     }
-
 }

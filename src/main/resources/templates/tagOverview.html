@@ -13,7 +13,7 @@
         <th></th>
     </tr>
     <tr th:each="tag : ${allTags}">
-        <td th:text="${tag.tag}"></td>
+        <td th:text="${tag.tagName}"></td>
     </tr>
 </table>
 
@@ -23,7 +23,7 @@
             <td><label for="nameField">Tag</label></td>
         </tr>
         <tr>
-            <td><input id="nameField" th:field="*{tag}"></td>
+            <td><input id="nameField" th:field="*{tagName}"></td>
         </tr>
     </table>
 

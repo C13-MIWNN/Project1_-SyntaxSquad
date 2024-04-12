@@ -62,7 +62,7 @@
             <select id="tagsField" th:field="*{tags}" multiple>
                 <option th:each="tagInRecipe : ${allTags}"
                         th:text="${tagInRecipe}"
-                        th:value="${tagInRecipe.tag}">
+                        th:value="${tagInRecipe.tagName}">
                 </option>
             </select>
         </div>

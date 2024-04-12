@@ -87,4 +87,7 @@ public class Recipe {
     public void setTags(Set<Tag> tags) {
         this.tags = tags;
     }
+
+    public void setIngredients(Set<Ingredient> ingredientSet) {
+    }
 }
