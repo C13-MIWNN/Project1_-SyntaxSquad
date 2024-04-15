@@ -44,26 +44,26 @@ header {
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 70%; /* Genişlik ayarlandı */
-    margin: 0 auto; /* Ortalamak için margin ayarlandı */
+    width: 70%;
+    margin: 0 auto;
 }
 
 .search-input {
-    padding: 15px; /* Padding artırıldı */
-    margin-right: 15px; /* Sağ boşluk artırıldı */
-    border-radius: 15px; /* Kenar yuvarlaklığı artırıldı */
+    padding: 15px;
+    margin-right: 15px;
+    border-radius: 15px;
     border: 1px solid #ccc;
-    font-size: 20px; /* Yazı boyutu artırıldı */
+    font-size: 20px;
 }
 
 .search-button {
-    padding: 15px 30px; /* Padding artırıldı */
+    padding: 15px 30px;
     background-color: #4CAF50;
     border: none;
-    border-radius: 15px; /* Kenar yuvarlaklığı artırıldı */
+    border-radius: 15px;
     color: white;
     cursor: pointer;
-    font-size: 20px; /* Yazı boyutu artırıldı */
+    font-size: 20px;
 }
 
 
