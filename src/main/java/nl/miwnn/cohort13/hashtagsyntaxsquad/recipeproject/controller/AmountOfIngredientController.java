@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * @author Sarah Fopma
- * <p>
- * Programma <doet het volgende...>
+ * Deal with everything related to the Amount of Ingredient in a recipe
  **/
+
 @Controller
 public class AmountOfIngredientController {
     private final AmountOfIngredientRepository amountOfIngredientRepository;

@@ -20,7 +20,6 @@ import java.util.List;
 @Controller
 public class IngredientController {
     private final IngredientRepository ingredientRepository;
-    List<UnitOfMeasurement> unitsOfMeasurement;
 
     public IngredientController(IngredientRepository ingredientRepository) {
         this.ingredientRepository = ingredientRepository;

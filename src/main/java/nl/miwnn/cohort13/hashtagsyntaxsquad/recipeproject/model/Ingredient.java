@@ -13,6 +13,8 @@ public class Ingredient {
     @GeneratedValue
     private Long ingredientId;
     private String name;
+
+    @Enumerated(EnumType.STRING)
     private UnitOfMeasurement unitOfMeasurement;
 
     public Ingredient(String name, UnitOfMeasurement unitOfMeasurement) {

@@ -11,14 +11,13 @@
 <table>
     <tr>
         <th>Amount</th>
-        <th>Unit of Measurement</th>
-        <th>Ingredient</th>
+        <th>Unit + Ingredient</th>
         <th></th>
     </tr>
     <tr th:each="amountOfIngredient : ${allAmountsOfIngredients}">
         <td th:text="${amountOfIngredient.amount}"></td>
-        <td th:text="${amountOfIngredient.ingredient.unitOfMeasurement}"></td>
-        <td th:text="${amountOfIngredient.ingredient.name}"></td>
+        <td th:text="${amountOfIngredient.ingredient.unitOfMeasurement + ' '
+                        + amountOfIngredient.ingredient.name}"></td>
     </tr>
 </table>
 
@@ -27,24 +26,16 @@
     <table>
         <tr>
             <td><label for="ingredientAmountField">Amount</label></td>
-            <td><label for="ingredientUnitField">Unit of Measurement</label></td>
-            <td><label for="ingredientNameField">Ingredient</label></td>
+            <td><label for="ingredientUnitField">Unit + Ingredient</label></td>
         </tr>
         <tr>
             <td><input id="ingredientAmountField" th:field="*{amount}"></td>
-            <td><select id="ingredientUnitField" th:field="*{ingredient.unitOfMeasurement}" multiple>
+            <td><select id="ingredientUnitField" th:field="*{ingredient}" multiple>
                 <option th:each="ingredient : ${allIngredients}"
-                        th:text="${ingredient.unitOfMeasurement}"
-                        th:value="${ingredient.unitOfMeasurement}">
+                        th:text="${ingredient.unitOfMeasurement + ' ' + ingredient.name}"
+                        th:value="${ingredient.ingredientId}">
                 </option>
-            </select></td>
-            <td>
-                <select id="ingredientNameField" th:field="*{ingredient}" multiple>
-                    <option th:each="ingredient : ${allIngredients}"
-                            th:text="${ingredient.name}"
-                            th:value="${ingredient.ingredientId}">
-                    </option>
-                </select>
+            </select>
             </td>
         </tr>
     </table>

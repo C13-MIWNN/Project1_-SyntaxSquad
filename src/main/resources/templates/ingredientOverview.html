@@ -50,7 +50,7 @@
             <td><input id="nameField" th:field="*{name}"></td>
             <td><select id="unitOfMeasurementField" th:field="*{unitOfMeasurement}">
                     <option th:each="unitOfMeasurement : ${allUnitsOfMeasurement}"
-                            th:text="${unitOfMeasurement.toString()}"
+                            th:text="${unitOfMeasurement}"
                             th:value="${unitOfMeasurement}">
                     </option>
                 </select>

@@ -2,9 +2,9 @@ package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.enums;
 
 /**
  * @author Sarah Fopma
- * <p>
- * Programma <doet het volgende...>
+ * Enum to set Unit of Measurement value, as part of Ingredient
  **/
+
 public enum UnitOfMeasurement {
 
     piece,
@@ -12,18 +12,6 @@ public enum UnitOfMeasurement {
     teaspoon,
     tablespoon,
     milliliter,
-    liter,
-    ;
+    liter;
 
-    @Override
-    public String toString() {
-        return switch (this) {
-            case piece -> "piece(s)";
-            case gram -> "grams";
-            case teaspoon -> "teaspoon(s)";
-            case tablespoon -> "tablespoon(s)";
-            case milliliter -> "milliliter";
-            case liter -> "liter";
-        };
-    }
 }

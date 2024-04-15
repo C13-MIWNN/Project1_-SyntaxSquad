@@ -19,6 +19,9 @@ public class AmountOfIngredient {
     @ManyToOne
     private Ingredient ingredient;
 
+    // Dit gebruiken we nu niet (Amount of Ingredient wordt aangeroepen in Recipe),
+    // maar volgens mij zou het, omdat het een tussentabel is tussen Ingredient en Recipe,
+    // hier wel moeten staan. Nog verder naar kijken.
 //    @ManyToOne
 //    private Recipe recipe;
 
