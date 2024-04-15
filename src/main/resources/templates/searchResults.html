@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
+
 <head th:replace="~{fragments/general :: baseHeader(~{:: title})}">
-    <title>This is a list of all ingredients</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Website</title>
     <link rel="stylesheet" href="/recipe.css">
 </head>
+
 <body>
-
-
 <header>
     <div class="homepage">
         <a href="/" >
@@ -29,51 +30,25 @@
     </div>
 
 </header>
+<h1>Search Results</h1>
 
-<table>
-    <tr>
-        <th>Ingredient</th>
-        <th>Unit of Measurement</th>
-        <th></th>
-    </tr>
-    <tr th:field="*{ingredient}" th:each="ingredient : ${allIngredients}">
-        <td th:text="${ingredient.name}"></td>
-        <td th:text="${ingredient.unitOfMeasurement}"></td>
-    </tr>
-</table>
+<div class="container">
 
-<form th:action="@{/ingredient/new}" method="post" th:object="${newIngredient}">
-    <input type="hidden" th:field="*{ingredientId}">
     <table>
         <tr>
-            <td><label for="nameField">Ingredient</label></td>
-            <td><label for="unitOfMeasurementField">Unit Of Measurement</label></td>
+            <th>Recipe Name</th>
+            <th>Ingredient</th>
         </tr>
-        <tr>
-            <td><input id="nameField" th:field="*{name}"></td>
-            <td><select id="unitOfMeasurementField" th:field="*{unitOfMeasurement}">
-                    <option th:each="unitOfMeasurement : ${allUnitsOfMeasurement}"
-                            th:text="${unitOfMeasurement}"
-                            th:value="${unitOfMeasurement}">
-                    </option>
-                </select>
-            </td>
+
+        <tr th:each="result : ${searchResults}">
+            <td th:text="${result.name}"></td>
         </tr>
     </table>
 
-        <input type="submit" value="Save new ingredient" />
-</form>
-
-<p>
-    <a th:href="@{/amount}">Add a new amount</a>
-</p>
+</div>
 
 
 <div th:replace="~{fragments/general :: footer}"></div>
 <div th:replace="~{fragments/general :: bottomScripts}"></div>
-
-
 </body>
 </html>
-
-
