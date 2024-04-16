@@ -9,16 +9,16 @@
 
 <div th:replace="~{fragments/general :: navbar}"></div>
 
-<!--    <header>-->
-<!--    <div>-->
-<!--        <form th:action="@{/search}" method="get">-->
-<!--            <label for="search">Search:</label>-->
-<!--            <input type="text" id="search" name="ingredient" placeholder="Enter an ingredient">-->
-<!--            <button type="submit">Search</button>-->
-<!--        </form>-->
-<!--    </div>-->
+ <!--   <header>
+        <div>
+            <form th:action="@{/search}" method="get">
+                <label for="search">Search:</label>
+                <input type="text" id="search" name="ingredient" placeholder="Enter an ingredient">
+                <button type="submit">Search</button>
+            </form>
+        </div>
 
-<!--</header>-->
+    </header>-->
 
 <form th:action="@{/ingredient/new}" method="post" th:object="${newIngredient}">
     <input type="hidden" th:field="*{ingredientId}">
