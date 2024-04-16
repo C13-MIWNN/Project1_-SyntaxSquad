@@ -26,12 +26,17 @@ public class Recipe {
     @ManyToMany
     private Set<Tag> tags;
 
-    public Recipe(String recipeName, Set<AmountOfIngredient> amountOfIngredients, String instructions, Set<Tag> tags) {
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] imageData;
+
+    public Recipe(String recipeName, Set<AmountOfIngredient> amountOfIngredients, String instructions, Set<Tag> tags, byte[] imageData) {
         this.recipeName = recipeName;
         this.amountOfIngredients = amountOfIngredients;
         this.instructions = instructions;
         this.numberOfPortions = DEFAULT_NUMBER_OF_PORTIONS;
         this.tags = tags;
+        this.imageData = imageData;
 
     }
 
@@ -89,5 +94,13 @@ public class Recipe {
     }
 
     public void setIngredients(Set<Ingredient> ingredientSet) {
+    }
+
+    public byte[] getImageData() {
+        return imageData;
+    }
+
+    public void setImageData(byte[] imageData) {
+        this.imageData = imageData;
     }
 }

@@ -6,6 +6,10 @@
 </head>
 <body>
 
+<header>
+    <div th:replace="~{fragments/general :: navbar}"></div>
+</header>
+
 <h1>Amounts of ingredients</h1>
 
 <table>
@@ -48,6 +52,10 @@
     <a th:href="@{/recipe/new}">Add a new recipe</a>
 </p>
 
+
+<div th:replace="~{fragments/general :: footer}"></div>
+<div th:replace="~{fragments/general :: bottomScripts}"></div>
 </body>
+
 </html>
 
