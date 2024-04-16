@@ -46,6 +46,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
@@ -66,7 +67,15 @@
 			<artifactId>webjars-locator</artifactId>
 			<version>0.47</version>
 		</dependency>
-	</dependencies>
+
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>6.1.5</version>
+        </dependency>
+    </dependencies>
+
 
 	<build>
 		<plugins>
