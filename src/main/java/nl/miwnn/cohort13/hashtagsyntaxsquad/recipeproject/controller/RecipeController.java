@@ -12,7 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.Optional;
 
 /**
  * @author #SyntaxSquad
@@ -67,5 +70,22 @@ public class RecipeController {
         }
 
         return "redirect:/";
+    }
+
+    @GetMapping("/recipe/detail/{recipeName}")
+    public String showRecipeDetails(@PathVariable("recipeName") String recipeName, Model model) {
+        Optional<Recipe> recipeOptional = recipeRepository.findByRecipeName(recipeName);
+
+        if (recipeOptional.isEmpty()) {
+            return "redirect:/recipe";
+        }
+
+        Recipe recipe = recipeOptional.get();
+        byte[] imageData = recipe.getImageData();
+
+        model.addAttribute("recipeToBeShown", recipe);
+        model.addAttribute("recipeImageData", imageData);
+
+        return "recipeDetails";
     }
 }
