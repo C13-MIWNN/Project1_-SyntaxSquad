@@ -1,8 +1,10 @@
 package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.controller;
 
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.Service.IngredientService;
+import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.Service.RecipeService;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.enums.UnitOfMeasurement;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Ingredient;
+import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Recipe;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,12 +25,12 @@ import java.util.List;
 @Controller
 public class IngredientController {
     private final IngredientRepository ingredientRepository;
-    private final IngredientService ingredientService;
+    private final RecipeService recipeService;
 
     @Autowired
-    public IngredientController(IngredientRepository ingredientRepository, IngredientService ingredientService) {
+    public IngredientController(IngredientRepository ingredientRepository, RecipeService recipeService) {
         this.ingredientRepository = ingredientRepository;
-        this.ingredientService = ingredientService;
+        this.recipeService = recipeService;
     }
 
     @GetMapping("/ingredient")
@@ -51,11 +53,9 @@ public class IngredientController {
     }
 
     @GetMapping("/search")
-    public String searchIngredient(@RequestParam("ingredient") String name, Model model) {
-        List<Ingredient> searchResults = ingredientService.findIngredientByName(name);
+    public String searchRecipesByIngredient(@RequestParam("ingredient") String ingredient, Model model) {
+        List<Recipe> searchResults = recipeService.findRecipesByIngredientName(ingredient);
         model.addAttribute("searchResults", searchResults);
         return "searchResults";
-
-
     }
 }

@@ -6,6 +6,7 @@ import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Tag;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.AmountOfIngredientRepository;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.RecipeRepository;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.TagRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +27,7 @@ public class RecipeController {
     private final AmountOfIngredientRepository amountOfIngredientRepository;
     private final TagRepository tagRepository;
 
+    @Autowired
     public RecipeController(RecipeRepository recipeRepository,
                             AmountOfIngredientRepository amountOfIngredientRepository,
                             TagRepository tagRepository) {
