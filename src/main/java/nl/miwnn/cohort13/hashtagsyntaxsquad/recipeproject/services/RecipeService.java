@@ -1,9 +1,8 @@
-package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.Service;/*
+package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.services;/*
  * @author Henk-Jan Veld
  * Purpose for this class
  **/
 
-import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Ingredient;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Recipe;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;

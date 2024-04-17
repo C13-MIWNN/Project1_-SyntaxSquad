@@ -1,15 +1,15 @@
 package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.controller;
 
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.enums.UnitOfMeasurement;
-import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.AmountOfIngredient;
-import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Recipe;
-import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Ingredient;
-import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Tag;
+import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.*;
 
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.AmountOfIngredientRepository;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.RecipeRepository;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.IngredientRepository;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.TagRepository;
+import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.services.RecipeUserService;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -26,18 +26,27 @@ public class InitializeController {
     private final TagRepository tagRepository;
     private final AmountOfIngredientRepository amountOfIngredientRepository;
 
+    private final RecipeUserService recipeUserService;
+
     public InitializeController(RecipeRepository recipeRepository,
                                 IngredientRepository ingredientRepository,
-                                TagRepository tagRepository, AmountOfIngredientRepository amountOfIngredientRepository) {
+                                TagRepository tagRepository, AmountOfIngredientRepository amountOfIngredientRepository, RecipeUserService recipeUserService) {
         this.recipeRepository = recipeRepository;
         this.ingredientRepository = ingredientRepository;
         this.tagRepository = tagRepository;
         this.amountOfIngredientRepository = amountOfIngredientRepository;
+        this.recipeUserService = recipeUserService;
     }
+
+     @EventListener
+     private void seed(ContextRefreshedEvent event) {
+         if (recipeUserService.isNotInitialised()) {
+             initializeDB();
+         }
+     }
     @GetMapping("/initialize")
     private String initializeDB() {
-
-
+        makeUser("HSS", "HSS");
 
         Ingredient potatoes = makeIngredient("Potatoes", UnitOfMeasurement.piece);
         Ingredient curry = makeIngredient("Curry", UnitOfMeasurement.gram);
@@ -91,5 +100,13 @@ public class InitializeController {
         recipeRepository.save(recipe);
         return recipe;
     }
+
+     private RecipeUser makeUser(String username, String password) {
+         RecipeUser user = new RecipeUser();
+         user.setUsername(username);
+         user.setPassword(password);
+         recipeUserService.saveUser(user);
+         return user;
+     }
 
 }
