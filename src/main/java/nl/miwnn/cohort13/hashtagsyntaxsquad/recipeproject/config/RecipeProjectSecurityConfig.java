@@ -19,8 +19,8 @@ public class RecipeProjectSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/recipe", "/index").permitAll()
-                        .requestMatchers("/webjars/**", "/css/**").permitAll()
+                        .requestMatchers("/", "/recipe", "/index", "/user/new").permitAll()
+                        .requestMatchers("/webjars/**", "/css/**", "/images/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form.permitAll())

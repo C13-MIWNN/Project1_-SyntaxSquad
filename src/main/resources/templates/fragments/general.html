@@ -58,6 +58,9 @@
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/amount}">Add Amount</a>
                         </li>
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" th:href="@{/user/new}">Add User</a>-->
+<!--                        </li>-->
 
                     </ul>
                 </nav>
@@ -65,7 +68,13 @@
 
         </div>
 
-        <div class="login col-2" sec:authorize="isAnonymous()">
+    <div class="col-2">
+        <div class="signin mb-3" sec:authorize="isAnonymous()">
+            <a class="nav-link" th:href="@{/user/new}">
+                Join now</a>
+        </div>
+
+        <div class="login" sec:authorize="isAnonymous()">
             <a class="nav-link" th:href="@{/login}">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-door-open"
                  viewBox="0 0 16 16">
@@ -75,7 +84,7 @@
             Login</a>
         </div>
 
-        <div class="login col-2" sec:authorize="isAuthenticated()">
+        <div class="login" sec:authorize="isAuthenticated()">
             <a class="nav-link" th:href="@{/logout}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-door-open"
                      viewBox="0 0 16 16">
@@ -84,6 +93,7 @@
                 </svg>
                 Logout</a>
         </div>
+    </div>
     </div>
 </header>
 
