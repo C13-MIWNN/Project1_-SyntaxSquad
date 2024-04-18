@@ -92,16 +92,18 @@ public class InitializeController {
 
 
         Recipe curryPotatoes = makeRecipe("Curry Potatoes", "Combine all ingredients",
-                Set.of(gramsCurry, gramsSausages, pieceOfPotato, pieceOfOnion), Set.of(japaneseKitchen));
+                Set.of(gramsCurry, gramsSausages, pieceOfPotato), Set.of(japaneseKitchen));
+        Recipe chickenRiceStirFry = makeRecipe("Chicken and Rice Stirfry", "Stirfry",
+                Set.of(gramsRice, gramsChickenBreast, pieceOfBellPepper, pieceOfOnion), Set.of(chineseKitchen));
 
-       /* Recipe chickenAndPotatoStew = makeRecipe("Chicken and Potato Stew", "Stew chicken and potatoes together",
+     /*  Recipe chickenAndPotatoStew = makeRecipe("Chicken and Potato Stew", "Stew chicken and potatoes together",
                 Set.of(gramsChickenBreast, pieceOfPotato, pieceOfOnion), Set.of(italianKitchen));
 
         Recipe italianSausagePizza = makeRecipe("Italian Sausage Pizza", "Top pizza with Italian sausage slices",
                 Set.of(gramsSausages), Set.of(italianKitchen));
 
         Recipe spicyCurrySausage = makeRecipe("Spicy Curry Sausage", "Cook sausages in a spicy curry sauce",
-                Set.of(gramsPasta, gramsSausages), Set.of(mexicanKitchen));*/
+                Set.of(gramsPasta, gramsSausages, gramsCurry), Set.of(mexicanKitchen));*/
 
         return "redirect:/";
     }
@@ -134,13 +136,6 @@ public class InitializeController {
             return amountOfIngredientRepository.save(amountOfIngredient);
         }
     }
-        /* AmountOfIngredient amountOfIngredient = new AmountOfIngredient();
-         amountOfIngredient.setAmount(amount);
-         amountOfIngredient.setIngredient(ingredient);
-         amountOfIngredientRepository.save(amountOfIngredient);
-         return amountOfIngredient;
-     }
-*/
 
      private Recipe makeRecipe(String recipeName, String instructions,
                                Set<AmountOfIngredient> amountOfIngredients, Set<Tag> tags) {
@@ -148,16 +143,13 @@ public class InitializeController {
          Recipe recipe = null;
          if (existingRecipe.isPresent()) {
              recipe = existingRecipe.get();
-             recipe.setInstructions(instructions);
-             recipe.setAmountOfIngredients(amountOfIngredients);
-             recipe.setTags(tags);
          } else {
              recipe = new Recipe();
              recipe.setRecipeName(recipeName);
-             recipe.setInstructions(instructions);
-             recipe.setAmountOfIngredients(amountOfIngredients);
-             recipe.setTags(tags);
          }
+         recipe.setInstructions(instructions);
+         recipe.setAmountOfIngredients(amountOfIngredients);
+         recipe.setTags(tags);
          return recipeRepository.save(recipe);
      }
 
