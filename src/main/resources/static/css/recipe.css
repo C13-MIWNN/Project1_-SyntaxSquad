@@ -24,6 +24,14 @@ header {
     /*margin-left: auto;*/
 }
 
+.signin {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    justify-content: flex-end;
+    /*margin-left: auto;*/
+}
+
 
 
 .homepage {
