@@ -90,30 +90,31 @@ public class InitializeController {
         IngredientInRecipe gramsChickenBreast = makeIngredientInRecipe(180.00, chickenBreast);
         IngredientInRecipe pieceOfCarrot = makeIngredientInRecipe(0.60, carrots);
 
-        Recipe curryPotatoes = makeRecipe("Curry Potatoes",
+        Recipe curryPotatoes = makeRecipe("Spicy Curry",
                 List.of("Weigh the ingredients", "Cook all ingredients separately"),
-                List.of(gramsCurry, gramsSausages, pieceOfPotato, pieceOfOnion),
+                List.of(gramsCurry, pieceOfCarrot, gramsBroccoli),
                 List.of(japaneseKitchen));
 
-        Recipe chickenRiceStirFry = makeRecipe("Chicken and Rice Stirfry",
+        Recipe chickenRiceStirFry = makeRecipe("Rice Stirfry",
                 List.of("Stirfry"),
-                List.of(gramsRice, gramsChickenBreast, pieceOfBellPepper, pieceOfOnion),
+                List.of(gramsRice, pieceOfBellPepper),
                 List.of(chineseKitchen));
 
         Recipe chickenAndPotatoStew = makeRecipe("Chicken and Potato Stew",
                 List.of("Stew chicken and potatoes together"),
                 List.of(gramsChickenBreast, pieceOfPotato, pieceOfOnion),
-                List.of(italianKitchen));
+                List.of(mexicanKitchen));
 
         Recipe italianSausagePizza = makeRecipe("Italian Sausage Pizza",
                 List.of("Top pizza with Italian sausage slices"),
                 List.of(gramsSausages),
                 List.of(italianKitchen));
 
-        Recipe spicyCurrySausage = makeRecipe("Spicy Curry Sausage",
-                List.of("Cook sausages", "Make a spicy curry sauce"),
-                List.of(gramsPasta, gramsSausages, gramsCurry),
-                List.of(mexicanKitchen));
+        Recipe spicyCurrySausage = makeRecipe("Spicy Pasta",
+                List.of("Cook sausages", "Make a spicy sauce"),
+                List.of(pieceOfGarlicClove, pieceOfTomatoes, gramsCurry),
+                List.of(italianKitchen));
+
 
         return "redirect:/";
     }
@@ -151,8 +152,13 @@ public class InitializeController {
          recipe.setInstructions(instructions);
          recipe.setIngredientInRecipeList(ingredientInRecipeList);
          recipe.setTags(tags);
-
          recipeRepository.save(recipe);
+
+         for (IngredientInRecipe ingredientInRecipe : ingredientInRecipeList) {
+             ingredientInRecipe.setRecipe(recipe);
+             ingredientInRecipeRepository.save(ingredientInRecipe);
+         }
+
          return recipe;
      }
 
