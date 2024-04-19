@@ -1,5 +1,6 @@
 package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.enums.UnitOfMeasurement;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.*;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.IngredientInRecipeRepository;
@@ -85,6 +86,14 @@ public class RecipeController {
         recipe.getInstructions().add("");
 
         return setupRecipeForm(model);
+    }
+
+    @RequestMapping(value = "/recipe/new", params = {"removeInstruction"})
+    public String removeInstruction(final Recipe recipe, final BindingResult bindingResult,
+                                    HttpServletRequest request) {
+    final Integer rowId = Integer.valueOf(request.getParameter("removeInstruction"));
+        recipe.getInstructions().remove(rowId.intValue());
+        return "recipeForm";
     }
 
     @RequestMapping(value = "/recipe/new", params = {"addIngredient"})

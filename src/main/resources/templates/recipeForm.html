@@ -29,6 +29,8 @@
                    th:field="*{instructions[__${rowStat.index}__]}"
                    th:value="${recipe.instructions}">
             </td>
+            <td><button type="submit" name="removeInstruction"
+                        th:value="${rowStat.index}">Remove instruction</button></td>
         </tr>
         <tr>
             <td><label class="ingredient-section" for="ingredientField">Ingredients</label></td>
@@ -52,7 +54,7 @@
         </tr>
         <tr>
             <td><label for="tagsField">Tags</label></td>
-            <td><button type="submit" name="addTag">Add Tag</button></td>
+            <td><button type="submit" name="addTag">Add tag</button></td>
         </tr>
         <tr th:each="tag, rowStat : *{tags}">
             <td></td>
