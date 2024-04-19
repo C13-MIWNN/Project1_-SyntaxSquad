@@ -14,7 +14,7 @@ import jakarta.persistence.*;
     @GeneratedValue
     Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Recipe recipe;
 
     @ManyToOne(cascade = CascadeType.MERGE)
