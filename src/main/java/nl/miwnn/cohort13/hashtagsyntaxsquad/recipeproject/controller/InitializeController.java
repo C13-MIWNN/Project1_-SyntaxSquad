@@ -93,8 +93,8 @@ public class InitializeController {
 
         Recipe curryPotatoes = makeRecipe("Curry Potatoes", "Combine all ingredients",
                 Set.of(gramsCurry, gramsSausages, pieceOfPotato), Set.of(japaneseKitchen));
-        Recipe chickenRiceStirFry = makeRecipe("Chicken and Rice Stirfry", "Stirfry",
-                Set.of(gramsRice, gramsChickenBreast, pieceOfBellPepper, pieceOfOnion), Set.of(chineseKitchen));
+       /* Recipe chickenRiceStirFry = makeRecipe("Chicken and Rice Stirfry", "Stirfry",
+                Set.of(gramsRice, gramsChickenBreast, pieceOfBellPepper, pieceOfOnion), Set.of(chineseKitchen));*/
 
      /*  Recipe chickenAndPotatoStew = makeRecipe("Chicken and Potato Stew", "Stew chicken and potatoes together",
                 Set.of(gramsChickenBreast, pieceOfPotato, pieceOfOnion), Set.of(italianKitchen));
