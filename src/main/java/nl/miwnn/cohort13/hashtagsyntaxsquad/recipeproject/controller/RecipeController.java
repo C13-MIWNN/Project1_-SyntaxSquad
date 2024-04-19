@@ -1,17 +1,17 @@
 package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.controller;
 
-import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.AmountOfIngredient;
-import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Recipe;
-import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Tag;
-import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.AmountOfIngredientRepository;
+import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.enums.UnitOfMeasurement;
+import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.*;
+import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.IngredientInRecipeRepository;
+import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.IngredientRepository;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.RecipeRepository;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.TagRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.*;
 
 /**
  * @author #SyntaxSquad
@@ -20,14 +20,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class RecipeController {
     private final RecipeRepository recipeRepository;
-    private final AmountOfIngredientRepository amountOfIngredientRepository;
+    private final IngredientRepository ingredientRepository;
+    private final IngredientInRecipeRepository ingredientInRecipeRepository;
     private final TagRepository tagRepository;
 
-    public RecipeController(RecipeRepository recipeRepository,
-                            AmountOfIngredientRepository amountOfIngredientRepository,
+    public RecipeController(RecipeRepository recipeRepository, IngredientRepository ingredientRepository,
+                            IngredientInRecipeRepository ingredientInRecipeRepository,
                             TagRepository tagRepository) {
         this.recipeRepository = recipeRepository;
-        this.amountOfIngredientRepository = amountOfIngredientRepository;
+        this.ingredientRepository = ingredientRepository;
+        this.ingredientInRecipeRepository = ingredientInRecipeRepository;
         this.tagRepository = tagRepository;
     }
 
@@ -36,34 +38,67 @@ public class RecipeController {
 
         return "index";
     }
-    @GetMapping({ "/recipe"})
+
+    @GetMapping({"/recipe"})
     private String showAllRecipes(Model model) {
         model.addAttribute("allRecipes", recipeRepository.findAll());
 
         return "recipeOverview";
     }
 
+
     @GetMapping("/recipe/new")
     private String showRecipeForm(Model model) {
-        // uiteindelijk moet AmountOfIngredient denk ik op dezelfde pagina aangemaakt worden als recipe.
-        // Als tussenoplossing nu een amountOfIngredientOverview gemaakt.
-//        AmountOfIngredient amountOfIngredientToAdd = new AmountOfIngredient();
-//        model.addAttribute("amountOfIngredient", amountOfIngredientToAdd);
-//        model.addAttribute("recipe", new Recipe(amountOfIngredientToAdd));
-        model.addAttribute("allAmountsOfIngredients", amountOfIngredientRepository.findAll());
-        model.addAttribute("allTags", tagRepository.findAll());
+        model.addAttribute("recipe", new Recipe());
 
-        model.addAttribute("newRecipe", new Recipe());
+        return setupRecipeForm(model);
+    }
+
+    private String setupRecipeForm(Model model) {
+        model.addAttribute("allIngredients", ingredientRepository.findAll());
+        model.addAttribute("allUnitsOfMeasurement", Arrays.asList(UnitOfMeasurement.values()));
+        model.addAttribute("allTags", tagRepository.findAll());
 
         return "recipeForm";
     }
 
     @PostMapping("/recipe/new")
-    private String saveOrUpdateRecipe(@ModelAttribute("newRecipe") Recipe recipeToBeSaved, BindingResult result) {
-        if (!result.hasErrors()) {
-            recipeRepository.save(recipeToBeSaved);
-        }
+    private String saveOrUpdateRecipe(@ModelAttribute("recipe") Recipe recipe,
+                                          BindingResult result) {
 
+        if (!result.hasErrors()) {
+            recipeRepository.save(recipe);
+
+            for (IngredientInRecipe ingredientInRecipe : recipe.getIngredientInRecipeList()) {
+                ingredientInRecipe.setRecipe(recipe);
+                ingredientInRecipeRepository.save(ingredientInRecipe);
+            }
+        }
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/recipe/new", params = {"addInstruction"})
+    public String addInstruction(final Recipe recipe, final BindingResult bindingResult, Model model) {
+        recipe.getInstructions().add("");
+
+        return setupRecipeForm(model);
+    }
+
+    @RequestMapping(value = "/recipe/new", params = {"addIngredient"})
+    public String addIngredient(final Recipe recipe, final BindingResult bindingResult, Model model) {
+        IngredientInRecipe ingredientInRecipe = new IngredientInRecipe();
+        ingredientInRecipe.setRecipe(recipe);
+        recipe.getIngredientInRecipeList().add(ingredientInRecipe);
+
+        return setupRecipeForm(model);
+    }
+
+    @RequestMapping(value = "/recipe/new", params = {"addTag"})
+    public String addRowTag(final Recipe recipe, final BindingResult bindingResult, Model model) {
+        Tag tag = new Tag();
+        tag.setTagName("");
+        recipe.getTags().add(tag);
+
+        return setupRecipeForm(model);
     }
 }

@@ -14,8 +14,6 @@ public class Tag {
     @Id
     private String tagName;
 
-
-
     @Override
     public String toString() {
         return tagName;

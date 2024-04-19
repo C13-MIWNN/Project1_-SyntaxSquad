@@ -40,30 +40,26 @@
 </table>
 
 <form th:action="@{/ingredient/new}" method="post" th:object="${newIngredient}">
-    <input type="hidden" th:field="*{ingredientId}">
+    <input type="hidden" th:field="*{id}">
     <table>
         <tr>
             <td><label for="nameField">Ingredient</label></td>
-            <td><label for="unitOfMeasurementField">Unit Of Measurement</label></td>
+            <td><input id="nameField" th:field="*{name}"></td>
         </tr>
         <tr>
-            <td><input id="nameField" th:field="*{name}"></td>
+            <td><label for="unitOfMeasurementField">Unit Of Measurement</label></td>
             <td><select id="unitOfMeasurementField" th:field="*{unitOfMeasurement}">
-                    <option th:each="unitOfMeasurement : ${allUnitsOfMeasurement}"
-                            th:text="${unitOfMeasurement}"
-                            th:value="${unitOfMeasurement}">
-                    </option>
-                </select>
+                <option th:each="unitOfMeasurement : ${allUnitsOfMeasurement}"
+                        th:text="${unitOfMeasurement}"
+                        th:value="${unitOfMeasurement}">
+                </option>
+            </select>
             </td>
         </tr>
     </table>
 
         <input type="submit" value="Save new ingredient" />
 </form>
-
-<p>
-    <a th:href="@{/amount}">Add a new amount</a>
-</p>
 
 
 <div th:replace="~{fragments/general :: footer}"></div>

@@ -1,19 +1,20 @@
 package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.controller;
 
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.enums.UnitOfMeasurement;
-import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.AmountOfIngredient;
+import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.IngredientInRecipe;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Recipe;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Ingredient;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Tag;
 
-import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.AmountOfIngredientRepository;
+import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.IngredientInRecipeRepository;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.RecipeRepository;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.IngredientRepository;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.TagRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.Set;
+import java.util.List;
+
  /** @author Henk-Jan Veld
  * Set some intial data in the database for testing purposes
  *
@@ -24,20 +25,19 @@ public class InitializeController {
     private final RecipeRepository recipeRepository;
     private final IngredientRepository ingredientRepository;
     private final TagRepository tagRepository;
-    private final AmountOfIngredientRepository amountOfIngredientRepository;
+    private final IngredientInRecipeRepository ingredientInRecipeRepository;
 
     public InitializeController(RecipeRepository recipeRepository,
                                 IngredientRepository ingredientRepository,
-                                TagRepository tagRepository, AmountOfIngredientRepository amountOfIngredientRepository) {
+                                TagRepository tagRepository,
+                                IngredientInRecipeRepository ingredientInRecipeRepository) {
         this.recipeRepository = recipeRepository;
         this.ingredientRepository = ingredientRepository;
         this.tagRepository = tagRepository;
-        this.amountOfIngredientRepository = amountOfIngredientRepository;
+        this.ingredientInRecipeRepository = ingredientInRecipeRepository;
     }
     @GetMapping("/initialize")
     private String initializeDB() {
-
-
 
         Ingredient potatoes = makeIngredient("Potatoes", UnitOfMeasurement.piece);
         Ingredient curry = makeIngredient("Curry", UnitOfMeasurement.gram);
@@ -46,16 +46,15 @@ public class InitializeController {
 
         Tag japaneseKitchen = makeTag("Japanese Kitchen");
 
-        AmountOfIngredient gramsSausages = makeAmountOfIngredient(3.00, sausages);
-        AmountOfIngredient gramsCurry = makeAmountOfIngredient(2.00, curry);
-        AmountOfIngredient pieceOfPotato = makeAmountOfIngredient(1.00, potatoes);
-        AmountOfIngredient pieceOfOnion = makeAmountOfIngredient(0.50, onions);
+        IngredientInRecipe gramsSausages = makeIngredientInRecipe(3.00, sausages);
+        IngredientInRecipe gramsCurry = makeIngredientInRecipe(2.00, curry);
+        IngredientInRecipe pieceOfPotato = makeIngredientInRecipe(1.00, potatoes);
+        IngredientInRecipe pieceOfOnion = makeIngredientInRecipe(0.50, onions);
+
 
         Recipe curryPotatoes = makeRecipe
-                ("Curry Potatoes", "Combine all ingredients",
-                        Set.of(gramsCurry, gramsSausages, pieceOfPotato, pieceOfOnion), Set.of(japaneseKitchen));
-
-
+                ("Curry Potatoes", List.of("Weigh the ingredients", "Cook all ingredients separately"),
+                        List.of(gramsCurry, gramsSausages, pieceOfPotato, pieceOfOnion), List.of(japaneseKitchen));
 
         return "redirect:/";
     }
@@ -66,26 +65,27 @@ public class InitializeController {
         ingredientRepository.save(ingredient);
         return ingredient;
     }
+
      private Tag makeTag(String tagName) {
          Tag tag = new Tag();
          tag.setTagName(tagName);
          tagRepository.save(tag);
          return tag;
      }
-     private AmountOfIngredient makeAmountOfIngredient(Double amount, Ingredient ingredient) {
-         AmountOfIngredient amountOfIngredient = new AmountOfIngredient();
-         amountOfIngredient.setAmount(amount);
-         amountOfIngredient.setIngredient(ingredient);
-         amountOfIngredientRepository.save(amountOfIngredient);
-         return amountOfIngredient;
+     private IngredientInRecipe makeIngredientInRecipe(Double amount, Ingredient ingredient) {
+         IngredientInRecipe ingredientInRecipe = new IngredientInRecipe();
+         ingredientInRecipe.setAmount(amount);
+         ingredientInRecipe.setIngredient(ingredient);
+         ingredientInRecipeRepository.save(ingredientInRecipe);
+         return ingredientInRecipe;
      }
 
-    private Recipe makeRecipe(String recipeName, String instructions,
-                              Set<AmountOfIngredient> amountOfIngredients, Set<Tag> tags) {
+     private Recipe makeRecipe(String recipeName, List<String> instructions,
+                              List<IngredientInRecipe> ingredientInRecipeList, List<Tag> tags) {
         Recipe recipe = new Recipe();
         recipe.setRecipeName(recipeName);
         recipe.setInstructions(instructions);
-        recipe.setAmountOfIngredients(amountOfIngredients);
+        recipe.setIngredientInRecipeList(ingredientInRecipeList);
         recipe.setTags(tags);
 
         recipeRepository.save(recipe);

@@ -6,8 +6,6 @@
 </head>
 
 <body>
-
-
 <header>
     <div class="homepage">
         <a href="/" >
@@ -26,52 +24,73 @@
     </div>
 </header>
 
-<form th:action="@{/recipe/new}" method="post" th:object="${newRecipe}">
-    <input type="hidden" th:field="*{recipeId}">
+<form th:action="@{/recipe/new}" method="post" th:object="${recipe}">
+    <input type="hidden" th:field="*{id}">
+    <table>
 
-    <div class="recipe-info">
-        <div class="recipe-name">
-            <label for="nameField">Recipe Name</label><br>
-            <input id="nameField" th:field="*{recipeName}" type="text">
-        </div>
+        <tr>
+            <th><label class="recipe-name" for="nameField">Recipe Name</label></th>
+            <td><input id="nameField" type="text" th:field="*{recipeName}"></td>
+        </tr>
+        <tr>
 
-        <div class="portions">
-            <label for="noPortionsField">Number of Portions</label><br>
-            <input id="noPortionsField" th:field="*{numberOfPortions}" type="number">
-        </div>
-    </div>
+            <td><label class="instructions-section" for="instructionField">Instructions</label></td>
+            <td><button type="submit" name="addInstruction">Add instruction</button></td>
+        </tr>
+        <tr th:each="instruction, rowStat : *{instructions}">
+            <td th:text="${rowStat.count}"></td>
+            <td>
+                <input id="instructionField" type="text"
+                   th:field="*{instructions[__${rowStat.index}__]}"
+                   th:value="${recipe.instructions}">
+            </td>
+        </tr>
+        <tr>
+            <td><label class="ingredient-section" for="ingredientField">Ingredients</label></td>
+            <td><button type="submit" name="addIngredient">Add ingredient</button></td>
+        </tr>
+        <tr th:each="ingredient, rowStat : *{ingredientInRecipeList}">
+            <td th:text="${rowStat.count}"></td>
+                <td>
+                    <select id="ingredientField" th:field="*{ingredientInRecipeList[__${rowStat.index}__].ingredient}">
+                        <option
+                                th:each="potentialIngredient : ${allIngredients}"
+                                th:text="${potentialIngredient.toString()}"
+                                th:value="${potentialIngredient.id}">
+                        </option>
+                    </select>
+                </td>
+            <td><label class="ingredient-section" for="amountField">Amount</label></td>
+            <td>
+                <input id="amountField" type="text" th:field="*{ingredientInRecipeList[__${rowStat.index}__].amount}">
+            </td>
+        </tr>
+        <tr>
+            <td><label for="tagsField">Tags</label></td>
+            <td><button type="submit" name="addTag">Add Tag</button></td>
+        </tr>
+        <tr th:each="tag, rowStat : *{tags}">
+            <td></td>
+            <td>
+                <select id="tagsField" th:field="*{tags[__${rowStat.index}__]}">
+                    <option th:each="potentialTag : ${allTags}"
+                            th:text="${potentialTag.tagName}"
+                            th:value="${potentialTag.tagName}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+    </table>
 
-    <div class="ingredients-instructions">
-        <div class="ingredient-section">
-            <label for="ingredientField">Ingredient</label><br>
-            <select id="ingredientField" th:field="*{amountOfIngredients}" multiple>
-                <option th:each="amountOfIngredientInRecipe : ${allAmountsOfIngredients}"
-                        th:text="${amountOfIngredientInRecipe}"
-                        th:value="${amountOfIngredientInRecipe.id}">
-                </option>
-            </select>
-        </div>
-
-        <div class="instructions-section">
-            <label for="instructionsField">Instructions</label><br>
-            <input id="instructionsField" th:field="*{instructions}" type="text">
-        </div>
-
-<!--        Voor onderstaand veld komt nog een css-template-->
-        <div>
-            <select id="tagsField" th:field="*{tags}" multiple>
-                <option th:each="tagInRecipe : ${allTags}"
-                        th:text="${tagInRecipe}"
-                        th:value="${tagInRecipe.tagName}">
-                </option>
-            </select>
-        </div>
-    </div>
-
-    <button type="submit" class="save-recipe-button">Save Recipe</button>
-
-
+    <button class="save-recipe-button" type="submit" value="Save recipe">Save Recipe</button>
 </form>
+
+<p>
+    <a th:href="@{/ingredient}">Add a new ingredient</a>
+</p>
+<p>
+    <a th:href="@{/tag}">Add a new tag</a>
+</p>
 
 <div th:replace="~{fragments/general :: footer}"></div>
 <div th:replace="~{fragments/general :: bottomScripts}"></div>
