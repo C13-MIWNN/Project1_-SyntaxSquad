@@ -6,13 +6,13 @@ body {
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
+    /*display: flex;*/
+    /*justify-content: space-between;*/
     align-items: center;
     padding: 20px;
     background-color: #333;
     color: white !important;
-    height: 80px;
+    height: 120px;
 }
 
 
@@ -20,7 +20,19 @@ header {
     display: flex;
     align-items: center;
     font-size: 24px;
+    justify-content: flex-end;
+    /*margin-left: auto;*/
 }
+
+.signin {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    justify-content: flex-end;
+    /*margin-left: auto;*/
+}
+
+
 
 .homepage {
     display: flex;
@@ -40,8 +52,8 @@ header {
 
 
 .search-container {
-    display: center;
-    align-items: center;
+    /*display: center;*/
+    /*align-items: center;*/
     justify-content: center;
     text-align: center;
     width: 70%;
@@ -164,6 +176,10 @@ main {
     color: white;
 }
 
+
+
+
+
 .ingredient {
     background-color: #f44336;
     color: white;
@@ -174,12 +190,79 @@ main {
     color: white;
 }
 
+
+/*recipe cards*/
+.recipeCard {
+    position: relative;
+    background-color: #c8e6c9;
+}
+
+.recipeCard a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.recipeHeaderCard {
+    padding: 20px;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.recipeDetailTitle {
+    text-align: center;
+}
+
+#recipeOverviewHeader {
+    text-align: center;
+}
+
+
+div.ingredientWindow {
+    overflow-y: scroll;
+    float: left;
+    padding: 10px;
+    border: 1px solid #000;
+    width: 30vh;
+    max-height: 50vh;
+}
+
+div.recipeWindow {
+    overflow-x: hidden;
+    overflow-y: auto;
+    float: right;
+    padding: 10px;
+    border: 1px solid #000;
+    width: 60vh;
+    max-height: 50vh;
+    white-space: pre-wrap;
+}
+
+.recipeCard .card-text {
+    font-size: smaller;
+}
+
+
+
 footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+    height: 50px;
     background-color: #333;
     color: white;
     text-align: center;
     padding: 10px 0;
 }
+

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:fragment="baseHeader(title)">
+  <meta charset="UTF-8">
+  <title th:replace="${title}"></title>
+</head>
+<body>
+
+
+<div th:fragment="cardFragment(recipe)">
+  <div class="recipeCard">
+      <div class="card text-center" style="width: 18rem; height: 12rem; border: 0.3mm solid green;">
+      <h5 class="card-title bg-transparent border-success" th:text="${recipe.recipeName}"></h5>
+      <img th:src="@{'projectDocument/default.jpg/' + ${recipe.id}}" class="card-img-top rounded-0" alt="">
+      <div class="card-img-overlay">
+        <a th:href="@{/recipe/detail/{recipeName}(recipeName = ${recipe.recipeName})}"></a>
+      </div>
+<!--      <table>-->
+<!--        <tr>-->
+<!--          <td>Portions:</td>-->
+<!--          <td class="card-text" th:text="${recipe.numberOfPortions}"></td>-->
+<!--        </tr>-->
+<!--      </table>-->
+    </div>
+  </div>
+</div>
+
+<div th:fragment="cardRecipeHeader(recipe)">
+  <div class="recipeHeaderCard">
+    <div class="card text-center" style="width: 90vh; height: 12rem;">
+      <img th:src="@{'/projectDefault/default.jpg' + ${recipe.id}}" class="card-img-top rounded-0" alt="">
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

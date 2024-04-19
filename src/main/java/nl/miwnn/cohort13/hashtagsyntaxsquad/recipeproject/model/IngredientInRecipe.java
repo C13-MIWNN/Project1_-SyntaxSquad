@@ -17,10 +17,18 @@ import jakarta.persistence.*;
     @ManyToOne(cascade = CascadeType.ALL)
     private Recipe recipe;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Ingredient ingredient;
 
     private double amount;
+
+    public IngredientInRecipe(double amount, Ingredient ingredient) {
+        this.amount = amount;
+        this.ingredient = ingredient;
+    }
+
+    public IngredientInRecipe() {
+    }
 
     public Long getId() {
         return id;

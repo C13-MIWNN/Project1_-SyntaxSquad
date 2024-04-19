@@ -1,21 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments/general :: baseHeader(~{:: title})}">
 <head>
     <title>This is a list of all tags</title>
 </head>
 <body>
-
+<div th:replace="~{fragments/general :: navbar}"></div>
 <h1>Overview of tags</h1>
-
-<table>
-    <tr>
-        <th>Tag</th>
-        <th></th>
-    </tr>
-    <tr th:each="tag : ${allTags}">
-        <td th:text="${tag.tagName}"></td>
-    </tr>
-</table>
 
 <form th:action="@{/tag/new}" method="post" th:object="${newTag}">
     <table>
@@ -34,6 +25,17 @@
     <a th:href="@{/ingredient}">Add a new ingredient</a>
 </p>
 
+<table>
+    <tr>
+        <th>Tag</th>
+        <th></th>
+    </tr>
+    <tr th:each="tag : ${allTags}">
+        <td th:text="${tag.tagName}"></td>
+    </tr>
+</table>
 
+<div th:replace="~{fragments/general :: footer}"></div>
+<div th:replace="~{fragments/general :: bottomScripts}"></div>
 </body>
 </html>

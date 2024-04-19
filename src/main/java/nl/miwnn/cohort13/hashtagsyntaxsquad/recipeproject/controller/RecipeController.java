@@ -6,12 +6,14 @@ import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.Ingredien
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.IngredientRepository;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.RecipeRepository;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.TagRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Optional;
 
 /**
  * @author #SyntaxSquad
@@ -24,7 +26,9 @@ public class RecipeController {
     private final IngredientInRecipeRepository ingredientInRecipeRepository;
     private final TagRepository tagRepository;
 
-    public RecipeController(RecipeRepository recipeRepository, IngredientRepository ingredientRepository,
+@Autowired
+    public RecipeController(RecipeRepository recipeRepository,
+                            IngredientRepository ingredientRepository,
                             IngredientInRecipeRepository ingredientInRecipeRepository,
                             TagRepository tagRepository) {
         this.recipeRepository = recipeRepository;
@@ -45,7 +49,6 @@ public class RecipeController {
 
         return "recipeOverview";
     }
-
 
     @GetMapping("/recipe/new")
     private String showRecipeForm(Model model) {
@@ -100,5 +103,22 @@ public class RecipeController {
         recipe.getTags().add(tag);
 
         return setupRecipeForm(model);
+    }
+
+    @GetMapping("/recipe/detail/{recipeName}")
+    public String showRecipeDetails(@PathVariable("recipeName") String recipeName, Model model) {
+        Optional<Recipe> recipeOptional = recipeRepository.findByRecipeName(recipeName);
+
+        if (recipeOptional.isEmpty()) {
+            return "redirect:/recipe";
+        }
+
+        Recipe recipe = recipeOptional.get();
+        byte[] imageData = recipe.getImageData();
+
+        model.addAttribute("recipeToBeShown", recipe);
+        model.addAttribute("recipeImageData", imageData);
+
+        return "recipeDetails";
     }
 }

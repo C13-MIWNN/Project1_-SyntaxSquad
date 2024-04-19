@@ -20,7 +20,7 @@ public class Ingredient {
     @Enumerated(EnumType.STRING)
     private UnitOfMeasurement unitOfMeasurement;
 
-    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.MERGE)
     private List<IngredientInRecipe> ingredientInRecipes = new ArrayList<>();
 
     public Ingredient(Long id, String name, UnitOfMeasurement unitOfMeasurement,

@@ -21,18 +21,34 @@ public class Recipe {
     @ElementCollection
     private List<String> instructions = new ArrayList<>();
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private List<IngredientInRecipe> ingredientInRecipeList = new ArrayList<>();
 
     @ManyToMany
     private List<Tag> tags = new ArrayList<>();
 
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] imageData;
+
     public Recipe(Long id, String recipeName,
-                  List<IngredientInRecipe> ingredientInRecipeList, List<Tag> tags) {
+                List<IngredientInRecipe> ingredientInRecipeList, List<Tag> tags) {
         this.id = id;
+    }
+
+    public Recipe(String recipeName, List<String> instructions, List<IngredientInRecipe> ingredientInRecipeList, List<Tag> tags) {
+        this.recipeName = recipeName;
+        this.instructions = instructions;
+        this.ingredientInRecipeList = ingredientInRecipeList;
+        this.tags = tags;
+    }
+
+    public Recipe(String recipeName, List<IngredientInRecipe> ingredientInRecipeList,
+                  String instructions, List<Tag> tags, byte[] imageData) {
         this.recipeName = recipeName;
         this.ingredientInRecipeList = ingredientInRecipeList;
         this.tags = tags;
+        this.imageData = imageData;
     }
 
     public Recipe() {
@@ -88,5 +104,13 @@ public class Recipe {
 
     public void setTags(List<Tag> tags) {
         this.tags = tags;
+    }
+
+    public byte[] getImageData() {
+        return imageData;
+    }
+
+    public void setImageData(byte[] imageData) {
+        this.imageData = imageData;
     }
 }
