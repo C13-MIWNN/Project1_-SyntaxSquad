@@ -9,6 +9,8 @@
 
 <div th:replace="~{fragments/general :: navbar}"></div>
 
+
+
  <!--   <header>
         <div>
             <form th:action="@{/search}" method="get">
@@ -19,18 +21,6 @@
         </div>
 
     </header>-->
-
-<table>
-    <tr>
-        <th>Ingredient</th>
-        <th>Unit of Measurement</th>
-        <th></th>
-    </tr>
-    <tr th:field="*{ingredient}" th:each="ingredient : ${allIngredients}">
-        <td th:text="${ingredient.name}"></td>
-        <td th:text="${ingredient.unitOfMeasurement}"></td>
-    </tr>
-</table>
 
 <form th:action="@{/ingredient/new}" method="post" th:object="${newIngredient}">
     <input type="hidden" th:field="*{id}">
@@ -51,8 +41,21 @@
         </tr>
     </table>
 
-        <input type="submit" value="Save new ingredient" />
+    <input type="submit" value="Save new ingredient" />
 </form>
+<br>
+<table>
+    <tr>
+        <th>Ingredient</th>
+        <th>Unit of Measurement</th>
+        <th></th>
+    </tr>
+    <tr th:field="*{ingredient}" th:each="ingredient : ${allIngredients}">
+        <td th:text="${ingredient.name}"></td>
+        <td th:text="${ingredient.unitOfMeasurement}"></td>
+    </tr>
+</table>
+
 
 <div th:replace="~{fragments/general :: footer}"></div>
 <div th:replace="~{fragments/general :: bottomScripts}"></div>

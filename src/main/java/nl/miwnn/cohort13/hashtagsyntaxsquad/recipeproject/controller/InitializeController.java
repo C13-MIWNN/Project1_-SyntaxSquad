@@ -90,25 +90,25 @@ public class InitializeController {
                         new IngredientInRecipe(100, chickenBreast)),
                 List.of(chineseKitchen));
 
-        Recipe chickenAndPotatoStew = makeRecipe("Chicken and Potato Stew",
-                List.of("Stew chicken and potatoes together"),
-                List.of(new IngredientInRecipe(100, chickenBreast),
-                        new IngredientInRecipe(1, potatoes),
-                        new IngredientInRecipe(1, onions)),
-                List.of(italianKitchen));
-
-        Recipe italianSausagePizza = makeRecipe("Italian Sausage Pizza",
-                List.of("Top pizza with Italian sausage slices"),
-                List.of(new IngredientInRecipe(100, sausages)),
-                List.of(italianKitchen));
-
-        Recipe spicyCurrySausage = makeRecipe("Spicy Pasta",
-                List.of("Cook sausages", "Make a spicy sauce"),
-                List.of(new IngredientInRecipe(1, garlicCloves),
-                        new IngredientInRecipe(10, tomatoes),
-                        new IngredientInRecipe(2, sausages),
-                        new IngredientInRecipe(100, pasta)),
-                List.of(italianKitchen));
+//        Recipe chickenAndPotatoStew = makeRecipe("Chicken and Potato Stew",
+//                List.of("Stew chicken and potatoes together"),
+//                List.of(new IngredientInRecipe(100, chickenBreast),
+//                        new IngredientInRecipe(1, potatoes),
+//                        new IngredientInRecipe(1, onions)),
+//                List.of(italianKitchen));
+//
+//        Recipe italianSausagePizza = makeRecipe("Italian Sausage Pizza",
+//                List.of("Top pizza with Italian sausage slices"),
+//                List.of(new IngredientInRecipe(100, sausages)),
+//                List.of(italianKitchen));
+//
+//        Recipe spicyCurrySausage = makeRecipe("Spicy Pasta",
+//                List.of("Cook sausages", "Make a spicy sauce"),
+//                List.of(new IngredientInRecipe(1, garlicCloves),
+//                        new IngredientInRecipe(10, tomatoes),
+//                        new IngredientInRecipe(2, sausages),
+//                        new IngredientInRecipe(100, pasta)),
+//                List.of(italianKitchen));
 
         return "redirect:/";
     }
