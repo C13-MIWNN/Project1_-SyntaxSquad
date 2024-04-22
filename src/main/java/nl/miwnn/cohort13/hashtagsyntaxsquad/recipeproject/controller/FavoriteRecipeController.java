@@ -33,28 +33,26 @@ public class FavoriteRecipeController {
     private final RecipeUserRepository recipeUserRepository;
 
     @Autowired
-    public FavoriteRecipeController(FavoriteRecipeRepository favoriteRecipeRepository, RecipeRepository recipeRepository, RecipeUserRepository recipeUserRepository) {
+    public FavoriteRecipeController(FavoriteRecipeRepository favoriteRecipeRepository,
+                                    RecipeRepository recipeRepository, RecipeUserRepository recipeUserRepository) {
         this.favoriteRecipeRepository = favoriteRecipeRepository;
         this.recipeRepository = recipeRepository;
         this.recipeUserRepository = recipeUserRepository;
     }
 
     @GetMapping("/favorites/add/{id}")
-    public String addToFavorite(@PathVariable("id") Long id, Model model) {
+    public String addToFavorite(@PathVariable("id") Recipe recipe, Model model) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Long userId = ((RecipeUser) authentication.getPrincipal()).getUserId();
+        RecipeUser recipeUser = ((RecipeUser) authentication.getPrincipal());
 
-        boolean isAlreadyFavoriteRecipe = favoriteRecipeRepository.existsByUserIdAndId(userId, id);
+        boolean isAlreadyFavoriteRecipe = favoriteRecipeRepository.existsByRecipeUserAndRecipe(recipeUser, recipe);
 
         if (!isAlreadyFavoriteRecipe) {
-            Optional<Recipe> recipeOptional = recipeRepository.findById(id);
-            recipeOptional.ifPresent(recipe -> {
-                FavoriteRecipe favoriteRecipe = new FavoriteRecipe(userId, id);
-                favoriteRecipeRepository.save(favoriteRecipe);
-            });
+            FavoriteRecipe favoriteRecipe = new FavoriteRecipe(recipe, recipeUser);
+            favoriteRecipeRepository.save(favoriteRecipe);
         }
-        return "favoriteRecipe";
+        return "redirect:/favorites";
     }
 
     @GetMapping("/favorites")
@@ -66,8 +64,8 @@ public class FavoriteRecipeController {
             return "redirect:/error";
         }
 
-        Long userId = user.getUserId();
-        List<FavoriteRecipe> favoriteRecipes = favoriteRecipeRepository.findByUserId(userId);
+//        RecipeUser recipeUser = user;
+        List<FavoriteRecipe> favoriteRecipes = favoriteRecipeRepository.findByRecipeUser(user);
 
         List<Recipe> userFavoriteRecipes = getUserFavoriteRecipes(favoriteRecipes);
         model.addAttribute("favoriteRecipes", userFavoriteRecipes);
@@ -79,7 +77,7 @@ public class FavoriteRecipeController {
         List<Recipe> userFavoriteRecipes = new ArrayList<>();
 
         for (FavoriteRecipe favoriteRecipe : favoriteRecipes) {
-            Optional<Recipe> optionalRecipe = recipeRepository.findById(favoriteRecipe.getId());
+            Optional<Recipe> optionalRecipe = recipeRepository.findById(favoriteRecipe.getFavoriteId());
             optionalRecipe.ifPresent(userFavoriteRecipes::add);
         }
         return userFavoriteRecipes;

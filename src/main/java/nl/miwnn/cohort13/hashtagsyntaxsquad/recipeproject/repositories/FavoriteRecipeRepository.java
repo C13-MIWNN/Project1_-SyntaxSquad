@@ -1,6 +1,7 @@
 package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories;
 
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.FavoriteRecipe;
+import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Recipe;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.RecipeUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -14,7 +15,7 @@ public interface FavoriteRecipeRepository extends JpaRepository<FavoriteRecipe, 
     List<FavoriteRecipe> findByFavoriteId(Long favoriteId);
 
 
-    List<FavoriteRecipe> findByUserId(Long userId);
+    List<FavoriteRecipe> findByRecipeUser(RecipeUser recipeUser);
 
-    boolean existsByUserIdAndId(Long userId, Long id);
+    boolean existsByRecipeUserAndRecipe(RecipeUser recipeUser, Recipe recipe);
 }

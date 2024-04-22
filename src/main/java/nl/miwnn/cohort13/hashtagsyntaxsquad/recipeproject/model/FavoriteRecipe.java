@@ -11,23 +11,27 @@ import jakarta.persistence.*;
 @Entity
 public class FavoriteRecipe {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long favoriteId;
-    private Long userId;
-    private Long id;
 
-    public FavoriteRecipe(Long favoriteId, Long userId, Long id) {
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Recipe recipe;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private RecipeUser recipeUser;
+
+    public FavoriteRecipe(Long favoriteId, Recipe recipe, RecipeUser recipeUser) {
         this.favoriteId = favoriteId;
-        this.userId = userId;
-        this.id = id;
+        this.recipe = recipe;
+        this.recipeUser = recipeUser;
     }
 
     public FavoriteRecipe() {
     }
 
-    public FavoriteRecipe(Long userId, Long id) {
-        this.userId = userId;
-        this.id = id;
+    public FavoriteRecipe(Recipe recipe, RecipeUser recipeUser) {
+        this.recipe = recipe;
+        this.recipeUser = recipeUser;
     }
 
     public Long getFavoriteId() {
@@ -38,22 +42,19 @@ public class FavoriteRecipe {
         this.favoriteId = favoriteId;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Recipe getRecipe() {
+        return recipe;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 
-    public Long getId() {
-        return id;
+    public RecipeUser getRecipeUser() {
+        return recipeUser;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setRecipeUser(RecipeUser recipeUser) {
+        this.recipeUser = recipeUser;
     }
-
-
-
 }
