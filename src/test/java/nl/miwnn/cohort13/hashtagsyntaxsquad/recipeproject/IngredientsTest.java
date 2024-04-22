@@ -1,6 +1,6 @@
 package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject;
 
-import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.enums.UnitOfMeasurement;
+import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.UnitOfMeasurement;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Ingredient;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.IngredientInRecipe;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Recipe;
