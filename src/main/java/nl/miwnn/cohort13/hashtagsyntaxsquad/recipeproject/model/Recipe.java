@@ -54,6 +54,18 @@ public class Recipe {
     public Recipe() {
     }
 
+    public int getNumberOfIngredients() {
+        int count = 0;
+
+        for (IngredientInRecipe ingredientInRecipe : ingredientInRecipeList) {
+            if (ingredientInRecipe.getIngredient() != null) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
     public Long getId() {
         return id;
     }
