@@ -185,6 +185,11 @@ main {
     color: white;
 }
 
+.error {
+    color: red;
+}
+
+
 .favorite-recipe {
     background-color: #FFC107;
     color: white;

@@ -32,12 +32,13 @@
     </tr>
 </table>
 
-<form th:action="@{/ingredient/new}" method="post" th:object="${newIngredient}">
+<form th:action="@{/ingredient}" method="post" th:object="${newIngredient}">
     <input type="hidden" th:field="*{id}">
     <table>
         <tr>
             <td><label for="nameField">Ingredient</label></td>
             <td><input id="nameField" th:field="*{name}"></td>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:class="error"></td>
         </tr>
         <tr>
             <td><label for="unitOfMeasurementField">Unit Of Measurement</label></td>

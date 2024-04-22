@@ -12,6 +12,6 @@ public enum UnitOfMeasurement {
     teaspoon,
     tablespoon,
     milliliter,
-    liter;
+    liter
 
 }

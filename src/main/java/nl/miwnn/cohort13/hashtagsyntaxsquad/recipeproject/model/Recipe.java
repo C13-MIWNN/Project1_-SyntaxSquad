@@ -15,6 +15,8 @@ public class Recipe {
     @Id
     @GeneratedValue
     private Long id;
+
+    // @Column(nullable = false)
     private String recipeName;
 //    private int numberOfPortions;
 
@@ -22,6 +24,7 @@ public class Recipe {
     private List<String> instructions = new ArrayList<>();
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    // @Column(nullable = false)
     private List<IngredientInRecipe> ingredientInRecipeList = new ArrayList<>();
 
     @ManyToMany
@@ -31,22 +34,24 @@ public class Recipe {
     @Column(columnDefinition = "LONGBLOB")
     private byte[] imageData;
 
-    public Recipe(Long id, String recipeName,
-                List<IngredientInRecipe> ingredientInRecipeList, List<Tag> tags) {
-        this.id = id;
-    }
-
-    public Recipe(String recipeName, List<String> instructions, List<IngredientInRecipe> ingredientInRecipeList, List<Tag> tags) {
+    public Recipe(String recipeName,
+                  List<String> instructions,
+                  List<IngredientInRecipe> ingredientInRecipeList,
+                  List<Tag> tags) {
         this.recipeName = recipeName;
         this.instructions = instructions;
         this.ingredientInRecipeList = ingredientInRecipeList;
         this.tags = tags;
     }
 
-    public Recipe(String recipeName, List<IngredientInRecipe> ingredientInRecipeList,
-                  String instructions, List<Tag> tags, byte[] imageData) {
+    public Recipe(String recipeName,
+                  List<IngredientInRecipe> ingredientInRecipeList,
+                  List<String> instructions,
+                  List<Tag> tags,
+                  byte[] imageData) {
         this.recipeName = recipeName;
         this.ingredientInRecipeList = ingredientInRecipeList;
+        this.instructions = instructions;
         this.tags = tags;
         this.imageData = imageData;
     }
@@ -92,10 +97,6 @@ public class Recipe {
 
     public void setIngredientInRecipeList(List<IngredientInRecipe> ingredientInRecipeList) {
         this.ingredientInRecipeList = ingredientInRecipeList;
-    }
-
-    public void addIngredientsInRecipe(IngredientInRecipe ingredientInRecipe) {
-        this.ingredientInRecipeList.add(ingredientInRecipe);
     }
 
     public List<Tag> getTags() {

@@ -130,15 +130,6 @@ public class InitializeController {
          return tag;
      }
 
-     private IngredientInRecipe makeIngredientInRecipe(Double amount, Ingredient ingredient) {
-         IngredientInRecipe ingredientInRecipe = new IngredientInRecipe();
-         ingredientInRecipe.setAmount(amount);
-         ingredientInRecipe.setIngredient(ingredient);
-
-         ingredientInRecipeRepository.save(ingredientInRecipe);
-         return ingredientInRecipe;
-     }
-
      private Recipe makeRecipe(String recipeName, List<String> instructions,
                               List<IngredientInRecipe> ingredientInRecipeList, List<Tag> tags) {
          Recipe recipe = new Recipe();
@@ -147,7 +138,7 @@ public class InitializeController {
          recipe.setIngredientInRecipeList(ingredientInRecipeList);
          recipe.setTags(tags);
          recipeRepository.save(recipe);
-
+         
          for (IngredientInRecipe ingredientInRecipe : ingredientInRecipeList) {
              ingredientInRecipe.setRecipe(recipe);
              ingredientInRecipeRepository.save(ingredientInRecipe);

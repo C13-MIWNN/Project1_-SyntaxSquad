@@ -69,16 +69,19 @@ public class RecipeController {
     @PostMapping("/recipe/new")
     private String saveOrUpdateRecipe(@ModelAttribute("recipe") Recipe recipe,
                                           BindingResult result) {
-
         if (!result.hasErrors()) {
             recipeRepository.save(recipe);
-
-            for (IngredientInRecipe ingredientInRecipe : recipe.getIngredientInRecipeList()) {
-                ingredientInRecipe.setRecipe(recipe);
-                ingredientInRecipeRepository.save(ingredientInRecipe);
-            }
+            setRecipeToIngredient(recipe);
         }
+
         return "redirect:/";
+    }
+
+    private void setRecipeToIngredient(Recipe recipe) {
+        for (IngredientInRecipe ingredientInRecipe : recipe.getIngredientInRecipeList()) {
+            ingredientInRecipe.setRecipe(recipe);
+            ingredientInRecipeRepository.save(ingredientInRecipe);
+        }
     }
 
     @RequestMapping(value = "/recipe/new", params = {"addInstruction"})

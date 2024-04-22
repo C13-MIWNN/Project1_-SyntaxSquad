@@ -41,7 +41,7 @@ import jakarta.persistence.*;
     @Override
     public String toString() {
         return String.format("%s %s of %s",
-                this.amount, this.ingredient.getUnitOfMeasurement(), this.ingredient.getName());
+                this.amount, this.ingredient.getUnitOfMeasurement(), this.ingredient.getName()).toLowerCase();
     }
 
     public Recipe getRecipe() {
