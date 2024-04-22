@@ -45,9 +45,9 @@ public class FavoriteRecipeController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Long userId = ((RecipeUser) authentication.getPrincipal()).getUserId();
 
-        boolean isAlreadyRecipe = favoriteRecipeRepository.existsByUserIdAndId(userId, id);
+        boolean isAlreadyFavoriteRecipe = favoriteRecipeRepository.existsByUserIdAndId(userId, id);
 
-        if (!isAlreadyRecipe) {
+        if (!isAlreadyFavoriteRecipe) {
             Optional<Recipe> recipeOptional = recipeRepository.findById(id);
             recipeOptional.ifPresent(recipe -> {
                 FavoriteRecipe favoriteRecipe = new FavoriteRecipe(userId, id);
@@ -59,9 +59,6 @@ public class FavoriteRecipeController {
 
     @GetMapping("/favorites")
     public String showFavoriteRecipes(Model model, Principal principal) {
-        if (principal == null) {
-            return "redirect:/login";
-        }
 
         String username = principal.getName();
         RecipeUser user = recipeUserRepository.findByUsername(username).orElse(null);
