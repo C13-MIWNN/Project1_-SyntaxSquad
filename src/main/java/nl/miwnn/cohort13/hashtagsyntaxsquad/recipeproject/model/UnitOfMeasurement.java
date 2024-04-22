@@ -1,4 +1,4 @@
-package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.enums;
+package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model;
 
 /**
  * @author Sarah Fopma

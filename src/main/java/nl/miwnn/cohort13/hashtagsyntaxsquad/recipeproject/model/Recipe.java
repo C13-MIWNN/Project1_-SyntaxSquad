@@ -16,15 +16,13 @@ public class Recipe {
     @GeneratedValue
     private Long id;
 
-    // @Column(nullable = false)
     private String recipeName;
-//    private int numberOfPortions;
 
     @ElementCollection
     private List<String> instructions = new ArrayList<>();
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    // @Column(nullable = false)
+
     private List<IngredientInRecipe> ingredientInRecipeList = new ArrayList<>();
 
     @ManyToMany
@@ -82,14 +80,6 @@ public class Recipe {
     public void setInstructions(List<String> instructions) {
         this.instructions = instructions;
     }
-
-//    public int getNumberOfPortions() {
-//        return numberOfPortions;
-//    }
-//
-//    public void setNumberOfPortions(int numberOfPortions) {
-//        this.numberOfPortions = numberOfPortions;
-//    }
 
     public List<IngredientInRecipe> getIngredientInRecipeList() {
         return ingredientInRecipeList;

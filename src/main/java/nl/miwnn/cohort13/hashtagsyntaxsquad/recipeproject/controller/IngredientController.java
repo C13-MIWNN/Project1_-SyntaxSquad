@@ -2,7 +2,7 @@ package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.controller;
 
 import jakarta.validation.Valid;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.services.RecipeService;
-import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.enums.UnitOfMeasurement;
+import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.UnitOfMeasurement;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Ingredient;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Recipe;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.IngredientRepository;

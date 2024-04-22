@@ -5,7 +5,6 @@ package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model;/*
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.enums.UnitOfMeasurement;
 
 @Entity
 public class Ingredient {
@@ -20,14 +19,10 @@ public class Ingredient {
     @Enumerated(EnumType.STRING)
     private UnitOfMeasurement unitOfMeasurement;
 
-//    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.MERGE)
-//    private List<IngredientInRecipe> ingredientInRecipes = new ArrayList<>();
-
     public Ingredient(Long id, String name, UnitOfMeasurement unitOfMeasurement) {
         this.id = id;
         this.name = name;
         this.unitOfMeasurement = unitOfMeasurement;
-//        this.ingredientInRecipes = ingredientInRecipes;
     }
 
     public Ingredient(String name, UnitOfMeasurement unitOfMeasurement) {
@@ -40,7 +35,8 @@ public class Ingredient {
 
     @Override
     public String toString() {
-        return name + " " + "(" + unitOfMeasurement + ")";
+        String ingredientString = name + " (" + unitOfMeasurement + ")";
+        return ingredientString.substring(0 ,1).toUpperCase() + ingredientString.substring(1).toLowerCase();
     }
 
     public Long getId() {
@@ -66,12 +62,4 @@ public class Ingredient {
     public void setUnitOfMeasurement(UnitOfMeasurement unitOfMeasurement) {
         this.unitOfMeasurement = unitOfMeasurement;
     }
-
-//    public List<IngredientInRecipe> getIngredientInRecipes() {
-//        return ingredientInRecipes;
-//    }
-//
-//    public void setIngredientInRecipes(List<IngredientInRecipe> ingredientInRecipes) {
-//        this.ingredientInRecipes = ingredientInRecipes;
-//    }
 }
