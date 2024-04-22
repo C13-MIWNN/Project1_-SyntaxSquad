@@ -69,15 +69,20 @@ public class FavoriteRecipeController {
         Long userId = user.getUserId();
         List<FavoriteRecipe> favoriteRecipes = favoriteRecipeRepository.findByUserId(userId);
 
+        List<Recipe> userFavoriteRecipes = getUserFavoriteRecipes(favoriteRecipes);
+        model.addAttribute("favoriteRecipes", userFavoriteRecipes);
+
+        return "favoriteRecipe";
+    }
+
+    private List<Recipe> getUserFavoriteRecipes(List<FavoriteRecipe> favoriteRecipes) {
         List<Recipe> userFavoriteRecipes = new ArrayList<>();
 
         for (FavoriteRecipe favoriteRecipe : favoriteRecipes) {
             Optional<Recipe> optionalRecipe = recipeRepository.findById(favoriteRecipe.getId());
             optionalRecipe.ifPresent(userFavoriteRecipes::add);
         }
-        model.addAttribute("favoriteRecipes", userFavoriteRecipes);
-
-            return "favoriteRecipe";
-        }
+        return userFavoriteRecipes;
+    }
 }
 
