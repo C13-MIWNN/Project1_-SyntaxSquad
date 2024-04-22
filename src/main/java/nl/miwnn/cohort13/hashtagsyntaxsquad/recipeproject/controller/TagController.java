@@ -1,6 +1,5 @@
 package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.controller;
 
-import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Ingredient;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Tag;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.TagRepository;
 import org.springframework.stereotype.Controller;

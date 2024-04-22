@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
 /**
  * @author Sami ARSLAN
  * <p>
@@ -32,14 +33,16 @@ public class RecipeUserController {
     public String processUserForm(@ModelAttribute("user") RecipeUserFormDTO recipeUserFormDTO,
                                   BindingResult bindingResult) {
         if (recipeUserService.userExists(recipeUserFormDTO.getName())) {
-            bindingResult.rejectValue("name", "duplicate", "This username is not available");
+            bindingResult.rejectValue
+                    ("name", "duplicate", "This username is not available");
         }
 
         if (!recipeUserFormDTO.getPassword().equals(recipeUserFormDTO.getConfirmPassword())) {
-            bindingResult.rejectValue("password", "no.match", "The passwords do not match");
+            bindingResult.rejectValue
+                    ("password", "no.match", "The passwords do not match");
         }
 
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return "userForm";
         }
 

@@ -1,5 +1,6 @@
 package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.controller;
 
+import jakarta.validation.Valid;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.services.RecipeService;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.enums.UnitOfMeasurement;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Ingredient;
@@ -41,12 +42,19 @@ public class IngredientController {
         return "ingredientOverview";
     }
 
-    @PostMapping("/ingredient/new")
+    @PostMapping("/ingredient")
     public String saveOrUpdateIngredient
-            (@ModelAttribute("newIngredient") Ingredient ingredientToBeSaved, BindingResult result) {
-        if (!result.hasErrors()) {
-            ingredientRepository.save(ingredientToBeSaved);
+            (@ModelAttribute("newIngredient")
+             @Valid Ingredient ingredientToBeSaved, BindingResult result, Model model) {
+
+        if (result.hasErrors()) {
+            model.addAttribute("allIngredients", ingredientRepository.findAll());
+            model.addAttribute("allUnitsOfMeasurement", Arrays.asList(UnitOfMeasurement.values()));
+
+            return "ingredientOverview";
         }
+
+        ingredientRepository.save(ingredientToBeSaved);
 
         return "redirect:/ingredient";
     }
