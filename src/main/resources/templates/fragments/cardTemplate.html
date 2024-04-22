@@ -11,7 +11,7 @@
   <div class="recipeCard">
       <div class="card text-center" style="width: 18rem; height: 12rem; border: 0.3mm solid green;">
       <h5 class="card-title bg-transparent border-success" th:text="${recipe.recipeName}"></h5>
-      <img th:src="@{'projectDocument/default.jpg/' + ${recipe.id}}" class="card-img-top rounded-0" alt="">
+      <img th:src="@{'/recipe/image/' + ${recipe.id}}" class="card-img-top rounded-0" alt="">
       <div class="card-img-overlay">
         <a th:href="@{/recipe/detail/{recipeName}(recipeName = ${recipe.recipeName})}"></a>
       </div>
@@ -28,7 +28,7 @@
 <div th:fragment="cardRecipeHeader(recipe)">
   <div class="recipeHeaderCard">
     <div class="card text-center" style="width: 90vh; height: 12rem;">
-      <img th:src="@{'/projectDefault/default.jpg' + ${recipe.id}}" class="card-img-top rounded-0" alt="">
+      <img th:src="@{'/recipe/image/' + ${recipe.id}}" class="card-img-top rounded-0" alt="">
     </div>
   </div>
 </div>

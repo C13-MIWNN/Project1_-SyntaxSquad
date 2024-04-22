@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 /**
  * @author Sami ARSLAN
  * <p>
- * purpose for the class
+ * Controls user login and signup actions
  **/
 @Controller
 public class RecipeUserController {
