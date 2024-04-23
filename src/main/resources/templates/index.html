@@ -7,8 +7,7 @@
 </head>
 <body>
 
-    <div th:replace="~{fragments/general :: navbar}"></div>
-
+<div th:replace="~{fragments/general :: navbar}"></div>
 
 <main>
     <div class="buttons">
@@ -16,18 +15,16 @@
             <button class="add-recipe">Add Recipe</button>
         </a>
         <a href="/recipe" >
-         <button class="list-recipe">List Recipe</button>
+            <button class="list-recipe">List Recipe</button>
         </a>
         <a href="/ingredient" >
-        <button class="ingredient">Ingredient</button>
+            <button class="ingredient">Ingredient</button>
         </a>
         <a href="/favorites" >
-        <button class="favorite-recipe" sec:authorize="isAuthenticated()">Favorite Recipe</button>
+            <button class="favorite-recipe" sec:authorize="isAuthenticated()">Favorite Recipe</button>
         </a>
     </div>
-
 </main>
-
 
 <div th:replace="~{fragments/general :: footer}"></div>
 <div th:replace="~{fragments/general :: bottomScripts}"></div>

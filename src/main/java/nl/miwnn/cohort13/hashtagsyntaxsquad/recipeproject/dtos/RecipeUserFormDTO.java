@@ -3,7 +3,7 @@ package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.dtos;
 /**
  * @author Sami ARSLAN
  * <p>
- * purpose for the class
+ * Handle user registration data
  **/
 
 public class RecipeUserFormDTO {
