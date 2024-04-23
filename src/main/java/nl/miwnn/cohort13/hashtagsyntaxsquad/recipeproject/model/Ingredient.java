@@ -7,6 +7,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(name = "UniqueIngredientNameAndUnitConstraint",
+        columnNames = {"name", "unitOfMeasurement"}))
 public class Ingredient {
 
     @Id
@@ -18,6 +20,7 @@ public class Ingredient {
 
     @Enumerated(EnumType.STRING)
     private UnitOfMeasurement unitOfMeasurement;
+
 
     public Ingredient(Long id, String name, UnitOfMeasurement unitOfMeasurement) {
         this.id = id;

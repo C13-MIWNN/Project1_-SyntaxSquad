@@ -52,12 +52,16 @@
                 </option>
             </select>
             </td>
+            <td th:if="${errorMessageUniqueIngredientNameAndUnit}"
+                th:text="${errorMessageUniqueIngredientNameAndUnit}"
+                th:class="error"></td>
         </tr>
     </table>
-
-    <input type="submit" value="Save new ingredient" />
+    <input type="submit" value="Save new ingredient">
 </form>
 <br>
+
+
 
 
 <div th:replace="~{fragments/general :: footer}"></div>

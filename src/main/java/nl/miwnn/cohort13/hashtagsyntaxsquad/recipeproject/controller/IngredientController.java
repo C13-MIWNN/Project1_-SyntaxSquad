@@ -1,6 +1,7 @@
 package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.controller;
 
 import jakarta.validation.Valid;
+import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.exceptions.UniqueIngredientNameAndUnitConstraintException;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.services.RecipeService;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.UnitOfMeasurement;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Ingredient;
@@ -35,28 +36,54 @@ public class IngredientController {
 
     @GetMapping("/ingredient")
     public String showAllIngredients(Model model) {
-        model.addAttribute("allIngredients", ingredientRepository.findAll());
-        model.addAttribute("allUnitsOfMeasurement", Arrays.asList(UnitOfMeasurement.values()));
         model.addAttribute("newIngredient", new Ingredient());
 
-        return "ingredientOverview";
+        return setupIngredientOverview(model);
     }
 
     @PostMapping("/ingredient")
     public String saveOrUpdateIngredient
             (@ModelAttribute("newIngredient")
-             @Valid Ingredient ingredientToBeSaved, BindingResult result, Model model) {
+             @Valid Ingredient ingredientToBeSaved, BindingResult result, Model model)
+            throws UniqueIngredientNameAndUnitConstraintException {
+
+        String checkForNameAndUnitConstraint =
+                handleIngredientNameAndUnitConstraintIfNecessary(ingredientToBeSaved, model);
+        if (checkForNameAndUnitConstraint != null) return checkForNameAndUnitConstraint;
 
         if (result.hasErrors()) {
-            model.addAttribute("allIngredients", ingredientRepository.findAll());
-            model.addAttribute("allUnitsOfMeasurement", Arrays.asList(UnitOfMeasurement.values()));
-
-            return "ingredientOverview";
+            return setupIngredientOverview(model);
         }
 
         ingredientRepository.save(ingredientToBeSaved);
 
         return "redirect:/ingredient";
+    }
+
+    private String handleIngredientNameAndUnitConstraintIfNecessary
+            (Ingredient ingredientToBeSaved, Model model) {
+        try {
+            if (!isIngredientUnique(ingredientToBeSaved)) {
+                model.addAttribute("errorMessageUniqueIngredientNameAndUnit",
+                        "This combination of ingredient and unit of measurement has already been added.");
+                throw new UniqueIngredientNameAndUnitConstraintException
+                        ("This combination of ingredient and unit of measurement has already been added.");
+            }
+        } catch (UniqueIngredientNameAndUnitConstraintException error) {
+            return setupIngredientOverview(model);
+        }
+        return null;
+    }
+
+    public boolean isIngredientUnique(Ingredient ingredient) {
+        return ingredientRepository.findByNameAndUnitOfMeasurement
+                (ingredient.getName(), ingredient.getUnitOfMeasurement()).isEmpty();
+    }
+
+    private String setupIngredientOverview(Model model) {
+        model.addAttribute("allIngredients", ingredientRepository.findAll());
+        model.addAttribute("allUnitsOfMeasurement", Arrays.asList(UnitOfMeasurement.values()));
+        return "ingredientOverview";
     }
 
     @GetMapping("/search")
