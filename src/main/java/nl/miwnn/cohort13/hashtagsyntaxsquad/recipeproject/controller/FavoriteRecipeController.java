@@ -41,12 +41,12 @@ public class FavoriteRecipeController {
     }
 
     @GetMapping("/favorites/add/{id}")
-    public String addToFavorite(@PathVariable("id") Recipe recipe, Model model) {
+    public String addToFavorite(@PathVariable("id") Recipe recipe) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         RecipeUser recipeUser = ((RecipeUser) authentication.getPrincipal());
 
-        boolean isAlreadyFavoriteRecipe = favoriteRecipeRepository.existsByRecipeUserAndRecipe(recipeUser, recipe);
+        boolean isAlreadyFavoriteRecipe = favoriteRecipeRepository.existsByRecipeAndRecipeUser(recipe, recipeUser);
 
         if (!isAlreadyFavoriteRecipe) {
             FavoriteRecipe favoriteRecipe = new FavoriteRecipe(recipe, recipeUser);
@@ -64,7 +64,6 @@ public class FavoriteRecipeController {
             return "redirect:/error";
         }
 
-//        RecipeUser recipeUser = user;
         List<FavoriteRecipe> favoriteRecipes = favoriteRecipeRepository.findByRecipeUser(user);
 
         List<Recipe> userFavoriteRecipes = getUserFavoriteRecipes(favoriteRecipes);
@@ -77,9 +76,10 @@ public class FavoriteRecipeController {
         List<Recipe> userFavoriteRecipes = new ArrayList<>();
 
         for (FavoriteRecipe favoriteRecipe : favoriteRecipes) {
-            Optional<Recipe> optionalRecipe = recipeRepository.findById(favoriteRecipe.getFavoriteId());
+            Optional<Recipe> optionalRecipe = recipeRepository.findById(favoriteRecipe.getRecipe().getId());
             optionalRecipe.ifPresent(userFavoriteRecipes::add);
         }
+
         return userFavoriteRecipes;
     }
 }
