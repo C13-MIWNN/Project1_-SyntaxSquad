@@ -7,24 +7,32 @@
 
 <div th:replace="~{fragments/general :: navbar}"></div>
 
-<div class="container">
+<div class="container-fluid" style="height: 100vh;">
+
+<div class="d-flex justify-content-center">
     <form th:action="@{/user/new}" method="post" th:object="${user}">
         <div class="form-group">
             <label for="username" class="mb-2">User name</label>
-            <input type="text" class="form-control mb-3" id="username" aria-describedby="usernameHelp" placeholder="Choose a user name" th:field="*{name}">
-            <small id="usernameHelp" class="form-text text-muted" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+            <input type="text" class="form-control mb-3" id="username" aria-describedby="usernameHelp"
+                   placeholder="Choose a user name" th:field="*{name}">
+            <small id="usernameHelp" class="form-text text-muted" th:if="${#fields.hasErrors('name')}"
+                   th:errors="*{name}"></small>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1" class="mb-2">Password</label>
-            <input type="password" class="form-control mb-3" id="exampleInputPassword1" aria-describedby="passwordHelp" placeholder="Password" th:field="*{password}">
-            <small id="passwordHelp" class="form-text text-muted" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+            <input type="password" class="form-control mb-3" id="exampleInputPassword1" aria-describedby="passwordHelp"
+                   placeholder="Password" th:field="*{password}">
+            <small id="passwordHelp" class="form-text text-muted" th:if="${#fields.hasErrors('password')}"
+                   th:errors="*{password}"></small>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword2" class="mb-2">Confirm Password</label>
-            <input type="password" class="form-control mb-3" id="exampleInputPassword2" placeholder="Confirm Password" th:field="*{confirmPassword}">
+            <input type="password" class="form-control mb-3" id="exampleInputPassword2"
+                   placeholder="Confirm Password" th:field="*{confirmPassword}">
         </div>
         <button type="submit" class="btn btn-primary mb-3">Submit</button>
     </form>
+</div>
 </div>
 
 <div th:replace="~{fragments/general :: footer}"></div>

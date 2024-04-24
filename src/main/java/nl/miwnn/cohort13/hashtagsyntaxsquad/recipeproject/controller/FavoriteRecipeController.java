@@ -66,6 +66,11 @@ public class FavoriteRecipeController {
 
         List<FavoriteRecipe> favoriteRecipes = favoriteRecipeRepository.findByRecipeUser(user);
 
+        if (favoriteRecipes.isEmpty()) {
+            model.addAttribute("noFavoriteRecipes", true);
+            return "favoriteRecipe";
+        }
+
         List<Recipe> userFavoriteRecipes = getUserFavoriteRecipes(favoriteRecipes);
         model.addAttribute("favoriteRecipes", userFavoriteRecipes);
 
