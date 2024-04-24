@@ -60,6 +60,13 @@ public class IngredientController {
         return "redirect:/ingredient";
     }
 
+    @GetMapping("/search")
+    public String searchRecipesByIngredient(@RequestParam("ingredient") String ingredient, Model model) {
+        List<Recipe> searchResults = recipeService.findRecipesByIngredientName(ingredient);
+        model.addAttribute("searchResults", searchResults);
+        return "searchResults";
+    }
+
     private String handleIngredientNameAndUnitConstraintIfNecessary
             (Ingredient ingredientToBeSaved, Model model) {
         try {
@@ -75,7 +82,7 @@ public class IngredientController {
         return null;
     }
 
-    public boolean isIngredientUnique(Ingredient ingredient) {
+    private boolean isIngredientUnique(Ingredient ingredient) {
         return ingredientRepository.findByNameAndUnitOfMeasurement
                 (ingredient.getName(), ingredient.getUnitOfMeasurement()).isEmpty();
     }
@@ -84,12 +91,5 @@ public class IngredientController {
         model.addAttribute("allIngredients", ingredientRepository.findAll());
         model.addAttribute("allUnitsOfMeasurement", Arrays.asList(UnitOfMeasurement.values()));
         return "ingredientOverview";
-    }
-
-    @GetMapping("/search")
-    public String searchRecipesByIngredient(@RequestParam("ingredient") String ingredient, Model model) {
-        List<Recipe> searchResults = recipeService.findRecipesByIngredientName(ingredient);
-        model.addAttribute("searchResults", searchResults);
-        return "searchResults";
     }
 }

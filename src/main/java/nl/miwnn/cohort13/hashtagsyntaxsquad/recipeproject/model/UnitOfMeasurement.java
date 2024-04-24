@@ -7,11 +7,21 @@ package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model;
 
 public enum UnitOfMeasurement {
 
-    piece,
-    gram,
-    teaspoon,
-    tablespoon,
-    milliliter,
-    liter
+    PIECE("piece"),
+    GRAM("gram"),
+    TEASPOON("teaspoon"),
+    TABLESPOON("tablespoon"),
+    MILLILITER("milliliter"),
+    LITER("liter");
 
+    private final String unitString;
+
+    UnitOfMeasurement(String unitString) {
+        this.unitString = unitString;
+    }
+
+    @Override
+    public String toString() {
+        return this.unitString;
+    }
 }

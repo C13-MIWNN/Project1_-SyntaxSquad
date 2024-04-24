@@ -17,7 +17,7 @@ class IngredientToStringTests {
 		// Arrange
 		Ingredient testIngredient = new Ingredient();
 		testIngredient.setName("Apple");
-		testIngredient.setUnitOfMeasurement(UnitOfMeasurement.piece);
+		testIngredient.setUnitOfMeasurement(UnitOfMeasurement.PIECE);
 
 		// Act
 		String expectedString = "Apple (piece)";
@@ -33,7 +33,7 @@ class IngredientToStringTests {
 		// Arrange
 		Ingredient testIngredient = new Ingredient();
 		testIngredient.setName("CoTTAgE cHeeSe");
-		testIngredient.setUnitOfMeasurement(UnitOfMeasurement.gram);
+		testIngredient.setUnitOfMeasurement(UnitOfMeasurement.GRAM);
 
 		// Act
 		String expectedString = "Cottage cheese (gram)";
@@ -49,7 +49,7 @@ class IngredientToStringTests {
 		// Arrange
 		Ingredient testIngredient = new Ingredient();
 		testIngredient.setName(null);
-		testIngredient.setUnitOfMeasurement(UnitOfMeasurement.liter);
+		testIngredient.setUnitOfMeasurement(UnitOfMeasurement.LITER);
 
 		// Act
 		String expectedString = "Null (liter)";

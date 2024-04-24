@@ -33,11 +33,11 @@ public class IngredientsTest {
         // Arrange
         Recipe recipe = new Recipe();
         List<IngredientInRecipe> ingredients = new ArrayList<>();
-        Ingredient potatoes = makeIngredient("Potatoes", UnitOfMeasurement.piece);
+        Ingredient potatoes = makeIngredient("Potatoes", UnitOfMeasurement.PIECE);
 
         ingredients.add(new IngredientInRecipe(100, potatoes));
-        ingredients.add(new IngredientInRecipe(200, makeIngredient("Carrots", UnitOfMeasurement.piece)));
-        ingredients.add(new IngredientInRecipe(300, makeIngredient("Onions", UnitOfMeasurement.piece)));
+        ingredients.add(new IngredientInRecipe(200, makeIngredient("Carrots", UnitOfMeasurement.PIECE)));
+        ingredients.add(new IngredientInRecipe(300, makeIngredient("Onions", UnitOfMeasurement.PIECE)));
         recipe.setIngredientInRecipeList(ingredients);
 
         // Act
@@ -54,12 +54,12 @@ public class IngredientsTest {
         Recipe recipe = new Recipe();
         List<IngredientInRecipe> ingredients = new ArrayList<>();
 
-        ingredients.add(getIngredient(100, makeIngredient("rice", UnitOfMeasurement.gram)));
-        ingredients.add(getIngredient(200, makeIngredient("chicken", UnitOfMeasurement.gram)));
-        ingredients.add(getIngredient(300, makeIngredient("broccoli", UnitOfMeasurement.gram)));
-        ingredients.add(getIngredient(400, makeIngredient("soy sauce", UnitOfMeasurement.milliliter)));
-        ingredients.add(getIngredient(500, makeIngredient("garlic", UnitOfMeasurement.piece)));
-        ingredients.add(getIngredient(600, makeIngredient("sesame oil", UnitOfMeasurement.milliliter)));
+        ingredients.add(getIngredient(100, makeIngredient("rice", UnitOfMeasurement.GRAM)));
+        ingredients.add(getIngredient(200, makeIngredient("chicken", UnitOfMeasurement.GRAM)));
+        ingredients.add(getIngredient(300, makeIngredient("broccoli", UnitOfMeasurement.GRAM)));
+        ingredients.add(getIngredient(400, makeIngredient("soy sauce", UnitOfMeasurement.MILLILITER)));
+        ingredients.add(getIngredient(500, makeIngredient("garlic", UnitOfMeasurement.PIECE)));
+        ingredients.add(getIngredient(600, makeIngredient("sesame oil", UnitOfMeasurement.MILLILITER)));
 
         recipe.setIngredientInRecipeList(ingredients);
 

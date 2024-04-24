@@ -48,7 +48,7 @@ public class IngredientService {
                 if (isValidLine(parts)) {
                     Double kCal = extractKcal(parts, br);
                     if (kCal != null) {
-                        ingredients.add(new Ingredient(null, parts[2], UnitOfMeasurement.GRAMS, kCal));
+                        ingredients.add(new Ingredient(null, parts[2], UnitOfMeasurement.GRAM, kCal));
                     }
                 }
             }
