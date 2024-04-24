@@ -1,3 +1,5 @@
+package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject;
+
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.IngredientInRecipe;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model.Recipe;
 import nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.repositories.RecipeRepository;

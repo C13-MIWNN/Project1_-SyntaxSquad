@@ -21,16 +21,18 @@ public class Ingredient {
     @Enumerated(EnumType.STRING)
     private UnitOfMeasurement unitOfMeasurement;
 
-
-    public Ingredient(Long id, String name, UnitOfMeasurement unitOfMeasurement) {
-        this.id = id;
-        this.name = name;
-        this.unitOfMeasurement = unitOfMeasurement;
-    }
+    private Double kCal;
 
     public Ingredient(String name, UnitOfMeasurement unitOfMeasurement) {
         this.name = name;
         this.unitOfMeasurement = unitOfMeasurement;
+    }
+
+    public Ingredient(Long id, String name, UnitOfMeasurement unitOfMeasurement, Double kCal) {
+        this.id = id;
+        this.name = name;
+        this.unitOfMeasurement = unitOfMeasurement;
+        this.kCal = kCal;
     }
 
     public Ingredient() {
@@ -64,5 +66,13 @@ public class Ingredient {
 
     public void setUnitOfMeasurement(UnitOfMeasurement unitOfMeasurement) {
         this.unitOfMeasurement = unitOfMeasurement;
+    }
+
+    public Double getkCal() {
+        return kCal;
+    }
+
+    public void setkCal(Double kCal) {
+        this.kCal = kCal;
     }
 }
