@@ -20,4 +20,6 @@ public interface FavoriteRecipeRepository extends JpaRepository<FavoriteRecipe, 
     List<FavoriteRecipe> findByRecipe(Recipe recipe);
 
     boolean existsByRecipeAndRecipeUser(Recipe recipe, RecipeUser recipeUser);
+
+    long countByRecipeUser(RecipeUser recipeUser);
 }

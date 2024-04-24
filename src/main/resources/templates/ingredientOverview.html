@@ -3,14 +3,14 @@
 <head th:replace="~{fragments/general :: baseHeader(~{:: title})}">
     <title>This is a list of all ingredients</title>
 </head>
-<body>
+<body >
 
 
 
-<div th:replace="~{fragments/general :: navbar}"></div>
+<div class="container" th:replace="~{fragments/general :: navbar}"></div>
 
 
-
+<div class="container">
  <!--   <header>
         <div>
             <form th:action="@{/search}" method="get">
@@ -21,19 +21,6 @@
         </div>
 
     </header>-->
-
-
-<table>
-    <tr>
-        <th>Ingredient</th>
-        <th>Unit of Measurement</th>
-        <th></th>
-    </tr>
-    <tr th:field="*{ingredient}" th:each="ingredient : ${allIngredients}">
-        <td th:text="${ingredient.name}"></td>
-        <td th:text="${ingredient.unitOfMeasurement}"></td>
-    </tr>
-</table>
 
 <form th:action="@{/ingredient}" method="post" th:object="${newIngredient}">
     <input type="hidden" th:field="*{id}">
@@ -59,10 +46,25 @@
     </table>
     <input type="submit" value="Save new ingredient">
 </form>
-<br>
+    <br>
+
+
+<table>
+    <tr>
+        <th>Ingredient</th>
+        <th>Unit of Measurement</th>
+        <th></th>
+    </tr>
+    <tr th:field="*{ingredient}" th:each="ingredient : ${allIngredients}">
+        <td th:text="${ingredient.name}"></td>
+        <td th:text="${ingredient.unitOfMeasurement}"></td>
+    </tr>
+</table>
 
 
 
+
+</div>
 
 <div th:replace="~{fragments/general :: footer}"></div>
 <div th:replace="~{fragments/general :: bottomScripts}"></div>
