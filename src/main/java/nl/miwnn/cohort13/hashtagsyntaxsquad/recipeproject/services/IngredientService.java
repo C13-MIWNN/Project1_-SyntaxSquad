@@ -20,8 +20,8 @@ public class IngredientService {
 
     private final IngredientRepository ingredientRepository;
 
-    @Autowired
-    private IngredientService ingredientService;
+   /* @Autowired
+    private IngredientService ingredientService;*/
     @Autowired
     public IngredientService(IngredientRepository ingredientRepository) {
         this.ingredientRepository = ingredientRepository;
@@ -38,6 +38,7 @@ public class IngredientService {
     public List<Ingredient> findIngredientByName(String name) {
         return ingredientRepository.findByNameContaining(name);
     }
+/*
 
     public List<Ingredient> readIngredientsFromCSV(String csvFile) {
         List<Ingredient> ingredients = new ArrayList<>();
@@ -81,9 +82,10 @@ public class IngredientService {
         List<Ingredient> ingredients = ingredientService.readIngredientsFromCSV(csvFilePath);
         ingredientService.saveAllIngredients(ingredients);
     }
-
+*/
     private void saveAllIngredients(List<Ingredient> ingredients) {
     }
+
 
 
 }
