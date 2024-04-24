@@ -11,16 +11,11 @@
   <div class="recipeCard">
       <div class="card text-center" style="width: 18rem; height: 12rem; border: 0.3mm solid green;">
       <h5 class="card-title bg-transparent border-success" th:text="${recipe.recipeName}"></h5>
-      <img th:src="@{'/recipe/image/' + ${recipe.id}}" class="card-img-top rounded-0" alt="">
+<!--      <img th:src="@{'/images/default.jpg' + ${recipe.id}}" class="card-img-top rounded-0" alt="">-->
+          <img class="mb-5" src="/images/logo.gif" height="100" width="280" alt="logo"/>
       <div class="card-img-overlay">
         <a th:href="@{/recipe/detail/{recipeName}(recipeName = ${recipe.recipeName})}"></a>
       </div>
-<!--      <table>-->
-<!--        <tr>-->
-<!--          <td>Portions:</td>-->
-<!--          <td class="card-text" th:text="${recipe.numberOfPortions}"></td>-->
-<!--        </tr>-->
-<!--      </table>-->
     </div>
   </div>
 </div>
@@ -28,7 +23,8 @@
 <div th:fragment="cardRecipeHeader(recipe)">
   <div class="recipeHeaderCard">
     <div class="card text-center" style="width: 90vh; height: 12rem;">
-      <img th:src="@{'/recipe/image/' + ${recipe.id}}" class="card-img-top rounded-0" alt="">
+<!--      <img th:src="@{'/images/default.jpg' + ${recipe.id}}" class="card-img-top rounded-0" alt="">-->
+        <img class="mb-5" src="/images/logo.gif" height="144" width="420" alt="logo"/>
     </div>
   </div>
 </div>

@@ -9,7 +9,7 @@
 
 <div th:replace="~{fragments/general :: navbar}"></div>
 
-<form th:action="@{/recipe/new}" method="post" th:object="${recipe}">
+<form class="container" th:action="@{/recipe/new}" method="post" th:object="${recipe}">
     <input type="hidden" th:field="*{id}">
     <table>
 

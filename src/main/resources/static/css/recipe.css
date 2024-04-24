@@ -33,6 +33,17 @@ header {
 }
 
 
+.container {
+    background-color: #f2f2f2;
+    padding: 20px;
+    overflow: auto;
+    border-radius: 8px;
+    margin-bottom: 120px;
+    margin-top: 40px;
+
+
+}
+
 
 .homepage {
     display: flex;
@@ -77,8 +88,6 @@ header {
     cursor: pointer;
     font-size: 20px;
 }
-
-
 
 
 main {
@@ -178,8 +187,6 @@ main {
 
 
 
-
-
 .ingredient {
     background-color: #f44336;
     color: white;
@@ -258,6 +265,12 @@ div.recipeWindow {
     font-size: smaller;
 }
 
+.background-image {
+    background-image: url('arka-plan-resmi-urlsi.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
 
 footer {
