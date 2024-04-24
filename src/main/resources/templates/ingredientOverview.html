@@ -47,8 +47,8 @@
             <td><label for="unitOfMeasurementField">Unit Of Measurement</label></td>
             <td><select id="unitOfMeasurementField" th:field="*{unitOfMeasurement}">
                 <option th:each="unitOfMeasurement : ${allUnitsOfMeasurement}"
-                        th:text="${unitOfMeasurement}"
-                        th:value="${unitOfMeasurement}">
+                        th:text="${unitOfMeasurement.toString()}"
+                        th:value="${unitOfMeasurement.name()}">
                 </option>
             </select>
             </td>

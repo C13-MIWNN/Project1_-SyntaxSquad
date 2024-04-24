@@ -21,7 +21,6 @@ public class Ingredient {
     @Enumerated(EnumType.STRING)
     private UnitOfMeasurement unitOfMeasurement;
 
-
     public Ingredient(Long id, String name, UnitOfMeasurement unitOfMeasurement) {
         this.id = id;
         this.name = name;

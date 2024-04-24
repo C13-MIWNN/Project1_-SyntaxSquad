@@ -51,20 +51,20 @@ public class InitializeController {
 
         makeUser("HSS", "HSS");
 
-        Ingredient potatoes = makeIngredient("Potatoes", UnitOfMeasurement.piece);
-        Ingredient curry = makeIngredient("Curry", UnitOfMeasurement.gram);
-        Ingredient sausages = makeIngredient("Sausages", UnitOfMeasurement.gram);
-        Ingredient onions = makeIngredient("Onions", UnitOfMeasurement.piece);
-        Ingredient carrots = makeIngredient("Carrots", UnitOfMeasurement.piece);
-        Ingredient chickenBreast = makeIngredient("Chicken Breast", UnitOfMeasurement.gram);
-        Ingredient rice = makeIngredient("Rice", UnitOfMeasurement.gram);
-        Ingredient pasta = makeIngredient("Pasta", UnitOfMeasurement.gram);
-        Ingredient tomatoes = makeIngredient("Tomatoes", UnitOfMeasurement.piece);
-        Ingredient spinach = makeIngredient("Spinach", UnitOfMeasurement.gram);
-        Ingredient broccoli = makeIngredient("Broccoli", UnitOfMeasurement.gram);
-        Ingredient bellPepper = makeIngredient("Bell Pepper", UnitOfMeasurement.piece);
-        Ingredient garlicCloves = makeIngredient("Garlic Cloves", UnitOfMeasurement.piece);
-        Ingredient oliveOil = makeIngredient("Olive Oil", UnitOfMeasurement.tablespoon);
+        Ingredient potatoes = makeIngredient("Potatoes", UnitOfMeasurement.PIECE);
+        Ingredient curry = makeIngredient("Curry", UnitOfMeasurement.GRAM);
+        Ingredient sausages = makeIngredient("Sausages", UnitOfMeasurement.GRAM);
+        Ingredient onions = makeIngredient("Onions", UnitOfMeasurement.PIECE);
+        Ingredient carrots = makeIngredient("Carrots", UnitOfMeasurement.PIECE);
+        Ingredient chickenBreast = makeIngredient("Chicken Breast", UnitOfMeasurement.GRAM);
+        Ingredient rice = makeIngredient("Rice", UnitOfMeasurement.GRAM);
+        Ingredient pasta = makeIngredient("Pasta", UnitOfMeasurement.GRAM);
+        Ingredient tomatoes = makeIngredient("Tomatoes", UnitOfMeasurement.PIECE);
+        Ingredient spinach = makeIngredient("Spinach", UnitOfMeasurement.GRAM);
+        Ingredient broccoli = makeIngredient("Broccoli", UnitOfMeasurement.GRAM);
+        Ingredient bellPepper = makeIngredient("Bell Pepper", UnitOfMeasurement.PIECE);
+        Ingredient garlicCloves = makeIngredient("Garlic Cloves", UnitOfMeasurement.PIECE);
+        Ingredient oliveOil = makeIngredient("Olive Oil", UnitOfMeasurement.TABLESPOON);
 
         Tag japaneseKitchen = makeTag("Japanese Kitchen");
         Tag italianKitchen = makeTag("Italian Kitchen");
