@@ -58,30 +58,15 @@ public class RecipeController {
         return setupRecipeForm(model);
     }
 
-    private String setupRecipeForm(Model model) {
-        model.addAttribute("allIngredients", ingredientRepository.findAll());
-        model.addAttribute("allUnitsOfMeasurement", Arrays.asList(UnitOfMeasurement.values()));
-        model.addAttribute("allTags", tagRepository.findAll());
-
-        return "recipeForm";
-    }
-
     @PostMapping("/recipe/new")
     private String saveOrUpdateRecipe(@ModelAttribute("recipe") Recipe recipe,
                                           BindingResult result) {
+
         if (!result.hasErrors()) {
             recipeRepository.save(recipe);
             setRecipeToIngredient(recipe);
         }
-
         return "redirect:/";
-    }
-
-    private void setRecipeToIngredient(Recipe recipe) {
-        for (IngredientInRecipe ingredientInRecipe : recipe.getIngredientInRecipeList()) {
-            ingredientInRecipe.setRecipe(recipe);
-            ingredientInRecipeRepository.save(ingredientInRecipe);
-        }
     }
 
     @RequestMapping(value = "/recipe/new", params = {"addInstruction"})
@@ -117,6 +102,8 @@ public class RecipeController {
         return setupRecipeForm(model);
     }
 
+
+
     @GetMapping("/recipe/detail/{recipeName}")
     public String showRecipeDetails(@PathVariable("recipeName") String recipeName, Model model) {
         Optional<Recipe> recipeOptional = recipeRepository.findByRecipeName(recipeName);
@@ -132,5 +119,20 @@ public class RecipeController {
         model.addAttribute("recipeImageData", imageData);
 
         return "recipeDetails";
+    }
+
+    private String setupRecipeForm(Model model) {
+        model.addAttribute("allIngredients", ingredientRepository.findAll());
+        model.addAttribute("allUnitsOfMeasurement", Arrays.asList(UnitOfMeasurement.values()));
+        model.addAttribute("allTags", tagRepository.findAll());
+
+        return "recipeForm";
+    }
+
+    private void setRecipeToIngredient(Recipe recipe) {
+        for (IngredientInRecipe ingredientInRecipe : recipe.getIngredientInRecipeList()) {
+            ingredientInRecipe.setRecipe(recipe);
+            ingredientInRecipeRepository.save(ingredientInRecipe);
+        }
     }
 }

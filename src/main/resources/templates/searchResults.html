@@ -18,11 +18,12 @@
     <table>
         <tr>
             <th>Recipe name</th>
-            <th>Ingredient</th>
         </tr>
-
+        <tr></tr>
         <tr th:each="result : ${searchResults}">
-            <td th:text="${result.recipeName}"></td>
+            <td><a th:text="${result.recipeName}"
+                   th:href="@{/recipe/detail/{recipeName}(recipeName = ${result.recipeName})}"></a>
+            </td>
         </tr>
     </table>
 
