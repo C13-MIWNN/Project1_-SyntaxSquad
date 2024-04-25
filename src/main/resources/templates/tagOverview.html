@@ -14,14 +14,14 @@
         <form th:action="@{/tag/new}" method="post" th:object="${newTag}">
             <table>
                 <tr>
-                    <th><label class="recipe-name" for="nameField"><b>Wrire a Tag Name</b></label></th>
+                    <th><label class="recipe-name" for="nameField"><b>Write a Tag Name</b></label></th>
                 </tr>
                 <tr>
                     <td><input class="form-control" id="nameField" th:field="*{tagName}"></td>
                 </tr>
             </table>
 
-            <button class="save-recipe-button" type="submit" value="Save ingredient">Save Tag</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Save ingredient">Save Tag</button>
         </form>
 
     </div>
