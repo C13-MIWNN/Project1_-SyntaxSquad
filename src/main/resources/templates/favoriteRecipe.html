@@ -10,6 +10,10 @@
 
 <div class="container">
     <h1 id="favoriteOverviewHeader"></h1>
+
+    <div th:if="${noFavoriteRecipes}">
+        <h3><strong>You Don't Have a Favorite Recipe</strong></h3>
+    </div>
     <div class="d-flex flex-wrap">
         <div th:each="userFavoriteRecipe : ${favoriteRecipes}" style="margin: 3mm;">
             <div th:replace="~{fragments/cardTemplate :: cardFragment(${userFavoriteRecipe})}"></div>

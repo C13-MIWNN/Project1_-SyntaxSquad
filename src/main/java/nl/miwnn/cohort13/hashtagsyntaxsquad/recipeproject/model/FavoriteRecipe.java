@@ -38,19 +38,6 @@ public class FavoriteRecipe {
         this.recipeUser = recipeUser;
     }
 
-//    public int getNumberOfRecipesWithoutFavorites() {
-//        int count = 0;
-//
-//        for (Recipe recipe : recipeList) {
-//            if (recipe.getRecipe() != null) {
-//                count++;
-//            }
-//        }
-//
-//        return count;
-//    }
-
-
 
     public Long getFavoriteId() {
         return favoriteId;

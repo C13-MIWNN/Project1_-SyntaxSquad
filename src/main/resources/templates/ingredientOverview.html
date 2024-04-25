@@ -5,65 +5,63 @@
 </head>
 <body >
 
+<div th:replace="~{fragments/general :: navbar}"></div>
 
+<div class="container-wrapper">
+<div class="container" style="width: 500px; height: 200px; margin-left:40px; margin-right:10px;">
+    <!--   <header>
+           <div>
+               <form th:action="@{/search}" method="get">
+                   <label for="search">Search:</label>
+                   <input type="text" id="search" name="ingredient" placeholder="Enter an ingredient">
+                   <button type="submit">Search</button>
+               </form>
+           </div>
 
-<div class="container" th:replace="~{fragments/general :: navbar}"></div>
+       </header>-->
 
+    <form th:action="@{/ingredient}" method="post" th:object="${newIngredient}">
+        <input type="hidden" th:field="*{id}">
+        <table>
+            <tr>
+                <th><label class="recipe-name" for="nameField"><b>Ingredient</b></label></th>
+                <td><input class="form-control" id="nameField" th:field="*{name}"></td>
+                <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:class="error"></td>
+            </tr>
+            <tr>
+                <th><label class="recipe-name" for="nameField"><b>Unit Of Measurement</b></label></th>
+                <td><select id="unitOfMeasurementField" th:field="*{unitOfMeasurement}">
+                    <option th:each="unitOfMeasurement : ${allUnitsOfMeasurement}"
+                            th:text="${unitOfMeasurement.toString()}"
+                            th:value="${unitOfMeasurement.name()}">
+                    </option>
+                </select>
+                </td>
+                <td th:if="${errorMessageUniqueIngredientNameAndUnit}"
+                    th:text="${errorMessageUniqueIngredientNameAndUnit}"
+                    th:class="error"></td>
+            </tr>
+        </table>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Save ingredient">Save Ingredient</button>
+    </form>
+</div>
 
-<div class="container">
- <!--   <header>
-        <div>
-            <form th:action="@{/search}" method="get">
-                <label for="search">Search:</label>
-                <input type="text" id="search" name="ingredient" placeholder="Enter an ingredient">
-                <button type="submit">Search</button>
-            </form>
-        </div>
-
-    </header>-->
-
-<form th:action="@{/ingredient}" method="post" th:object="${newIngredient}">
-    <input type="hidden" th:field="*{id}">
+<div class="container" style="width: 500px; margin-left:10px;">
     <table>
         <tr>
-            <td><label for="nameField">Ingredient</label></td>
-            <td><input id="nameField" th:field="*{name}"></td>
-            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:class="error"></td>
+            <h3><strong>Ingredient List</strong></h3>
+            <hr class="border border-success border-3 opacity-75 mt-0">
+            <th class="text-center">Ingredient</th>
+            <th class="text-center">Unit of Measurement</th>
+            <th></th>
         </tr>
-        <tr>
-            <td><label for="unitOfMeasurementField">Unit Of Measurement</label></td>
-            <td><select id="unitOfMeasurementField" th:field="*{unitOfMeasurement}">
-                <option th:each="unitOfMeasurement : ${allUnitsOfMeasurement}"
-                        th:text="${unitOfMeasurement.toString()}"
-                        th:value="${unitOfMeasurement.name()}">
-                </option>
-            </select>
-            </td>
-            <td th:if="${errorMessageUniqueIngredientNameAndUnit}"
-                th:text="${errorMessageUniqueIngredientNameAndUnit}"
-                th:class="error"></td>
+        <tr th:field="*{ingredient}" th:each="ingredient : ${allIngredients}">
+            <td class="text-center" th:text="${ingredient.name}"></td>
+            <td class="text-center" th:text="${ingredient.unitOfMeasurement}"></td>
         </tr>
     </table>
-    <input type="submit" value="Save new ingredient">
-</form>
-    <br>
 
-
-<table>
-    <tr>
-        <th>Ingredient</th>
-        <th>Unit of Measurement</th>
-        <th></th>
-    </tr>
-    <tr th:field="*{ingredient}" th:each="ingredient : ${allIngredients}">
-        <td th:text="${ingredient.name}"></td>
-        <td th:text="${ingredient.unitOfMeasurement}"></td>
-    </tr>
-</table>
-
-
-
-
+</div>
 </div>
 
 <div th:replace="~{fragments/general :: footer}"></div>

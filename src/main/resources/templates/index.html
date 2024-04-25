@@ -8,15 +8,14 @@
 <body>
 
 <div th:replace="~{fragments/general :: navbar}"></div>
-<div>
 
 <main>
     <div class="buttons">
-        <a href="/recipe/new" >
-            <button class="add-recipe">Add Recipe</button>
-        </a>
         <a href="/recipe" >
             <button class="list-recipe">List Recipe</button>
+        </a>
+        <a href="/recipe/new" >
+            <button class="add-recipe">Add Recipe</button>
         </a>
         <a href="/ingredient" >
             <button class="ingredient">Ingredient</button>
@@ -26,7 +25,8 @@
         </a>
     </div>
 </main>
-</div>
+
+
 <div th:replace="~{fragments/general :: footer}"></div>
 <div th:replace="~{fragments/general :: bottomScripts}"></div>
 </body>

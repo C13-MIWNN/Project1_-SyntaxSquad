@@ -16,11 +16,11 @@ class IngredientToStringTests {
 
 		// Arrange
 		Ingredient testIngredient = new Ingredient();
-		testIngredient.setName("Apple");
+		testIngredient.setName("Knäckebröd");
 		testIngredient.setUnitOfMeasurement(UnitOfMeasurement.PIECE);
 
 		// Act
-		String expectedString = "Apple (piece)";
+		String expectedString = "Knäckebröd (piece)";
 
 		// Assert
 		Assertions.assertEquals(expectedString, testIngredient.toString());

@@ -36,7 +36,6 @@ public class TagController {
         if (!result.hasErrors()) {
             tagRepository.save(tagToBeSaved);
         }
-
         return "redirect:/tag";
     }
 }

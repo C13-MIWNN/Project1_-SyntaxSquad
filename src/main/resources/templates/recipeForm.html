@@ -9,35 +9,35 @@
 
 <div th:replace="~{fragments/general :: navbar}"></div>
 
-<form class="container" th:action="@{/recipe/new}" method="post" th:object="${recipe}">
-    <input type="hidden" th:field="*{id}">
-    <table>
+<main>
+    <form class="container" th:action="@{/recipe/new}" method="post" th:object="${recipe}">
+        <input type="hidden" th:field="*{id}">
+        <table>
 
-        <tr>
-            <th><label class="recipe-name" for="nameField">Recipe Name</label></th>
-            <td><input id="nameField" type="text" th:field="*{recipeName}"></td>
-        </tr>
-        <tr>
-
-            <td><label class="instructions-section" for="instructionField">Instructions</label></td>
-            <td><button type="submit" name="addInstruction">Add instruction</button></td>
-        </tr>
-        <tr th:each="instruction, rowStat : *{instructions}">
-            <td th:text="${rowStat.count}"></td>
-            <td>
-                <input id="instructionField" type="text"
-                   th:field="*{instructions[__${rowStat.index}__]}"
-                   th:value="${recipe.instructions}">
-            </td>
-            <td><button type="submit" name="removeInstruction"
-                        th:value="${rowStat.index}">Remove instruction</button></td>
-        </tr>
-        <tr>
-            <td><label class="ingredient-section" for="ingredientField">Ingredients</label></td>
-            <td><button type="submit" name="addIngredient">Add ingredient</button></td>
-        </tr>
-        <tr th:each="ingredient, rowStat : *{ingredientInRecipeList}">
-            <td th:text="${rowStat.count}"></td>
+            <tr>
+                <th><label class="recipe-name" for="nameField"><b>Recipe Name</b></label></th>
+                <td><input class="form-control" id="nameField" type="text" th:field="*{recipeName}"></td>
+            </tr>
+            <tr>
+                <th><label class="recipe-name" for="nameField"><b>Instructions</b></label></th>
+                <td><button class="btn btn-secondary" type="submit" name="addInstruction">Add instruction</button></td>
+            </tr>
+            <tr th:each="instruction, rowStat : *{instructions}">
+                <td th:text="${rowStat.count}"></td>
+                <td>
+                    <input class="form-control" id="instructionField" type="text"
+                           th:field="*{instructions[__${rowStat.index}__]}"
+                           th:value="${recipe.instructions}">
+                </td>
+                <td><button class="btn btn-danger" type="submit" name="removeInstruction"
+                            th:value="${rowStat.index}">Remove instruction</button></td>
+            </tr>
+            <tr>
+                <th><label class="recipe-name" for="nameField"><b>Ingredients</b></label></th>
+                <td><button class="btn btn-secondary" type="submit" name="addIngredient">Add ingredient</button></td>
+            </tr>
+            <tr th:each="ingredient, rowStat : *{ingredientInRecipeList}">
+                <td align="right"><strong th:text="${rowStat.count + '. ingredient'}"></strong></td>
                 <td>
                     <select id="ingredientField" th:field="*{ingredientInRecipeList[__${rowStat.index}__].ingredient}">
                         <option
@@ -47,30 +47,31 @@
                         </option>
                     </select>
                 </td>
-            <td><label class="ingredient-section" for="amountField">Amount</label></td>
-            <td>
-                <input id="amountField" type="text" th:field="*{ingredientInRecipeList[__${rowStat.index}__].amount}">
-            </td>
-        </tr>
-        <tr>
-            <td><label for="tagsField">Tags</label></td>
-            <td><button type="submit" name="addTag">Add tag</button></td>
-        </tr>
-        <tr th:each="tag, rowStat : *{tags}">
-            <td></td>
-            <td>
-                <select id="tagsField" th:field="*{tags[__${rowStat.index}__]}">
-                    <option th:each="potentialTag : ${allTags}"
-                            th:text="${potentialTag.tagName}"
-                            th:value="${potentialTag.tagName}">
-                    </option>
-                </select>
-            </td>
-        </tr>
-    </table>
+                <th><label class="recipe-name" for="nameField"><b>Amount</b></label></th>
+                <td>
+                    <input class="form-control" id="amountField" type="text" th:field="*{ingredientInRecipeList[__${rowStat.index}__].amount}">
+                </td>
+            </tr>
+            <tr>
+                <th><label class="recipe-name" for="nameField"><b>Tags</b></label></th>
+                <td><button class="btn btn-secondary" type="submit" name="addTag">Add tag</button></td>
+            </tr>
+            <tr th:each="tag, rowStat : *{tags}">
+                <td></td>
+                <td>
+                    <select id="tagsField" th:field="*{tags[__${rowStat.index}__]}">
+                        <option th:each="potentialTag : ${allTags}"
+                                th:text="${potentialTag.tagName}"
+                                th:value="${potentialTag.tagName}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+        </table>
 
-    <button class="save-recipe-button" type="submit" value="Save recipe">Save Recipe</button>
-</form>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Save recipe">Save Recipe</button>
+    </form>
+</main>
 
 <div th:replace="~{fragments/general :: footer}"></div>
 <div th:replace="~{fragments/general :: bottomScripts}"></div>
