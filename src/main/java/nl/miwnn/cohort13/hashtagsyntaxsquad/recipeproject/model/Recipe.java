@@ -15,7 +15,6 @@ public class Recipe {
     @Id
     @GeneratedValue
     private Long id;
-
     private String recipeName;
 
     @ElementCollection
@@ -59,13 +58,11 @@ public class Recipe {
 
     public int getNumberOfIngredients() {
         int count = 0;
-
         for (IngredientInRecipe ingredientInRecipe : ingredientInRecipeList) {
             if (ingredientInRecipe.getIngredient() != null) {
                 count++;
             }
         }
-
         return count;
     }
 
@@ -107,7 +104,6 @@ public class Recipe {
                 totalRecipeKcal += ingredientInRecipe.calculateTotalKcal();
             }
         }
-
         return totalRecipeKcal;
     }
 
