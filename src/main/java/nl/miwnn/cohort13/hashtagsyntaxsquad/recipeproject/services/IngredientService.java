@@ -25,14 +25,6 @@ public class IngredientService {
         this.ingredientRepository = ingredientRepository;
     }
 
-    public List<Ingredient> getAllIngredients() {
-        return ingredientRepository.findAll();
-    }
-
-    public Ingredient getIngredientById(Long id) {
-        return ingredientRepository.findById(id).orElse(null);
-    }
-
     public List<Ingredient> findIngredientByName(String name) {
         return ingredientRepository.findByNameContaining(name);
     }

@@ -51,20 +51,20 @@ public class InitializeController {
 
         makeUser("HSS", "HSS");
 
-        Ingredient potatoes = makeIngredient("Potatoes", UnitOfMeasurement.PIECE);
-        Ingredient curry = makeIngredient("Curry", UnitOfMeasurement.GRAM);
-        Ingredient sausages = makeIngredient("Sausages", UnitOfMeasurement.GRAM);
-        Ingredient onions = makeIngredient("Onions", UnitOfMeasurement.PIECE);
-        Ingredient carrots = makeIngredient("Carrots", UnitOfMeasurement.PIECE);
-        Ingredient chickenBreast = makeIngredient("Chicken Breast", UnitOfMeasurement.GRAM);
-        Ingredient rice = makeIngredient("Rice", UnitOfMeasurement.GRAM);
-        Ingredient pasta = makeIngredient("Pasta", UnitOfMeasurement.GRAM);
-        Ingredient tomatoes = makeIngredient("Tomatoes", UnitOfMeasurement.PIECE);
-        Ingredient spinach = makeIngredient("Spinach", UnitOfMeasurement.GRAM);
-        Ingredient broccoli = makeIngredient("Broccoli", UnitOfMeasurement.GRAM);
-        Ingredient bellPepper = makeIngredient("Bell Pepper", UnitOfMeasurement.PIECE);
-        Ingredient garlicCloves = makeIngredient("Garlic Cloves", UnitOfMeasurement.PIECE);
-        Ingredient oliveOil = makeIngredient("Olive Oil", UnitOfMeasurement.TABLESPOON);
+        Ingredient potatoes = makeIngredient("Potatoes", UnitOfMeasurement.GRAM, 88.0);
+        Ingredient curry = makeIngredient("Curry", UnitOfMeasurement.TABLESPOON, 30.0);
+        Ingredient sausages = makeIngredient("Sausages", UnitOfMeasurement.GRAM, 200.0);
+        Ingredient onions = makeIngredient("Onions", UnitOfMeasurement.GRAM, 20.0);
+        Ingredient carrots = makeIngredient("Carrots", UnitOfMeasurement.GRAM, 10.0);
+        Ingredient chickenBreast = makeIngredient("Chicken Breast", UnitOfMeasurement.GRAM,120.0);
+        Ingredient rice = makeIngredient("Rice", UnitOfMeasurement.GRAM, 210.0);
+        Ingredient pasta = makeIngredient("Pasta", UnitOfMeasurement.GRAM,250.0);
+        Ingredient tomatoes = makeIngredient("Tomatoes", UnitOfMeasurement.GRAM, 15.0);
+        Ingredient spinach = makeIngredient("Spinach", UnitOfMeasurement.GRAM, 12.0);
+        Ingredient broccoli = makeIngredient("Broccoli", UnitOfMeasurement.GRAM, 10.0);
+        Ingredient bellPepper = makeIngredient("Bell Pepper", UnitOfMeasurement.GRAM, 13.0);
+        Ingredient garlicCloves = makeIngredient("Garlic Cloves", UnitOfMeasurement.TEASPOON, 5.0);
+        Ingredient oliveOil = makeIngredient("Olive Oil", UnitOfMeasurement.TABLESPOON, 100.0);
 
         Tag japaneseKitchen = makeTag("Japanese Kitchen");
         Tag italianKitchen = makeTag("Italian Kitchen");
@@ -77,46 +77,47 @@ public class InitializeController {
 
         Recipe curryPotatoes = makeRecipe("Spicy Potato Curry",
                 List.of("Weigh the ingredients", "Cook all ingredients separately"),
-                List.of(new IngredientInRecipe(10, sausages),
-                        new IngredientInRecipe(5, potatoes),
-                        new IngredientInRecipe(100, curry),
-                        new IngredientInRecipe(2, onions)),
+                List.of(new IngredientInRecipe(100, sausages),
+                        new IngredientInRecipe(100, potatoes),
+                        new IngredientInRecipe(2, curry),
+                        new IngredientInRecipe(50, onions)),
                 List.of(japaneseKitchen));
 
         Recipe chickenRiceStirFry = makeRecipe("Rice and Chicken Stirfry",
                 List.of("Stirfry"),
                 List.of(new IngredientInRecipe(200, rice),
-                        new IngredientInRecipe(2, bellPepper),
+                        new IngredientInRecipe(100, bellPepper),
                         new IngredientInRecipe(100, chickenBreast)),
                 List.of(chineseKitchen));
 
-//        Recipe chickenAndPotatoStew = makeRecipe("Chicken and Potato Stew",
-//                List.of("Stew chicken and potatoes together"),
-//                List.of(new IngredientInRecipe(100, chickenBreast),
-//                        new IngredientInRecipe(1, potatoes),
-//                        new IngredientInRecipe(1, onions)),
-//                List.of(italianKitchen));
-//
-//        Recipe italianSausagePizza = makeRecipe("Italian Sausage Pizza",
-//                List.of("Top pizza with Italian sausage slices"),
-//                List.of(new IngredientInRecipe(100, sausages)),
-//                List.of(italianKitchen));
-//
-//        Recipe spicyCurrySausage = makeRecipe("Spicy Pasta",
-//                List.of("Cook sausages", "Make a spicy sauce"),
-//                List.of(new IngredientInRecipe(1, garlicCloves),
-//                        new IngredientInRecipe(10, tomatoes),
-//                        new IngredientInRecipe(2, sausages),
-//                        new IngredientInRecipe(100, pasta)),
-//                List.of(italianKitchen));
+        Recipe chickenAndPotatoStew = makeRecipe("Chicken and broccoli Stew",
+                List.of("Stew chicken and potatoes together"),
+                List.of(new IngredientInRecipe(100, chickenBreast),
+                        new IngredientInRecipe(100, broccoli),
+                        new IngredientInRecipe(50, onions)),
+                List.of(italianKitchen));
+
+        Recipe italianSausagePizza = makeRecipe("Italian Sausage Pizza",
+                List.of("Top pizza with Italian sausage slices"),
+                List.of(new IngredientInRecipe(100, sausages)),
+                List.of(italianKitchen));
+
+        Recipe spicyCurrySausage = makeRecipe("Spicy Pasta",
+                List.of("Cook sausages", "Make a spicy sauce"),
+                List.of(new IngredientInRecipe(1, garlicCloves),
+                        new IngredientInRecipe(100, tomatoes),
+                        new IngredientInRecipe(150, sausages),
+                        new IngredientInRecipe(125, pasta)),
+                List.of(italianKitchen));
 
         return "redirect:/";
     }
 
-    private Ingredient makeIngredient(String name, UnitOfMeasurement unitOfMeasurement) {
+    private Ingredient makeIngredient(String name, UnitOfMeasurement unitOfMeasurement, Double kCal) {
         Ingredient ingredient = new Ingredient();
         ingredient.setName(name);
         ingredient.setUnitOfMeasurement(unitOfMeasurement);
+        ingredient.setkCal(kCal);
 
         ingredientRepository.save(ingredient);
         return ingredient;

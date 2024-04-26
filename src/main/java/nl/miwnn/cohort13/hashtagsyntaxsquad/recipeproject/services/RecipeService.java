@@ -23,16 +23,6 @@ public class RecipeService {
         return recipeRepository.findAll();
     }
 
-    public Recipe getRecipeById(Long id) {
-
-        return recipeRepository.findById(id).orElse(null);
-    }
-
-    public List<Recipe> findRecipeByName(String name) {
-        return recipeRepository.findByRecipeNameContaining(name);
-    }
-
-    //TODO find recipe by ingredient, edit name of method
     public List<Recipe> findRecipesByIngredientName(String ingredient) {
         return recipeRepository.findByRecipeNameContaining(ingredient);
     }
