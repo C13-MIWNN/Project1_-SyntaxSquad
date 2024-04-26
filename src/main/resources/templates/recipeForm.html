@@ -8,7 +8,8 @@
 <div th:replace="~{fragments/general :: navbar}"></div>
 
 <main>
-    <form class="container" th:action="@{/recipe/new}" method="post" th:object="${recipe}">
+    <form class="container" th:action="@{/recipe/new}" method="post" th:object="${recipe}"
+    enctype="multipart/form-data">
         <input type="hidden" th:field="*{id}">
         <table>
 
@@ -115,6 +116,11 @@
                         </option>
                     </select>
                 </td>
+            </tr>
+            <tr>
+                <th><label for="imageField">Upload an image</label></th>
+                <td><input id="imageField" name="imageFile" type="file"
+                accept="image/jpeg, image/jpg, image/png"></td>
             </tr>
         </table>
 

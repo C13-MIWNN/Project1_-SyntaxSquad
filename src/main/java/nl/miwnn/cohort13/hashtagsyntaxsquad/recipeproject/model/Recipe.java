@@ -12,6 +12,8 @@ import java.util.List;
 @Entity
 public class Recipe {
 
+    public static final int LENGTH_IMAGEFILE = 10000;
+
     @Id
     @GeneratedValue
     private Long id;
@@ -29,8 +31,8 @@ public class Recipe {
     private List<Tag> tags = new ArrayList<>();
 
     @Lob
-    @Column(columnDefinition = "LONGBLOB")
-    private byte[] imageData;
+    @Column(columnDefinition = "LONGBLOB", length = LENGTH_IMAGEFILE)
+    private byte[] image;
 
     public Recipe(String recipeName,
                   List<String> instructions,
@@ -46,12 +48,12 @@ public class Recipe {
                   List<IngredientInRecipe> ingredientInRecipeList,
                   List<String> instructions,
                   List<Tag> tags,
-                  byte[] imageData) {
+                  byte[] image) {
         this.recipeName = recipeName;
         this.ingredientInRecipeList = ingredientInRecipeList;
         this.instructions = instructions;
         this.tags = tags;
-        this.imageData = imageData;
+        this.image = image;
     }
 
     public Recipe() {
@@ -119,11 +121,11 @@ public class Recipe {
         this.tags = tags;
     }
 
-    public byte[] getImageData() {
-        return imageData;
+    public byte[] getImage() {
+        return image;
     }
 
-    public void setImageData(byte[] imageData) {
-        this.imageData = imageData;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }

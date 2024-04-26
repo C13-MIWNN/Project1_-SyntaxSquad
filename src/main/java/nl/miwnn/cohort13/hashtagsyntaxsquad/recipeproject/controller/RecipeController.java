@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -60,8 +62,11 @@ public class RecipeController {
 
     @PostMapping("/recipe/new")
     private String saveOrUpdateRecipe(@ModelAttribute("recipe") Recipe recipe,
-                                          BindingResult result) {
-
+                                      @RequestParam MultipartFile imageFile,
+                                      BindingResult result) throws IOException {
+        if (imageFile != null) {
+            recipe.setImage(imageFile.getBytes());
+        }
         if (!result.hasErrors()) {
             recipeRepository.save(recipe);
             setRecipeToIngredient(recipe);
@@ -113,7 +118,7 @@ public class RecipeController {
         }
 
         Recipe recipe = recipeOptional.get();
-        byte[] imageData = recipe.getImageData();
+        byte[] imageData = recipe.getImage();
 
         model.addAttribute("recipeToBeShown", recipe);
         model.addAttribute("recipeImageData", imageData);
