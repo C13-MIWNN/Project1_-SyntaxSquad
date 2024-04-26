@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -41,12 +38,12 @@ public class IngredientController {
         this.ingredientService = ingredientService;
     }
 
-  /*  @GetMapping("/ingredient")
-    public String showAllIngredients(Model model) {
+    @GetMapping("/ingredient")
+    public String showAllIngredient(Model model) {
         model.addAttribute("newIngredient", new Ingredient());
 
         return setupIngredientOverview(model);
-    }*/
+    }
 
     @PostMapping("/ingredient")
     public String saveOrUpdateIngredient
@@ -80,6 +77,12 @@ public class IngredientController {
         model.addAttribute("newIngredient", new Ingredient());
         readAndSaveIngredientsFromCSV("C:\\Users\\Henk-Jan\\IdeaProjects\\MIWMNN\\Project1_-SyntaxSquad\\target\\classes\\static\\files\\NEVO2023_v8.0_details.csv");
         return setupIngredientOverview(model);
+    }
+
+    @GetMapping("/api/ingredients")
+    @ResponseBody
+    public List<Ingredient> fetchAllIngredients() {
+        return ingredientRepository.findAll();
     }
 
     private String handleIngredientNameAndUnitConstraintIfNecessary

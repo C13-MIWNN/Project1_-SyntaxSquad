@@ -100,6 +100,16 @@ public class Recipe {
     public void setIngredientInRecipeList(List<IngredientInRecipe> ingredientInRecipeList) {
         this.ingredientInRecipeList = ingredientInRecipeList;
     }
+    public double calculateTotalRecipeKcal() {
+        double totalRecipeKcal = 0.0;
+        if (ingredientInRecipeList != null) {
+            for (IngredientInRecipe ingredientInRecipe : ingredientInRecipeList) {
+                totalRecipeKcal += ingredientInRecipe.calculateTotalKcal();
+            }
+        }
+
+        return totalRecipeKcal;
+    }
 
     public List<Tag> getTags() {
         return tags;

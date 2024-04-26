@@ -283,6 +283,17 @@ indexbody {
     padding: 0;
 }
 
+.form-control {
+    width: 100%;
+}
+
+#ingredientField {
+    width: 784px;
+}
+
+#tagsField {
+    width: 100%;
+}
 
 footer {
     position: fixed;
