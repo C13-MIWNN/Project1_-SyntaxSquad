@@ -37,13 +37,63 @@
             <tr th:each="ingredient, rowStat : *{ingredientInRecipeList}">
                 <td th:align="right"><strong th:text="${rowStat.count}"></strong></td>
                 <td>
-                    <select id="ingredientField" th:field="*{ingredientInRecipeList[__${rowStat.index}__].ingredient}">
-                        <option
-                                th:each="potentialIngredient : ${allIngredients}"
-                                th:text="${potentialIngredient.toString()}"
-                                th:value="${potentialIngredient.id}">
-                        </option>
+
+                    <script th:inline="javascript">
+
+                        document.addEventListener('DOMContentLoaded', function() {
+                            var selectElement = document.getElementById('ingredientField__${rowStat.index}');
+                            var selectedIngredientId = localStorage.getItem('selectedIngredientId__${rowStat.index}');
+                            if (selectedIngredientId) {
+                                selectElement.value = selectedIngredientId;
+                            }
+                        });
+                        function loadIngredients(selectElement) {
+                            var selectedIngredientId = selectElement.dataset.selectedIngredientId;
+                            if (selectedIngredientId) {
+                                selectElement.value = selectedIngredientId;
+                                return;
+                            }
+
+                            var url = '/api/ingredients';
+                            fetch(url)
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Failed to fetch ingredients');
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    data.forEach(function(ingredient) {
+                                        var option = document.createElement("option");
+                                        option.text = ingredient.name;
+                                        option.value = ingredient.id;
+                                        selectElement.add(option);
+                                    });
+
+                                    var selectedIngredientId = selectElement.dataset.selectedIngredientId;
+                                    if (selectedIngredientId) {
+                                        selectElement.value = selectedIngredientId;
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error fetching ingredients:', error);
+                                });
+                        }
+
+                        function updateSelectedIngredient(selectElement) {
+                            var selectedIngredientId = selectElement.value;
+                            selectElement.dataset.selectedIngredientId = selectedIngredientId;
+                            localStorage.setItem('selectedIngredientId__${rowStat.index}', selectedIngredientId);
+                        }
+                    </script>
+
+                    <select id="ingredientField" th:field="*{ingredientInRecipeList[__${rowStat.index}__].ingredient}"
+                            onclick="loadIngredients(this)"
+                            onchange="updateSelectedIngredient(this)"
+                    >
+                        <option value="">Select Ingredient</option>
                     </select>
+
                 </td>
                 <th><label class="recipe-name" for="amountField"><b>Amount</b></label></th>
                 <td>

@@ -10,6 +10,12 @@ import jakarta.persistence.*;
 @Entity
    public class IngredientInRecipe {
 
+    private static final double LITER_TO_GRAM_CONVERSION_RATE = 1000.0;
+    private static final double TABLESPOON_TO_GRAM_CONVERSION_RATE = 15.0;
+    private static final double TEASPOON_TO_GRAM_CONVERSION_RATE = 5.0;
+    private static final double PIECE_TO_GRAM_CONVERSION_RATE = 100.0;
+
+
     @Id
     @GeneratedValue
     Long id;
@@ -43,6 +49,36 @@ import jakarta.persistence.*;
         return String.format("%s %s of %s",
                 this.amount, this.ingredient.getUnitOfMeasurement(), this.ingredient.getName()).toLowerCase();
     }
+
+    public double calculateTotalKcal() {
+        double totalKcal = 0.0;
+        if (ingredient != null) {
+            double quantityInGrams = convertToGrams(getAmount(),
+                    ingredient.getUnitOfMeasurement());
+
+            double kcalPer100g = ingredient.getkCal();
+            totalKcal = (amount * kcalPer100g) / 100.0;
+        }
+        return totalKcal;
+    }
+
+    private double convertToGrams(double quantity, UnitOfMeasurement unit) {
+        switch (unit) {
+            case PIECE:
+                return quantity * PIECE_TO_GRAM_CONVERSION_RATE;
+            case GRAM, MILLILITER:
+                return quantity;
+            case TEASPOON:
+                return quantity * TEASPOON_TO_GRAM_CONVERSION_RATE;
+            case TABLESPOON:
+                return quantity * TABLESPOON_TO_GRAM_CONVERSION_RATE;
+            case LITER:
+                return quantity * LITER_TO_GRAM_CONVERSION_RATE;
+            default:
+                return 0.0;
+        }
+    }
+
 
     public Recipe getRecipe() {
         return recipe;
