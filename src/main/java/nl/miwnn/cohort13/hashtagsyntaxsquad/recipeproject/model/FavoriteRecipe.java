@@ -2,12 +2,8 @@ package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author Sami ARSLAN
- * <p>
  * Deals with favorite recipe
  **/
 
@@ -23,7 +19,6 @@ public class FavoriteRecipe {
     @ManyToOne(cascade = CascadeType.MERGE)
     private RecipeUser recipeUser;
 
-
     public FavoriteRecipe(Long favoriteId, Recipe recipe, RecipeUser recipeUser) {
         this.favoriteId = favoriteId;
         this.recipe = recipe;
@@ -37,7 +32,6 @@ public class FavoriteRecipe {
         this.recipe = recipe;
         this.recipeUser = recipeUser;
     }
-
 
     public Long getFavoriteId() {
         return favoriteId;

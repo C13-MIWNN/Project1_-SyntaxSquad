@@ -21,7 +21,6 @@ import java.util.Optional;
 
 /**
  * @author Sami ARSLAN
- * <p>
  * Add and view recipes to favorite recipes
  **/
 
@@ -63,14 +62,12 @@ public class FavoriteRecipeController {
         if (user == null) {
             return "redirect:/error";
         }
-
         List<FavoriteRecipe> favoriteRecipes = favoriteRecipeRepository.findByRecipeUser(user);
 
         if (favoriteRecipes.isEmpty()) {
             model.addAttribute("noFavoriteRecipes", true);
             return "favoriteRecipe";
         }
-
         List<Recipe> userFavoriteRecipes = getUserFavoriteRecipes(favoriteRecipes);
         model.addAttribute("favoriteRecipes", userFavoriteRecipes);
 
@@ -84,7 +81,6 @@ public class FavoriteRecipeController {
             Optional<Recipe> optionalRecipe = recipeRepository.findById(favoriteRecipe.getRecipe().getId());
             optionalRecipe.ifPresent(userFavoriteRecipes::add);
         }
-
         return userFavoriteRecipes;
     }
 }

@@ -2,13 +2,11 @@ package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.dtos;
 
 /**
  * @author Sami ARSLAN
- * <p>
  * Handle user registration data
  **/
 
 public class RecipeUserFormDTO {
     private String name;
-
     private String password;
     private String confirmPassword;
 

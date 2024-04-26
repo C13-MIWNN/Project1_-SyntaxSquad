@@ -12,7 +12,6 @@
 <header th:fragment="navbar">
 
     <div class="row d-flex justify-content-center">
-
         <div class="homepage col-2 d-flex align-items-center ">
             <a href="/">
                 <img class="mb-5" src="/images/logo.gif" height="71" width="209" alt="logo"/>
@@ -24,7 +23,8 @@
             <form class="form-inline" th:action="@{/search}" method="get">
                 <div class="row d-flex justify-content-center">
                     <div class="col-sm-7">
-                        <input class="form-control mr-sm-2" type="text" id="search" name="ingredient" placeholder="Enter a recipe" aria-label="Search">
+                        <input class="form-control mr-sm-2" type="text" id="search" name="ingredient"
+                               placeholder="Enter a recipe" aria-label="Search">
                     </div>
                     <div class="col-sm-1">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -60,7 +60,8 @@
 
             <div class="login" sec:authorize="isAnonymous()">
                 <a class="nav-link" th:href="@{/login}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-door-open"
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                         class="bi bi-door-open"
                          viewBox="0 0 16 16">
                         <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1"/>
                         <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1
@@ -71,7 +72,8 @@
 
             <div class="login" sec:authorize="isAuthenticated()">
                 <a class="nav-link" th:href="@{/logout}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-door-open"
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                         class="bi bi-door-open"
                          viewBox="0 0 16 16">
                         <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1"/>
                         <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1
@@ -83,7 +85,8 @@
 
             <div class="signin mt-3" sec:authorize="isAuthenticated()">
                 <div class="signin mb-3" sec:authorize="isAuthenticated()">
-                    <p class="nav-link text-success" style="font-size: 20px" th:text="${#authentication.principal.username != null ?
+                    <p class="nav-link text-success" style="font-size: 20px"
+                       th:text="${#authentication.principal.username != null ?
                                                 'Welcome ' + #authentication.principal.username : ''}"></p>
                 </div>
             </div>
@@ -101,8 +104,5 @@
     <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </div>
-
-
 </body>
-
 </html>

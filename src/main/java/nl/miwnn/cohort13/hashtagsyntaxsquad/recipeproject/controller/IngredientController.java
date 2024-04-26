@@ -32,7 +32,9 @@ public class IngredientController {
     private final IngredientService ingredientService;
 
     @Autowired
-    public IngredientController(IngredientRepository ingredientRepository, RecipeService recipeService, IngredientService ingredientService) {
+    public IngredientController(IngredientRepository ingredientRepository,
+                                RecipeService recipeService,
+                                IngredientService ingredientService) {
         this.ingredientRepository = ingredientRepository;
         this.recipeService = recipeService;
         this.ingredientService = ingredientService;
@@ -58,7 +60,6 @@ public class IngredientController {
         if (result.hasErrors()) {
             return setupIngredientOverview(model);
         }
-
         ingredientRepository.save(ingredientToBeSaved);
 
         return "redirect:/ingredient";
@@ -85,6 +86,21 @@ public class IngredientController {
         return ingredientRepository.findAll();
     }
 
+    private static Double extractKcal(String[] parts, BufferedReader br) throws IOException {
+        String line;
+        if (isValidLine(parts)) {
+            return Double.parseDouble(parts[12]);
+        } else {
+            while ((line = br.readLine()) != null) {
+                String[] nextParts = line.split("\\|");
+                if (isValidLine(nextParts)) {
+                    return Double.parseDouble(nextParts[12]);
+                }
+            }
+        }
+        return null;
+    }
+
     private String handleIngredientNameAndUnitConstraintIfNecessary
             (Ingredient ingredientToBeSaved, Model model) {
         try {
@@ -105,10 +121,8 @@ public class IngredientController {
                 (ingredient.getName(), ingredient.getUnitOfMeasurement()).isEmpty();
     }
 
-    private String setupIngredientOverview(Model model) {
-        model.addAttribute("allIngredients", ingredientRepository.findAll());
-        model.addAttribute("allUnitsOfMeasurement", Arrays.asList(UnitOfMeasurement.values()));
-        return "ingredientOverview";
+    private static boolean isValidLine(String[] parts) {
+        return parts.length >= 14 && "Energy kcal".equals(parts[11].trim());
     }
 
     public static List<Ingredient> readIngredientsFromCSV(String csvFile) {
@@ -130,25 +144,6 @@ public class IngredientController {
         return ingredients;
     }
 
-    private static boolean isValidLine(String[] parts) {
-        return parts.length >= 14 && "Energy kcal".equals(parts[11].trim());
-    }
-
-    private static Double extractKcal(String[] parts, BufferedReader br) throws IOException {
-        String line;
-        if (isValidLine(parts)) {
-            return Double.parseDouble(parts[12]);
-        } else {
-            while ((line = br.readLine()) != null) {
-                String[] nextParts = line.split("\\|");
-                if (isValidLine(nextParts)) {
-                    return Double.parseDouble(nextParts[12]);
-                }
-            }
-        }
-        return null;
-    }
-
     public void readAndSaveIngredientsFromCSV(String csvFilePath) {
         List<Ingredient> ingredients = IngredientController.readIngredientsFromCSV(csvFilePath);
 
@@ -161,4 +156,9 @@ public class IngredientController {
         ingredientService.saveAllIngredients(ingredients);
     }
 
+    private String setupIngredientOverview(Model model) {
+        model.addAttribute("allIngredients", ingredientRepository.findAll());
+        model.addAttribute("allUnitsOfMeasurement", Arrays.asList(UnitOfMeasurement.values()));
+        return "ingredientOverview";
+    }
 }

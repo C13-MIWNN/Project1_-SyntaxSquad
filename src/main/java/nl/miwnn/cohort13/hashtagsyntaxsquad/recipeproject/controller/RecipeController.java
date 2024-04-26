@@ -86,6 +86,7 @@ public class RecipeController {
                                     HttpServletRequest request) {
     final Integer rowId = Integer.valueOf(request.getParameter("removeInstruction"));
         recipe.getInstructions().remove(rowId.intValue());
+
         return "recipeForm";
     }
 
@@ -107,8 +108,6 @@ public class RecipeController {
         return setupRecipeForm(model);
     }
 
-
-
     @GetMapping("/recipe/detail/{id}")
     public String showRecipeDetails(@PathVariable("id") Long id, Model model) {
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
@@ -116,14 +115,17 @@ public class RecipeController {
         if (recipeOptional.isEmpty()) {
             return "redirect:/recipe";
         }
-
         Recipe recipe = recipeOptional.get();
-        byte[] imageData = recipe.getImage();
-
         model.addAttribute("recipeToBeShown", recipe);
-        model.addAttribute("recipeImageData", imageData);
 
         return "recipeDetails";
+    }
+
+    private void setRecipeToIngredient(Recipe recipe) {
+        for (IngredientInRecipe ingredientInRecipe : recipe.getIngredientInRecipeList()) {
+            ingredientInRecipe.setRecipe(recipe);
+            ingredientInRecipeRepository.save(ingredientInRecipe);
+        }
     }
 
     private String setupRecipeForm(Model model) {
@@ -132,12 +134,5 @@ public class RecipeController {
         model.addAttribute("allTags", tagRepository.findAll());
 
         return "recipeForm";
-    }
-
-    private void setRecipeToIngredient(Recipe recipe) {
-        for (IngredientInRecipe ingredientInRecipe : recipe.getIngredientInRecipeList()) {
-            ingredientInRecipe.setRecipe(recipe);
-            ingredientInRecipeRepository.save(ingredientInRecipe);
-        }
     }
 }

@@ -79,7 +79,6 @@ import jakarta.persistence.*;
         }
     }
 
-
     public Recipe getRecipe() {
         return recipe;
     }

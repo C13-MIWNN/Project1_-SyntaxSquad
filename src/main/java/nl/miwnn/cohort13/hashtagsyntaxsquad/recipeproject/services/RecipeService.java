@@ -1,4 +1,6 @@
-package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.services;/*
+package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.services;
+
+/*
  * @author Henk-Jan Veld
  * Purpose for this class
  **/

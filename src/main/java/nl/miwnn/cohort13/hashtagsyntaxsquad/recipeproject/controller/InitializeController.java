@@ -16,7 +16,6 @@ import java.util.List;
 
  /** @author Henk-Jan Veld
  * Set some intial data in the database for testing purposes
- *
 */
 @SuppressWarnings("SameReturnValue")
 @Controller
@@ -144,7 +143,6 @@ public class InitializeController {
              ingredientInRecipe.setRecipe(recipe);
              ingredientInRecipeRepository.save(ingredientInRecipe);
          }
-
          return recipe;
      }
 
@@ -156,5 +154,4 @@ public class InitializeController {
          recipeUserService.saveUser(user);
          return user;
      }
-
 }

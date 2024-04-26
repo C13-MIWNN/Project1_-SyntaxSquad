@@ -1,4 +1,6 @@
-package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model;/*
+package nl.miwnn.cohort13.hashtagsyntaxsquad.recipeproject.model;
+
+/*
  * @author Henk-Jan Veld
  * People who use the website
  **/
@@ -22,8 +24,6 @@ public class RecipeUser implements UserDetails {
 
     private String username;
     private String password;
-
-
 
     public Long getUserId() {
         return userId;
@@ -75,6 +75,4 @@ public class RecipeUser implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
-
-
 }

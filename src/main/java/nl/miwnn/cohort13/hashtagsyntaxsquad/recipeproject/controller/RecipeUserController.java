@@ -13,7 +13,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * @author Sami ARSLAN
- * <p>
  * Controls user login and signup actions
  **/
 @Controller
@@ -37,22 +36,17 @@ public class RecipeUserController {
             bindingResult.rejectValue
                     ("name", "duplicate", "This username is not available");
         }
-
         if (!recipeUserFormDTO.getPassword().equals(recipeUserFormDTO.getConfirmPassword())) {
             bindingResult.rejectValue
                     ("password", "no.match", "The passwords do not match");
         }
-
         if (bindingResult.hasErrors()) {
             return "userForm";
         }
-
         recipeUserService.saveUser(recipeUserFormDTO);
         redirectAttributes.addAttribute("success", true);
         return "redirect:/user/new";
     }
-
-
 }
 
 

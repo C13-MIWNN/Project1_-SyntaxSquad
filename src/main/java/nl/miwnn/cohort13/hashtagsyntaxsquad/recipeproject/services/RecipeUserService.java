@@ -41,6 +41,4 @@ public class RecipeUserService implements UserDetailsService {
     public boolean isNotInitialised() {
         return recipeUserRepository.count() == 0;
     }
-
-
 }

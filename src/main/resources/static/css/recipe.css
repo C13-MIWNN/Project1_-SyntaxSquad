@@ -19,7 +19,6 @@ header {
     height: 120px;
 }
 
-
 .login {
     display: flex;
     align-items: center;
@@ -35,7 +34,6 @@ header {
     justify-content: flex-end;
     /*margin-left: auto;*/
 }
-
 
 .container {
     background-color: #e0f2e9;
@@ -53,7 +51,6 @@ header {
     gap: 20px;
 }
 
-
 .homepage {
     display: flex;
     align-items: center;
@@ -69,7 +66,6 @@ header {
     font-size: 24px;
     margin-right: 5px;
 }
-
 
 .search-container {
     /*display: center;*/
@@ -98,7 +94,6 @@ header {
     font-size: 20px;
 }
 
-
 main {
     padding: 20px;
 }
@@ -118,7 +113,6 @@ main {
     cursor: pointer;
     font-size: 24px;
 }
-
 
 .add-recipe {
     background-color: #4CAF50;
@@ -143,7 +137,6 @@ main {
 .add-recipe:hover::before {
     display: block;
 }
-
 
 .recipe-info {
     display: flex;
@@ -179,14 +172,10 @@ main {
     margin-bottom: 20px;
 }
 
-
-
 .list-recipe {
     background-color: #008CBA;
     color: white;
 }
-
-
 
 .ingredient {
     background-color: #f44336;
@@ -197,12 +186,10 @@ main {
     color: red;
 }
 
-
 .favorite-recipe {
     background-color: #FFC107;
     color: white;
 }
-
 
 /*recipe cards*/
 .recipeCard {
@@ -241,7 +228,6 @@ main {
     text-align: center;
 }
 
-
 div.ingredientWindow {
     overflow-y: scroll;
     float: left;
@@ -267,7 +253,6 @@ div.recipeWindow {
 }
 
 .background-image {
-
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
