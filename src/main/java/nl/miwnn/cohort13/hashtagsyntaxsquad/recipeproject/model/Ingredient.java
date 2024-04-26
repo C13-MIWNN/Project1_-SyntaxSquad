@@ -35,6 +35,12 @@ public class Ingredient {
         this.kCal = kCal;
     }
 
+    public Ingredient(String name, UnitOfMeasurement unitOfMeasurement, Double kCal) {
+        this.name = name;
+        this.unitOfMeasurement = unitOfMeasurement;
+        this.kCal = kCal;
+    }
+
     public Ingredient() {
     }
 
