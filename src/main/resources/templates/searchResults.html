@@ -11,24 +11,16 @@
 
 <div th:replace="~{fragments/general :: navbar}"></div>
 
-<h1>Search Results</h1>
+<h1>We've found these recipes for you:</h1>
 
 <div class="container">
 
-    <table>
-        <tr>
-            <th>Recipe name</th>
-        </tr>
-        <tr></tr>
-        <tr th:each="result : ${searchResults}">
-            <td><a th:text="${result.recipeName}"
-                   th:href="@{/recipe/detail/{recipeName}(recipeName = ${result.recipeName})}"></a>
-            </td>
-        </tr>
-    </table>
-
+    <div class="d-flex flex-wrap">
+        <div th:each="result : ${searchResults}" style="margin: 3mm;">
+            <div th:replace="~{fragments/cardTemplate :: cardFragment(${result})}"></div>
+        </div>
+    </div>
 </div>
-
 
 <div th:replace="~{fragments/general :: footer}"></div>
 <div th:replace="~{fragments/general :: bottomScripts}"></div>
