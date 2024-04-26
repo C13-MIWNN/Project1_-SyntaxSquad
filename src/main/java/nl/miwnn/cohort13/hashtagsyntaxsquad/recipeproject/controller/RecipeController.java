@@ -104,9 +104,9 @@ public class RecipeController {
 
 
 
-    @GetMapping("/recipe/detail/{recipeName}")
-    public String showRecipeDetails(@PathVariable("recipeName") String recipeName, Model model) {
-        Optional<Recipe> recipeOptional = recipeRepository.findByRecipeName(recipeName);
+    @GetMapping("/recipe/detail/{id}")
+    public String showRecipeDetails(@PathVariable("id") Long id, Model model) {
+        Optional<Recipe> recipeOptional = recipeRepository.findById(id);
 
         if (recipeOptional.isEmpty()) {
             return "redirect:/recipe";
