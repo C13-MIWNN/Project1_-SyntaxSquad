@@ -9,16 +9,6 @@
 
 <div class="container-wrapper">
 <div class="container" style="width: 500px; height: 200px; margin-left:40px; margin-right:10px;">
-    <!--   <header>
-           <div>
-               <form th:action="@{/search}" method="get">
-                   <label for="search">Search:</label>
-                   <input type="text" id="search" name="ingredient" placeholder="Enter an ingredient">
-                   <button type="submit">Search</button>
-               </form>
-           </div>
-
-       </header>-->
 
     <form th:action="@{/ingredient}" method="post" th:object="${newIngredient}">
         <input type="hidden" th:field="*{id}">
@@ -29,7 +19,7 @@
                 <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:class="error"></td>
             </tr>
             <tr>
-                <th><label class="recipe-name" for="nameField"><b>Unit Of Measurement</b></label></th>
+                <th><label class="recipe-name" for="unitOfMeasurementField"><b>Unit Of Measurement</b></label></th>
                 <td><select id="unitOfMeasurementField" th:field="*{unitOfMeasurement}">
                     <option th:each="unitOfMeasurement : ${allUnitsOfMeasurement}"
                             th:text="${unitOfMeasurement.toString()}"
@@ -42,7 +32,8 @@
                     th:class="error"></td>
             </tr>
         </table>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Save ingredient">Save Ingredient</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                value="Save ingredient">Save Ingredient</button>
     </form>
 </div>
 

@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * @author Sami ARSLAN
@@ -31,7 +32,7 @@ public class RecipeUserController {
 
     @PostMapping("/user/new")
     public String processUserForm(@ModelAttribute("user") RecipeUserFormDTO recipeUserFormDTO,
-                                  BindingResult bindingResult) {
+                                  BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (recipeUserService.userExists(recipeUserFormDTO.getName())) {
             bindingResult.rejectValue
                     ("name", "duplicate", "This username is not available");
@@ -47,6 +48,11 @@ public class RecipeUserController {
         }
 
         recipeUserService.saveUser(recipeUserFormDTO);
+        redirectAttributes.addAttribute("success", true);
         return "redirect:/user/new";
     }
+
+
 }
+
+

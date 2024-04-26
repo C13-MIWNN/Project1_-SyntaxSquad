@@ -25,8 +25,8 @@ public class FavoriteRecipeRepositoryTest {
 
         // Act
         long count = favoriteRecipeRepository.countByRecipeUser(recipeUser);
-        long expectedCount = favoriteRecipeRepository.findByRecipeUser(recipeUser).size();
-        // long expectedCount = 0;
+//        long expectedCount = favoriteRecipeRepository.findByRecipeUser(recipeUser).size();
+         long expectedCount = 0;
 
         // Assert
         assertEquals(expectedCount, count);

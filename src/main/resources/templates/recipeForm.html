@@ -2,11 +2,9 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head th:replace="~{fragments/general :: baseHeader(~{:: title})}">
     <title>Add your recipe</title>
-
 </head>
 
 <body>
-
 <div th:replace="~{fragments/general :: navbar}"></div>
 
 <main>
@@ -19,11 +17,11 @@
                 <td><input class="form-control" id="nameField" type="text" th:field="*{recipeName}"></td>
             </tr>
             <tr>
-                <th><label class="recipe-name" for="nameField"><b>Instructions</b></label></th>
+                <th><label class="recipe-name" for="instructionField"><b>Instructions</b></label></th>
                 <td><button class="btn btn-secondary" type="submit" name="addInstruction">Add instruction</button></td>
             </tr>
             <tr th:each="instruction, rowStat : *{instructions}">
-                <td th:text="${rowStat.count}"></td>
+                <td th:align="right"><strong th:text="${rowStat.count}"></strong></td>
                 <td>
                     <input class="form-control" id="instructionField" type="text"
                            th:field="*{instructions[__${rowStat.index}__]}"
@@ -33,11 +31,11 @@
                             th:value="${rowStat.index}">Remove instruction</button></td>
             </tr>
             <tr>
-                <th><label class="recipe-name" for="nameField"><b>Ingredients</b></label></th>
+                <th><label class="recipe-name" for="ingredientField"><b>Ingredients</b></label></th>
                 <td><button class="btn btn-secondary" type="submit" name="addIngredient">Add ingredient</button></td>
             </tr>
             <tr th:each="ingredient, rowStat : *{ingredientInRecipeList}">
-                <td align="right"><strong th:text="${rowStat.count + '. ingredient'}"></strong></td>
+                <td th:align="right"><strong th:text="${rowStat.count}"></strong></td>
                 <td>
 
                     <script th:inline="javascript">
@@ -97,13 +95,14 @@
                     </select>
 
                 </td>
-                <th><label class="recipe-name" for="nameField"><b>Amount</b></label></th>
+                <th><label class="recipe-name" for="amountField"><b>Amount</b></label></th>
                 <td>
-                    <input class="form-control" id="amountField" type="text" th:field="*{ingredientInRecipeList[__${rowStat.index}__].amount}">
+                    <input class="form-control" id="amountField" type="text"
+                           th:field="*{ingredientInRecipeList[__${rowStat.index}__].amount}">
                 </td>
             </tr>
             <tr>
-                <th><label class="recipe-name" for="nameField"><b>Tags</b></label></th>
+                <th><label class="recipe-name" for="tagsField"><b>Tags</b></label></th>
                 <td><button class="btn btn-secondary" type="submit" name="addTag">Add tag</button></td>
             </tr>
             <tr th:each="tag, rowStat : *{tags}">
