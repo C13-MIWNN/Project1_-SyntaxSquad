@@ -9,7 +9,7 @@
 
 <main>
     <form class="container" th:action="@{/recipe/new}" method="post" th:object="${recipe}"
-    enctype="multipart/form-data">
+          enctype="multipart/form-data">
         <input type="hidden" th:field="*{id}">
         <table>
 
@@ -120,7 +120,7 @@
             <tr>
                 <th><label for="imageField">Upload an image</label></th>
                 <td><input id="imageField" name="imageFile" type="file"
-                accept="image/jpeg, image/jpg, image/png"></td>
+                           accept="image/jpeg, image/jpg, image/png"></td>
             </tr>
         </table>
 

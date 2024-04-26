@@ -11,11 +11,7 @@ import java.util.List;
 @Repository
 public interface FavoriteRecipeRepository extends JpaRepository<FavoriteRecipe, Long> {
 
-    List<FavoriteRecipe> findByFavoriteId(Long favoriteId);
-
     List<FavoriteRecipe> findByRecipeUser(RecipeUser recipeUser);
-
-    List<FavoriteRecipe> findByRecipe(Recipe recipe);
 
     boolean existsByRecipeAndRecipeUser(Recipe recipe, RecipeUser recipeUser);
 

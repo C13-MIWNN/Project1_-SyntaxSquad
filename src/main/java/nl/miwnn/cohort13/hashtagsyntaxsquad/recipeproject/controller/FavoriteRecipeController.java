@@ -68,8 +68,8 @@ public class FavoriteRecipeController {
             model.addAttribute("noFavoriteRecipes", true);
             return "favoriteRecipe";
         }
-        List<Recipe> userFavoriteRecipes = getUserFavoriteRecipes(favoriteRecipes);
-        model.addAttribute("favoriteRecipes", userFavoriteRecipes);
+
+        model.addAttribute("favoriteRecipes", getUserFavoriteRecipes(favoriteRecipes));
 
         return "favoriteRecipe";
     }

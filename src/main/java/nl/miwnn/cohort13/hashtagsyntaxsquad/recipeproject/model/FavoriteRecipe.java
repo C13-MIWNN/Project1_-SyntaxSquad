@@ -33,14 +33,6 @@ public class FavoriteRecipe {
         this.recipeUser = recipeUser;
     }
 
-    public Long getFavoriteId() {
-        return favoriteId;
-    }
-
-    public void setFavoriteId(Long favoriteId) {
-        this.favoriteId = favoriteId;
-    }
-
     public Recipe getRecipe() {
         return recipe;
     }
@@ -49,11 +41,4 @@ public class FavoriteRecipe {
         this.recipe = recipe;
     }
 
-    public RecipeUser getRecipeUser() {
-        return recipeUser;
-    }
-
-    public void setRecipeUser(RecipeUser recipeUser) {
-        this.recipeUser = recipeUser;
-    }
 }
