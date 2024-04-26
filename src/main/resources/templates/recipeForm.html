@@ -49,7 +49,8 @@
                 </td>
                 <th><label class="recipe-name" for="nameField"><b>Amount</b></label></th>
                 <td>
-                    <input class="form-control" id="amountField" type="text" th:field="*{ingredientInRecipeList[__${rowStat.index}__].amount}">
+                    <input class="form-control" id="amountField" type="text"
+                           th:field="*{ingredientInRecipeList[__${rowStat.index}__].amount}">
                 </td>
             </tr>
             <tr>
